@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MiNutriApp</title>
+<meta name="description" content="MiNutriApp: control personal de porciones por equivalentes (SMAE), recordatorio de 24 horas, recetas y progreso.">
+<meta name="theme-color" content="#059669">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="MiNutriApp">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%20512%20512'%3E%3Crect%20width%3D'512'%20height%3D'512'%20rx%3D'112'%20fill%3D'%23059669'%2F%3E%3Cpath%20d%3D'M256%20160c-34-24-92-20-118%2026-30%2054-4%20134%2036%20170%2024%2022%2052%2016%2082%202%2030%2014%2058%2020%2082-2%2040-36%2066-116%2036-170-26-46-84-50-118-26z'%20fill%3D'%23fff'%2F%3E%3Cpath%20d%3D'M268%20150c-6-38%2010-68%2046-84%206%2040-10%2072-46%2084z'%20fill%3D'%23a7f3d0'%2F%3E%3Cpath%20d%3D'M256%20168v24'%20stroke%3D'%23059669'%20stroke-width%3D'14'%20stroke-linecap%3D'round'%2F%3E%3C%2Fsvg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%20512%20512'%3E%3Crect%20width%3D'512'%20height%3D'512'%20rx%3D'112'%20fill%3D'%23059669'%2F%3E%3Cpath%20d%3D'M256%20160c-34-24-92-20-118%2026-30%2054-4%20134%2036%20170%2024%2022%2052%2016%2082%202%2030%2014%2058%2020%2082-2%2040-36%2066-116%2036-170-26-46-84-50-118-26z'%20fill%3D'%23fff'%2F%3E%3Cpath%20d%3D'M268%20150c-6-38%2010-68%2046-84%206%2040-10%2072-46%2084z'%20fill%3D'%23a7f3d0'%2F%3E%3Cpath%20d%3D'M256%20168v24'%20stroke%3D'%23059669'%20stroke-width%3D'14'%20stroke-linecap%3D'round'%2F%3E%3C%2Fsvg%3E">
+<link rel="manifest" href="data:application/manifest+json;charset=utf-8,%7B%22name%22%3A%22MiNutriApp%22%2C%22short_name%22%3A%22MiNutriApp%22%2C%22description%22%3A%22Porciones%20por%20equivalentes%20(SMAE)%2C%20recordatorio%20de%2024%20horas%2C%20recetas%20y%20progreso.%22%2C%22start_url%22%3A%22.%22%2C%22scope%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22orientation%22%3A%22portrait%22%2C%22background_color%22%3A%22%23eef5f1%22%2C%22theme_color%22%3A%22%23059669%22%2C%22lang%22%3A%22es-MX%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%2520xmlns%253D'http%253A%252F%252Fwww.w3.org%252F2000%252Fsvg'%2520viewBox%253D'0%25200%2520512%2520512'%253E%253Crect%2520width%253D'512'%2520height%253D'512'%2520rx%253D'112'%2520fill%253D'%2523059669'%252F%253E%253Cpath%2520d%253D'M256%2520160c-34-24-92-20-118%252026-30%252054-4%2520134%252036%2520170%252024%252022%252052%252016%252082%25202%252030%252014%252058%252020%252082-2%252040-36%252066-116%252036-170-26-46-84-50-118-26z'%2520fill%253D'%2523fff'%252F%253E%253Cpath%2520d%253D'M268%2520150c-6-38%252010-68%252046-84%25206%252040-10%252072-46%252084z'%2520fill%253D'%2523a7f3d0'%252F%253E%253Cpath%2520d%253D'M256%2520168v24'%2520stroke%253D'%2523059669'%2520stroke-width%253D'14'%2520stroke-linecap%253D'round'%252F%253E%253C%252Fsvg%253E%22%2C%22sizes%22%3A%22any%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%22%7D%2C%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%2520xmlns%253D'http%253A%252F%252Fwww.w3.org%252F2000%252Fsvg'%2520viewBox%253D'0%25200%2520512%2520512'%253E%253Crect%2520width%253D'512'%2520height%253D'512'%2520rx%253D'112'%2520fill%253D'%2523059669'%252F%253E%253Cpath%2520d%253D'M256%2520160c-34-24-92-20-118%252026-30%252054-4%2520134%252036%2520170%252024%252022%252052%252016%252082%25202%252030%252014%252058%252020%252082-2%252040-36%252066-116%252036-170-26-46-84-50-118-26z'%2520fill%253D'%2523fff'%252F%253E%253Cpath%2520d%253D'M268%2520150c-6-38%252010-68%252046-84%25206%252040-10%252072-46%252084z'%2520fill%253D'%2523a7f3d0'%252F%253E%253Cpath%2520d%253D'M256%2520168v24'%2520stroke%253D'%2523059669'%2520stroke-width%253D'14'%2520stroke-linecap%253D'round'%252F%253E%253C%252Fsvg%253E%22%2C%22sizes%22%3A%22any%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22maskable%22%7D%5D%7D">
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/@babel/standalone@7.24.7/babel.min.js"></script>
+<script src="https://unpkg.com/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+<style>
+  html, body { background:#eef5f1; -webkit-tap-highlight-color: transparent; overscroll-behavior-y: none; }
+  body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color:#1f2937; }
+  input, select, textarea, button { font-family: inherit; }
+  input, select, textarea { font-size:16px; }
+  .safe-top { padding-top: max(env(safe-area-inset-top), 0px); }
+  .safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
+  .btn-press:active { transform: scale(.95); }
+  .sheet { animation: up .22s ease-out; }
+  @keyframes up { from { transform: translateY(40px); opacity:.4 } to { transform:none; opacity:1 } }
+  input[type=range] { accent-color:#059669; width:100%; }
+  ::-webkit-scrollbar { display:none; }
+</style>
+</head>
+<body>
+<div id="root">
+  <div id="splash" style="min-height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;color:#047857;font-weight:600">
+    <div style="font-size:40px">🍏</div>
+    <div>Cargando MiNutriApp…</div>
+    <div id="splash-err" style="font-size:13px;color:#b45309;font-weight:400;max-width:300px;text-align:center"></div>
+  </div>
+</div>
+<noscript>MiNutriApp necesita JavaScript para funcionar.</noscript>
+
+<script>
+/* Mejora PWA: manifest con start_url absoluto (blob) e ícono PNG para iOS. Todo local, sin red. */
+(function () {
+  try {
+    var link = document.querySelector('link[rel="manifest"]');
+    var iconUri = document.querySelector('link[rel="icon"]').href;
+    var base = location.href.split('#')[0].split('?')[0];
+    var manifest = {
+      name: 'MiNutriApp', short_name: 'MiNutriApp',
+      description: 'Porciones por equivalentes (SMAE), recordatorio de 24 horas, recetas y progreso.',
+      start_url: base, scope: base.replace(/[^\/]*$/, ''), display: 'standalone', orientation: 'portrait',
+      background_color: '#eef5f1', theme_color: '#059669', lang: 'es-MX',
+      icons: [
+        { src: iconUri, sizes: 'any', type: 'image/svg+xml', purpose: 'any' },
+        { src: iconUri, sizes: 'any', type: 'image/svg+xml', purpose: 'maskable' }
+      ]
+    };
+    if (base.indexOf('http') === 0) {
+      var blob = new Blob([JSON.stringify(manifest)], { type: 'application/manifest+json' });
+      link.href = URL.createObjectURL(blob);
+    }
+    var img = new Image();
+    img.onload = function () {
+      var c = document.createElement('canvas'); c.width = 180; c.height = 180;
+      c.getContext('2d').drawImage(img, 0, 0, 180, 180);
+      var a = document.querySelector('link[rel="apple-touch-icon"]');
+      a.href = c.toDataURL('image/png');
+    };
+    img.src = iconUri;
+  } catch (e) { /* sin consecuencias */ }
+  setTimeout(function () {
+    if (!window.React || !window.lucide || !window.Babel) {
+      var el = document.getElementById('splash-err');
+      if (el) el.textContent = 'No se pudieron cargar las librerías. Conéctate a internet una vez para abrir la app.';
+    }
+  }, 6000);
+})();
+</script>
+
+<script type="text/babel" data-presets="react">
+const { useState, useEffect, useMemo, useRef, useCallback } = React;
+
+/* =====================================================================
+   UTILIDADES
+   ===================================================================== */
+const pad = (n) => String(n).padStart(2, '0');
+const dateKey = (d = new Date()) => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+const parseKey = (k) => { const [y, m, d] = k.split('-').map(Number); return new Date(y, m - 1, d); };
+const addDays = (k, n) => { const d = parseKey(k); d.setDate(d.getDate() + n); return dateKey(d); };
+const fmtLong = (k) => parseKey(k).toLocaleDateString('es-MX', { weekday: 'long', day: 'numeric', month: 'long' });
+const fmtShort = (k) => parseKey(k).toLocaleDateString('es-MX', { day: 'numeric', month: 'short' });
+const nowTime = () => { const d = new Date(); return `${pad(d.getHours())}:${pad(d.getMinutes())}`; };
+const uid = () => Math.random().toString(36).slice(2, 9) + Date.now().toString(36);
+const cls = (...a) => a.filter(Boolean).join(' ');
+const num = (v) => { const n = parseFloat(String(v).replace(',', '.')); return isNaN(n) ? 0 : n; };
+const r1 = (x) => Math.round(x * 10) / 10;
+const fmtEq = (n) => {
+  n = Math.round((n || 0) * 2) / 2;
+  const w = Math.floor(n), h = n - w > 0;
+  if (!h) return String(w);
+  return w ? `${w}½` : '½';
+};
+const clone = (o) => JSON.parse(JSON.stringify(o));
+
+/* =====================================================================
+   DATOS CLÍNICOS: GRUPOS DE EQUIVALENTES (SMAE, valores aproximados)
+   ===================================================================== */
+const GROUPS = [
+  { k: 'ver', name: 'Verduras', short: 'Verduras', color: '#16a34a', icon: 'Carrot', kcal: 25, p: 2, c: 4, l: 0,
+    ej: ['1 taza de verdura cruda (lechuga, espinaca, pepino, jícama)', '½ taza de verdura cocida (brócoli, calabacitas, nopales, ejotes, zanahoria)', '1 jitomate grande', '½ taza de chayote o col cocidos'] },
+  { k: 'fru', name: 'Frutas', short: 'Frutas', color: '#ea580c', icon: 'Apple', kcal: 60, p: 0, c: 15, l: 0,
+    ej: ['1 manzana chica', '1 naranja o 2 mandarinas', '1 taza de papaya, melón o sandía picados', '½ plátano chico', '1 taza de fresas', '½ mango petacón'] },
+  { k: 'cer', name: 'Cereales sin grasa', short: 'Cereal', color: '#ca8a04', icon: 'Wheat', kcal: 70, p: 2, c: 15, l: 0,
+    ej: ['1 tortilla de maíz', '½ taza de arroz cocido', '⅓ de taza de avena en hojuelas', '1 rebanada de pan de caja integral', '½ taza de pasta cocida', '3 tazas de palomitas naturales', '½ taza de papa cocida'] },
+  { k: 'cerg', name: 'Cereales con grasa', short: 'Cereal c/grasa', color: '#b45309', icon: 'Cookie', kcal: 115, p: 2, c: 15, l: 5,
+    ej: ['1 tortilla de harina chica', '½ pieza de pan dulce chico (concha)', '1 sope o gordita chica', '½ taza de granola', '2 tostadas fritas o 1 taco dorado', '1 galleta de mantequilla grande'] },
+  { k: 'leg', name: 'Leguminosas', short: 'Leguminosas', color: '#7c3aed', icon: 'Bean', kcal: 120, p: 8, c: 20, l: 1,
+    ej: ['½ taza de frijoles cocidos (de la olla)', '½ taza de lentejas cocidas', '½ taza de garbanzos cocidos', '½ taza de habas o alubias cocidas'] },
+  { k: 'aomb', name: 'AOA muy bajo aporte de grasa', short: 'AOA muy bajo', color: '#0891b2', icon: 'Fish', kcal: 40, p: 7, c: 0, l: 1,
+    ej: ['2 claras de huevo', '40 g de filete de pescado blanco', '35 g de camarón', '30 g de pechuga de pavo', '¼ de taza de queso cottage'] },
+  { k: 'aob', name: 'AOA bajo aporte de grasa', short: 'AOA bajo', color: '#0284c7', icon: 'Egg', kcal: 55, p: 7, c: 0, l: 3,
+    ej: ['30 g de pollo sin piel', '35 g de atún en agua', '1 huevo entero', '40 g de queso panela', '30 g de carne de res magra', '50 g de sardina en tomate'] },
+  { k: 'aom', name: 'AOA moderado aporte de grasa', short: 'AOA moderado', color: '#2563eb', icon: 'Drumstick', kcal: 75, p: 7, c: 0, l: 5,
+    ej: ['30 g de queso Oaxaca o manchego', '40 g de bistec de res', '1 huevo + 1 clara fritos', '30 g de pierna o muslo de pollo con piel', '40 g de carne molida de res'] },
+  { k: 'lec', name: 'Leche descremada', short: 'Leche', color: '#6366f1', icon: 'Milk', kcal: 95, p: 9, c: 12, l: 2,
+    ej: ['1 taza (240 ml) de leche descremada', '¾ de taza de yogurt natural bajo en grasa', '1 taza de bebida de soya sin azúcar (aprox.)'] },
+  { k: 'gra', name: 'Aceites y grasas', short: 'Grasas', color: '#db2777', icon: 'Droplet', kcal: 45, p: 0, c: 0, l: 5,
+    ej: ['1 cucharadita de aceite de oliva o canola', '⅓ de aguacate chico (≈ 30 g)', '10 almendras o 10 cacahuates', '2 nueces', '1 cucharadita de mayonesa o mantequilla', '1 cucharada de crema'] }
+];
+const G = Object.fromEntries(GROUPS.map((g) => [g.k, g]));
+const KEYS = GROUPS.map((g) => g.k);
+const MEALS = [
+  { k: 'des', n: 'Desayuno', icon: 'Sunrise' },
+  { k: 'col1', n: 'Colación 1', icon: 'Apple' },
+  { k: 'com', n: 'Comida', icon: 'Utensils' },
+  { k: 'col2', n: 'Colación 2', icon: 'Cookie' },
+  { k: 'cen', n: 'Cena', icon: 'Moon' }
+];
+const ACT = {
+  sedentario: { f: 1.2, n: 'Sedentario (poco o nada de ejercicio)' },
+  ligero: { f: 1.375, n: 'Ligero (1-3 días por semana)' },
+  moderado: { f: 1.55, n: 'Moderado (3-5 días por semana)' },
+  alto: { f: 1.725, n: 'Alto (6-7 días por semana)' },
+  muyalto: { f: 1.9, n: 'Muy alto (entrenamiento doble / trabajo físico)' }
+};
+const OBJ = {
+  deficit: { f: -0.2, n: 'Déficit calórico', s: '−20 %' },
+  mantenimiento: { f: 0, n: 'Mantenimiento', s: '0 %' },
+  superavit: { f: 0.1, n: 'Superávit', s: '+10 %' }
+};
+const GLASS_ML = 250;
+
+function imcClass(imc) {
+  if (imc < 18.5) return { t: 'Bajo peso', c: 'bg-sky-100 text-sky-700' };
+  if (imc < 25) return { t: 'Peso normal', c: 'bg-emerald-100 text-emerald-700' };
+  if (imc < 30) return { t: 'Sobrepeso', c: 'bg-amber-100 text-amber-700' };
+  if (imc < 35) return { t: 'Obesidad grado I', c: 'bg-orange-100 text-orange-700' };
+  if (imc < 40) return { t: 'Obesidad grado II', c: 'bg-red-100 text-red-700' };
+  return { t: 'Obesidad grado III', c: 'bg-red-200 text-red-800' };
+}
+function iccClass(icc, sexo) {
+  const lim = sexo === 'H' ? 0.9 : 0.85;
+  return icc >= lim ? { t: 'Riesgo cardiometabólico elevado', c: 'bg-red-100 text-red-700' } : { t: 'Riesgo bajo', c: 'bg-emerald-100 text-emerald-700' };
+}
+function calcMetrics(p) {
+  const peso = num(p.peso), talla = num(p.talla), edad = num(p.edad);
+  if (!(peso > 0 && talla > 0 && edad > 0)) return null;
+  const imc = peso / Math.pow(talla / 100, 2);
+  const tmb = 10 * peso + 6.25 * talla - 5 * edad + (p.sexo === 'H' ? 5 : -161);
+  const get = tmb * (ACT[p.actividad] || ACT.ligero).f;
+  let meta = get * (1 + (OBJ[p.objetivo] || OBJ.mantenimiento).f);
+  const piso = p.sexo === 'H' ? 1500 : 1200;
+  if (p.objetivo === 'deficit' && meta < piso) meta = Math.min(piso, get);
+  return { imc, tmb, get, meta: Math.round(meta / 10) * 10 };
+}
+const sumKey = (E, key) => GROUPS.reduce((s, g) => s + g[key] * (E[g.k] || 0), 0);
+
+/* Traduce kcal + % de macros a equivalentes diarios */
+function planEq(kcal, pc, pp) {
+  const pl = 100 - pc - pp;
+  const Cg = (kcal * pc) / 400, Pg = (kcal * pp) / 400, Lg = (kcal * pl) / 900;
+  const E = { ver: 4, fru: 3, leg: 1, lec: 1, cer: 0, cerg: 0, aomb: 0, aob: 0, aom: 0, gra: 0 };
+  if (kcal < 1400) { E.ver = 3; E.fru = 2; }
+  if (kcal > 2400) { E.ver = 5; E.fru = 4; E.leg = 2; }
+  const cerT = Math.max(2, Math.round((Cg - sumKey(E, 'c')) / 15));
+  E.cerg = Math.round(cerT * 0.25); E.cer = cerT - E.cerg;
+  const aoaT = Math.max(2, Math.round((Pg - sumKey(E, 'p')) / 7));
+  E.aom = Math.round(aoaT * 0.2); E.aomb = Math.round(aoaT * 0.3); E.aob = aoaT - E.aom - E.aomb;
+  E.gra = Math.max(1, Math.round((Lg - sumKey(E, 'l')) / 5));
+  return E;
+}
+const eqKcal = (E) => Math.round(sumKey(E, 'kcal'));
+const eqMacros = (E) => ({ p: Math.round(sumKey(E, 'p')), c: Math.round(sumKey(E, 'c')), l: Math.round(sumKey(E, 'l')) });
+function dayTotals(day) {
+  const t = {}; KEYS.forEach((k) => (t[k] = 0));
+  Object.values((day && day.portions) || {}).forEach((m) => Object.entries(m).forEach(([k, v]) => { t[k] = (t[k] || 0) + v; }));
+  return t;
+}
+
+/* =====================================================================
+   RECETARIO (eq usa las claves del tracker)
+   ===================================================================== */
+const RECIPES = [
+  { id: 'r1', n: 'Huevos a la mexicana con frijoles', cats: ['Desayuno'], t: '15 min',
+    eq: { aob: 2, ver: 1, leg: 1, cer: 1, gra: 1 },
+    ing: ['2 huevos', '½ taza de jitomate, cebolla y chile serrano picados', '½ taza de frijoles de la olla', '1 tortilla de maíz', '1 cucharadita de aceite'],
+    pasos: ['Sofríe jitomate, cebolla y chile en el aceite 3 minutos.', 'Agrega los huevos batidos y revuelve hasta que cuajen.', 'Sirve con los frijoles calientes y la tortilla.'] },
+  { id: 'r2', n: 'Chilaquiles verdes con pollo', cats: ['Desayuno', 'Comida'], t: '20 min',
+    eq: { cer: 2, aob: 2, ver: 1, gra: 1 },
+    ing: ['2 tortillas de maíz horneadas en triángulos', '60 g de pollo deshebrado', '½ taza de salsa verde (tomatillo, chile, cilantro)', '⅓ de aguacate en rebanadas', 'Cebolla y cilantro'],
+    pasos: ['Hornea los triángulos de tortilla a 200 °C por 10 minutos hasta que estén crujientes.', 'Calienta la salsa verde y mezcla con el pollo.', 'Incorpora los totopos un minuto y sirve con aguacate, cebolla y cilantro.'] },
+  { id: 'r3', n: 'Avena con papaya y nueces', cats: ['Desayuno', 'Snack'], t: '10 min',
+    eq: { cer: 2, lec: 1, fru: 1, gra: 1 },
+    ing: ['⅔ de taza de avena en hojuelas', '1 taza de leche descremada', '1 taza de papaya picada', '2 nueces picadas', 'Canela al gusto'],
+    pasos: ['Cuece la avena con la leche a fuego bajo 5 minutos moviendo.', 'Sirve en un tazón y agrega la papaya y las nueces.', 'Espolvorea canela.'] },
+  { id: 'r4', n: 'Omelette de espinaca y queso panela', cats: ['Desayuno', 'Cena'], t: '12 min',
+    eq: { aomb: 1, aob: 2, ver: 2, cer: 1, gra: 1 },
+    ing: ['1 huevo entero + 2 claras', '40 g de queso panela en cubos', '1 taza de espinaca fresca', '1 cucharadita de aceite', '1 tortilla de maíz'],
+    pasos: ['Bate el huevo con las claras y una pizca de sal.', 'Sofríe la espinaca en el aceite 1 minuto.', 'Vierte el huevo, agrega el panela, dobla y cocina 2 minutos por lado.', 'Acompaña con la tortilla.'] },
+  { id: 'r5', n: 'Tacos de nopal con queso panela', cats: ['Comida', 'Cena'], t: '15 min',
+    eq: { cer: 2, ver: 2, aob: 2, gra: 1 },
+    ing: ['2 tortillas de maíz', '1 taza de nopales asados en tiras', '80 g de queso panela asado', '⅓ de aguacate', 'Salsa, cebolla y cilantro'],
+    pasos: ['Asa los nopales y el queso panela en un sartén antiadherente.', 'Calienta las tortillas.', 'Arma los tacos y termina con aguacate, salsa, cebolla y cilantro.'] },
+  { id: 'r6', n: 'Sopa de lentejas con verduras', cats: ['Comida', 'Cena'], t: '35 min',
+    eq: { leg: 2, ver: 2, gra: 1, cer: 1 },
+    ing: ['1 taza de lentejas cocidas', '1 taza de zanahoria, calabacita y apio picados', '1 cucharadita de aceite', '¼ de cebolla y 1 diente de ajo', '1 tortilla de maíz'],
+    pasos: ['Acitrona cebolla y ajo en el aceite.', 'Agrega las verduras y 2 tazas de agua; cuece 15 minutos.', 'Añade las lentejas cocidas y deja hervir 5 minutos. Sirve con la tortilla.'] },
+  { id: 'r7', n: 'Pechuga a la plancha con arroz y ensalada', cats: ['Comida'], t: '25 min',
+    eq: { aomb: 3, cer: 2, ver: 2, gra: 1 },
+    ing: ['100 g de pechuga de pollo sin piel', '1 taza de arroz cocido', '2 tazas de lechuga, jitomate y pepino', '1 cucharadita de aceite de oliva', 'Jugo de limón, sal y pimienta'],
+    pasos: ['Sazona la pechuga con limón, sal y pimienta.', 'Cocínala en sartén caliente 5-6 minutos por lado.', 'Mezcla la ensalada con el aceite y limón. Sirve junto al arroz.'] },
+  { id: 'r8', n: 'Caldo de pollo casero', cats: ['Comida', 'Cena'], t: '40 min',
+    eq: { aob: 3, ver: 3, cer: 1 },
+    ing: ['90 g de pollo sin piel', '1½ tazas de chayote, zanahoria y calabacita', '½ taza de arroz cocido', 'Cebolla, ajo, cilantro y limón'],
+    pasos: ['Hierve el pollo con cebolla y ajo 20 minutos.', 'Agrega las verduras y cocina 10 minutos más.', 'Sirve con arroz, cilantro y limón.'] },
+  { id: 'r9', n: 'Pescado a la veracruzana', cats: ['Comida', 'Cena'], t: '30 min',
+    eq: { aomb: 3, ver: 2, gra: 1, cer: 1 },
+    ing: ['120 g de filete de pescado blanco', '1 jitomate grande, ¼ de cebolla, chile güero', '3 aceitunas y 1 cucharadita de aceite de oliva', '½ taza de arroz cocido'],
+    pasos: ['Sofríe cebolla, jitomate y chile en el aceite 5 minutos.', 'Coloca el pescado encima, agrega las aceitunas y tapa 10 minutos.', 'Sirve con el arroz.'] },
+  { id: 'r10', n: 'Ensalada de atún con garbanzos', cats: ['Comida', 'Cena'], t: '10 min',
+    eq: { aob: 3, leg: 1, ver: 2, gra: 1, cer: 1 },
+    ing: ['1 lata de atún en agua escurrido (≈ 105 g)', '½ taza de garbanzos cocidos', '2 tazas de lechuga, pepino y jitomate', '1 cucharadita de aceite de oliva y limón', '1 tostada horneada'],
+    pasos: ['Mezcla las verduras con los garbanzos.', 'Agrega el atún y el aderezo de aceite y limón.', 'Sirve sobre la tostada o a un lado.'] },
+  { id: 'r11', n: 'Quesadillas de flor de calabaza', cats: ['Cena', 'Comida'], t: '15 min',
+    eq: { cer: 2, aom: 2, ver: 1 },
+    ing: ['2 tortillas de maíz', '60 g de queso Oaxaca deshebrado', '½ taza de flor de calabaza picada', 'Salsa roja al gusto'],
+    pasos: ['Rellena las tortillas con el queso y la flor de calabaza.', 'Cocínalas en comal caliente hasta que el queso se derrita.', 'Sirve con salsa.'] },
+  { id: 'r12', n: 'Tostadas de tinga de pollo', cats: ['Comida', 'Cena'], t: '25 min',
+    eq: { cer: 2, aob: 2, ver: 1, gra: 1 },
+    ing: ['2 tostadas horneadas', '60 g de pollo deshebrado', '½ taza de jitomate, cebolla y chipotle', '½ taza de lechuga', '⅓ de aguacate'],
+    pasos: ['Licúa jitomate con chipotle y cocina con la cebolla 8 minutos.', 'Mezcla con el pollo deshebrado.', 'Sirve sobre las tostadas con lechuga y aguacate.'] },
+  { id: 'r13', n: 'Yogurt con fresas y granola', cats: ['Snack', 'Desayuno'], t: '5 min',
+    eq: { lec: 1, fru: 1, cer: 1 },
+    ing: ['¾ de taza de yogurt natural bajo en grasa', '1 taza de fresas rebanadas', '2 cucharadas de granola o avena tostada'],
+    pasos: ['Pon el yogurt en un vaso o tazón.', 'Agrega las fresas y la granola justo antes de comer.'] },
+  { id: 'r14', n: 'Jícama y papaya con limón y chile', cats: ['Snack'], t: '5 min',
+    eq: { ver: 1, fru: 1 },
+    ing: ['1 taza de jícama en bastones', '1 taza de papaya picada', 'Limón y chile en polvo al gusto'],
+    pasos: ['Corta la jícama y la papaya.', 'Agrega limón y espolvorea chile en polvo.'] },
+  { id: 'r15', n: 'Huevo cocido con pepino y tostada', cats: ['Snack', 'Cena'], t: '12 min',
+    eq: { aob: 2, ver: 1, cer: 1 },
+    ing: ['2 huevos cocidos', '1 taza de pepino en rodajas', '1 tostada horneada', 'Limón, sal y salsa picante'],
+    pasos: ['Cuece los huevos 10 minutos y pélalos.', 'Sirve con pepino, limón y salsa sobre la tostada.'] },
+  { id: 'r16', n: 'Palomitas con limón y chile', cats: ['Snack'], t: '5 min',
+    eq: { cer: 1 },
+    ing: ['3 tazas de palomitas naturales (sin mantequilla)', 'Limón, chile en polvo y sal al gusto'],
+    pasos: ['Revienta las palomitas en olla sin aceite o en microondas.', 'Sazona con limón y chile.'] }
+];
+const ARM = [
+  { k: 'ver', name: 'Verduras', map: ['ver'] },
+  { k: 'fru', name: 'Frutas', map: ['fru'] },
+  { k: 'cer', name: 'Cereales', map: ['cer', 'cerg'] },
+  { k: 'leg', name: 'Leguminosas', map: ['leg'] },
+  { k: 'aoa', name: 'AOA', map: ['aomb', 'aob', 'aom'] },
+  { k: 'lec', name: 'Leche', map: ['lec'] },
+  { k: 'gra', name: 'Grasas', map: ['gra'] }
+];
+const armEq = (eq) => Object.fromEntries(ARM.map((a) => [a.k, a.map.reduce((s, m) => s + (eq[m] || 0), 0)]));
+
+/* =====================================================================
+   ESTADO INICIAL, DATOS DE EJEMPLO Y NORMALIZACIÓN
+   ===================================================================== */
+const LS_KEY = 'minutriapp_v1';
+const emptyProfile = () => ({ nombre: '', edad: '', sexo: 'M', peso: '', talla: '', actividad: 'ligero', objetivo: 'mantenimiento', pc: 50, pp: 20, manualEq: null });
+function makeEmpty() {
+  return { profile: emptyProfile(), logs: {}, progress: [], meta: { isSample: false, lastBackup: null } };
+}
+function makeSample() {
+  const today = dateKey();
+  const profile = { nombre: 'Ejemplo', edad: 32, sexo: 'M', peso: 68, talla: 162, actividad: 'ligero', objetivo: 'deficit', pc: 50, pp: 20, manualEq: null };
+  const progress = [];
+  const pesos = [71.4, 70.8, 70.1, 69.5, 68.9, 68.0], cint = [84, 83, 82, 81, 80, 79], cad = [101, 100.5, 100, 99.5, 99, 98.5];
+  for (let i = 0; i < 6; i++) progress.push({ id: uid(), fecha: addDays(today, -7 * (5 - i)), peso: pesos[i], cintura: cint[i], cadera: cad[i] });
+  const logs = {};
+  logs[today] = {
+    water: 3,
+    portions: {
+      des: { cer: 2, aob: 2, fru: 1, gra: 1, lec: 1 },
+      col1: { fru: 1, ver: 1 },
+      com: { ver: 2, cer: 1, aomb: 2, leg: 1 }
+    },
+    recall: [
+      { id: uid(), meal: 'des', hora: '08:15', texto: 'Huevos a la mexicana con 1 tortilla, frijoles y vaso de leche descremada', hambre: 2 },
+      { id: uid(), meal: 'col1', hora: '11:00', texto: '1 manzana y jícama con limón', hambre: 3 },
+      { id: uid(), meal: 'com', hora: '14:30', texto: 'Pechuga a la plancha, ensalada, ½ taza de frijoles y 1 tortilla', hambre: 2 }
+    ]
+  };
+  logs[addDays(today, -1)] = {
+    water: 6,
+    portions: { des: { cer: 2, aob: 2, fru: 1 }, com: { ver: 3, cer: 2, aob: 3, gra: 1 }, cen: { ver: 2, aom: 2, cer: 2 } },
+    recall: [{ id: uid(), meal: 'cen', hora: '20:00', texto: 'Quesadillas de flor de calabaza con salsa', hambre: 3 }]
+  };
+  return { profile, logs, progress, meta: { isSample: true, lastBackup: null } };
+}
+function normalize(s) {
+  const base = makeEmpty();
+  const o = s && typeof s === 'object' ? s : {};
+  const out = {
+    profile: Object.assign(emptyProfile(), o.profile || {}),
+    logs: o.logs && typeof o.logs === 'object' ? o.logs : {},
+    progress: Array.isArray(o.progress) ? o.progress : [],
+    meta: Object.assign(base.meta, o.meta || {})
+  };
+  Object.values(out.logs).forEach((d) => { d.portions = d.portions || {}; d.recall = d.recall || []; d.water = d.water || 0; });
+  return out;
+}
+function loadState() {
+  try {
+    const raw = localStorage.getItem(LS_KEY);
+    if (raw) { const s = JSON.parse(raw); if (s && s.profile) return normalize(s); }
+  } catch (e) { /* ignorar */ }
+  return makeSample();
+}
+
+/* =====================================================================
+   INDEXEDDB: copia espejo diaria (últimos 7 días)
+   ===================================================================== */
+const idb = {
+  open() {
+    return new Promise((res, rej) => {
+      if (!window.indexedDB) return rej(new Error('sin IndexedDB'));
+      const r = indexedDB.open('minutriapp-db', 1);
+      r.onupgradeneeded = () => r.result.createObjectStore('snapshots', { keyPath: 'date' });
+      r.onsuccess = () => res(r.result);
+      r.onerror = () => rej(r.error);
+    });
+  },
+  async put(snap) {
+    const db = await this.open();
+    await new Promise((res, rej) => { const tx = db.transaction('snapshots', 'readwrite'); tx.objectStore('snapshots').put(snap); tx.oncomplete = res; tx.onerror = () => rej(tx.error); });
+    const all = await this.all(db);
+    const extra = all.sort((a, b) => b.date.localeCompare(a.date)).slice(7);
+    if (extra.length) await new Promise((res) => { const tx = db.transaction('snapshots', 'readwrite'); extra.forEach((e) => tx.objectStore('snapshots').delete(e.date)); tx.oncomplete = res; tx.onerror = res; });
+    db.close();
+  },
+  async all(dbIn) {
+    const db = dbIn || (await this.open());
+    const rows = await new Promise((res, rej) => { const q = db.transaction('snapshots').objectStore('snapshots').getAll(); q.onsuccess = () => res(q.result); q.onerror = () => rej(q.error); });
+    if (!dbIn) db.close();
+    return rows;
+  }
+};
+
+/* =====================================================================
+   RESPALDO / RESTAURACIÓN
+   ===================================================================== */
+async function exportBackup(state) {
+  const payload = { app: 'MiNutriApp', version: 1, exportedAt: new Date().toISOString(), data: state };
+  const json = JSON.stringify(payload, null, 2);
+  const name = `minutriapp-respaldo-${dateKey()}.json`;
+  if (navigator.share && navigator.canShare) {
+    for (const type of ['application/json', 'text/plain']) {
+      let file;
+      try { file = new File([json], name, { type }); } catch (e) { break; }
+      if (navigator.canShare({ files: [file] })) {
+        try {
+          await navigator.share({ files: [file], title: 'Respaldo MiNutriApp', text: `Respaldo MiNutriApp ${dateKey()}` });
+          return 'shared';
+        } catch (e) {
+          if (e && e.name === 'AbortError') return 'cancelled';
+          break; // cualquier otro error: caer a descarga
+        }
+      }
+    }
+  }
+  const blob = new Blob([json], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = name; document.body.appendChild(a); a.click();
+  setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 1500);
+  return 'downloaded';
+}
+function parseBackup(text) {
+  const obj = JSON.parse(text);
+  const data = obj && obj.app === 'MiNutriApp' ? obj.data : obj;
+  if (!data || typeof data !== 'object' || !data.profile) throw new Error('Archivo no válido');
+  const s = normalize(data);
+  s.meta.isSample = false;
+  s.meta.lastBackup = obj.exportedAt ? new Date(obj.exportedAt).getTime() : Date.now();
+  return s;
+}
+async function copyText(text) {
+  try { await navigator.clipboard.writeText(text); return true; } catch (e) { /* fallback */ }
+  try {
+    const ta = document.createElement('textarea');
+    ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    const ok = document.execCommand('copy'); ta.remove(); return ok;
+  } catch (e) { return false; }
+}
+const sinceText = (ts) => {
+  if (!ts) return 'nunca';
+  const h = (Date.now() - ts) / 36e5;
+  if (h < 1) return 'hace menos de 1 hora';
+  if (h < 24) return `hace ${Math.floor(h)} h`;
+  const d = Math.floor(h / 24);
+  return `hace ${d} ${d === 1 ? 'día' : 'días'}`;
+};
+
+/* =====================================================================
+   COMPONENTES BASE
+   ===================================================================== */
+function Icon({ name, size = 20, className = '', sw = 2 }) {
+  const def = window.lucide && window.lucide.icons && window.lucide.icons[name];
+  if (!def) return <span style={{ width: size, height: size, display: 'inline-block' }} />;
+  const nodes = def[0] === 'svg' ? def[2] : def;
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      strokeWidth={sw} strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      {nodes.map((n, i) => React.createElement(n[0], Object.assign({ key: i }, n[1])))}
+    </svg>
+  );
+}
+function Card({ children, className = '' }) {
+  return <section className={cls('bg-white rounded-2xl border border-emerald-100 shadow-sm p-4', className)}>{children}</section>;
+}
+function Modal({ title, onClose, children }) {
+  useEffect(() => {
+    const prev = document.body.style.overflow; document.body.style.overflow = 'hidden';
+    return () => { document.body.style.overflow = prev; };
+  }, []);
+  return (
+    <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/50" onClick={onClose}>
+      <div className="sheet bg-white w-full max-w-md rounded-t-3xl max-h-[88vh] flex flex-col" onClick={(e) => e.stopPropagation()}>
+        <div className="flex items-center justify-between px-5 pt-4 pb-2">
+          <h3 className="text-lg font-bold text-emerald-800">{title}</h3>
+          <button onClick={onClose} className="w-11 h-11 -mr-2 rounded-full flex items-center justify-center text-gray-500 active:bg-gray-100" aria-label="Cerrar"><Icon name="X" /></button>
+        </div>
+        <div className="overflow-y-auto px-5 pb-8 safe-bottom">{children}</div>
+      </div>
+    </div>
+  );
+}
+function Stepper({ value, onDec, onInc, color = '#059669', small = false, display }) {
+  const sz = small ? 'w-10 h-10' : 'w-12 h-12';
+  return (
+    <div className="flex items-center gap-1">
+      <button onClick={onDec} disabled={value <= 0} aria-label="Quitar"
+        className={cls(sz, 'btn-press rounded-xl flex items-center justify-center border-2 disabled:opacity-30')}
+        style={{ borderColor: color, color }}><Icon name="Minus" size={small ? 18 : 22} sw={3} /></button>
+      <div className="min-w-[2.6rem] text-center text-lg font-bold tabular-nums">{display !== undefined ? display : fmtEq(value)}</div>
+      <button onClick={onInc} aria-label="Agregar"
+        className={cls(sz, 'btn-press rounded-xl flex items-center justify-center text-white')}
+        style={{ background: color }}><Icon name="Plus" size={small ? 18 : 22} sw={3} /></button>
+    </div>
+  );
+}
+function Segmented({ options, value, onChange }) {
+  return (
+    <div className="flex bg-emerald-50 rounded-xl p-1 gap-1">
+      {options.map((o) => (
+        <button key={o.v} onClick={() => onChange(o.v)}
+          className={cls('flex-1 min-h-[44px] rounded-lg text-sm font-semibold btn-press', value === o.v ? 'bg-emerald-600 text-white shadow' : 'text-emerald-800')}>
+          {o.t}
+        </button>
+      ))}
+    </div>
+  );
+}
+function Field({ label, children, hint }) {
+  return (
+    <label className="block">
+      <span className="block text-sm font-semibold text-gray-600 mb-1">{label}</span>
+      {children}
+      {hint && <span className="block text-xs text-gray-400 mt-1">{hint}</span>}
+    </label>
+  );
+}
+const inputCls = 'w-full min-h-[48px] rounded-xl border border-emerald-200 bg-white px-3 focus:outline-none focus:ring-2 focus:ring-emerald-400';
+function ScreenHeader({ title, subtitle, children }) {
+  return (
+    <header className="safe-top bg-gradient-to-br from-emerald-600 to-emerald-500 text-white px-5 pt-5 pb-5 rounded-b-3xl shadow">
+      <div className="flex items-center gap-2 text-emerald-100 text-xs font-semibold tracking-wide uppercase"><Icon name="Leaf" size={14} /> MiNutriApp</div>
+      <h1 className="text-2xl font-extrabold mt-0.5">{title}</h1>
+      {subtitle && <p className="text-emerald-50 text-sm">{subtitle}</p>}
+      {children}
+    </header>
+  );
+}
+function DateNav({ date, setDate }) {
+  const today = dateKey();
+  return (
+    <div className="flex items-center justify-between mt-3 bg-white/15 rounded-2xl px-1">
+      <button onClick={() => setDate(addDays(date, -1))} className="w-12 h-12 flex items-center justify-center btn-press" aria-label="Día anterior"><Icon name="ChevronLeft" /></button>
+      <div className="text-center">
+        <div className="font-bold">{date === today ? 'Hoy' : fmtLong(date)}</div>
+        {date === today ? <div className="text-xs text-emerald-100">{fmtLong(date)}</div> : <button onClick={() => setDate(today)} className="text-xs underline text-emerald-50">Volver a hoy</button>}
+      </div>
+      <button onClick={() => setDate(addDays(date, 1))} disabled={date >= today} className="w-12 h-12 flex items-center justify-center btn-press disabled:opacity-30" aria-label="Día siguiente"><Icon name="ChevronRight" /></button>
+    </div>
+  );
+}
+
+/* ---------------------------------------------------------------------
+   Guía de bolsillo
+   --------------------------------------------------------------------- */
+function GuideModal({ focus, onClose }) {
+  const [open, setOpen] = useState(focus || null);
+  const refs = useRef({});
+  useEffect(() => { if (focus && refs.current[focus]) setTimeout(() => refs.current[focus].scrollIntoView({ block: 'center' }), 60); }, []);
+  return (
+    <Modal title="Guía de bolsillo" onClose={onClose}>
+      <p className="text-sm text-gray-500 mb-3">Lo que equivale a <b>1 equivalente</b> en medidas caseras (valores aproximados del SMAE).</p>
+      <div className="space-y-2">
+        {GROUPS.map((g) => (
+          <div key={g.k} ref={(el) => (refs.current[g.k] = el)} className="rounded-2xl border border-gray-100 overflow-hidden">
+            <button onClick={() => setOpen(open === g.k ? null : g.k)} className="w-full flex items-center gap-3 p-3 min-h-[56px] text-left" style={{ background: open === g.k ? g.color + '14' : '#fff' }}>
+              <span className="w-9 h-9 rounded-xl flex items-center justify-center text-white shrink-0" style={{ background: g.color }}><Icon name={g.icon} size={18} /></span>
+              <span className="flex-1">
+                <span className="block font-bold text-sm">{g.name}</span>
+                <span className="block text-xs text-gray-500">{g.kcal} kcal · P {g.p} g · HC {g.c} g · L {g.l} g</span>
+              </span>
+              <Icon name="ChevronDown" size={18} className={cls('text-gray-400 transition-transform', open === g.k && 'rotate-180')} />
+            </button>
+            {open === g.k && (
+              <ul className="px-4 pb-3 pt-1 space-y-1.5">
+                {g.ej.map((e, i) => (<li key={i} className="text-sm flex gap-2"><span style={{ color: g.color }}>●</span><span><b>1 equiv.</b> = {e}</span></li>))}
+              </ul>
+            )}
+          </div>
+        ))}
+      </div>
+      <p className="text-xs text-gray-400 mt-4">AOA = Alimentos de Origen Animal. Esta guía es orientativa; sigue las indicaciones de tu nutriólogo.</p>
+    </Modal>
+  );
+}
+
+/* ---------------------------------------------------------------------
+   PORCIONES (pantalla principal)
+   --------------------------------------------------------------------- */
+function defaultMeal() {
+  const h = new Date().getHours();
+  return h < 10 ? 'des' : h < 12 ? 'col1' : h < 16 ? 'com' : h < 19 ? 'col2' : 'cen';
+}
+function PortionsScreen({ ctx }) {
+  const { state, mutate, date, setDate, targets, provisional, openGuide, backupDue, doBackup, startOwn, go, waterGoal } = ctx;
+  const [step, setStep] = useState(1);
+  const [openMeal, setOpenMeal] = useState(defaultMeal());
+  const day = state.logs[date] || { portions: {}, water: 0, recall: [] };
+  const totals = useMemo(() => dayTotals(day), [day]);
+  const kcalUsed = Math.round(KEYS.reduce((s, k) => s + G[k].kcal * totals[k], 0));
+  const kcalGoal = eqKcal(targets);
+  const bump = (meal, key, delta) => mutate((n) => {
+    const d = n.logs[date] || (n.logs[date] = { portions: {}, water: 0, recall: [] });
+    const m = d.portions[meal] || (d.portions[meal] = {});
+    const v = Math.max(0, Math.round(((m[key] || 0) + delta) * 2) / 2);
+    if (v === 0) delete m[key]; else m[key] = v;
+  });
+  const setWater = (v) => mutate((n) => {
+    const d = n.logs[date] || (n.logs[date] = { portions: {}, water: 0, recall: [] });
+    d.water = Math.max(0, v);
+  });
+  const water = day.water || 0;
+  const glasses = Math.max(waterGoal, water, 8);
+  return (
+    <div>
+      <ScreenHeader title="Porciones del día" subtitle={`${kcalUsed} de ${kcalGoal} kcal por equivalentes`}>
+        <DateNav date={date} setDate={setDate} />
+      </ScreenHeader>
+      <div className="px-4 py-4 space-y-4">
+        {state.meta.isSample && (
+          <div className="rounded-2xl bg-amber-50 border border-amber-200 p-4">
+            <div className="flex gap-3 items-start">
+              <Icon name="Info" className="text-amber-600 shrink-0 mt-0.5" />
+              <div className="flex-1">
+                <p className="font-bold text-amber-900 text-sm">Estás viendo datos de ejemplo</p>
+                <p className="text-xs text-amber-800 mt-0.5">Explora la app con información genérica. Cuando quieras, empieza con tus propios datos.</p>
+                <button onClick={startOwn} className="mt-3 min-h-[48px] w-full rounded-xl bg-amber-500 text-white font-bold btn-press">Empezar con mis datos</button>
+              </div>
+            </div>
+          </div>
+        )}
+        {backupDue && (
+          <button onClick={doBackup} className="w-full text-left rounded-2xl bg-emerald-50 border border-emerald-200 p-3 flex gap-3 items-center btn-press">
+            <span className="w-11 h-11 rounded-xl bg-emerald-600 text-white flex items-center justify-center shrink-0"><Icon name="Share2" /></span>
+            <span className="flex-1">
+              <span className="block font-bold text-emerald-900 text-sm">Respaldo diario listo para guardar en Drive</span>
+              <span className="block text-xs text-emerald-700">Toca y elige Google Drive · último: {sinceText(state.meta.lastBackup)}</span>
+            </span>
+            <Icon name="ChevronRight" className="text-emerald-600" />
+          </button>
+        )}
+        {provisional && !state.meta.isSample && (
+          <button onClick={() => go('perfil')} className="w-full text-left rounded-2xl bg-sky-50 border border-sky-200 p-3 text-sm text-sky-900 btn-press">
+            <b>Completa tu perfil</b> para calcular tus metas personalizadas. Mientras tanto se usa un plan de 1,800 kcal de referencia.
+          </button>
+        )}
+
+        <Card>
+          <div className="flex items-center justify-between mb-3">
+            <h2 className="font-bold text-emerald-900">Mi meta de hoy</h2>
+            <button onClick={() => openGuide(null)} className="flex items-center gap-1.5 text-sm font-semibold text-emerald-700 min-h-[44px] px-2 btn-press"><Icon name="BookOpen" size={18} /> Guía de bolsillo</button>
+          </div>
+          <div className="space-y-3.5">
+            {GROUPS.map((g) => {
+              const used = totals[g.k], goal = targets[g.k] || 0, left = goal - used;
+              const pct = goal > 0 ? Math.min(100, (used / goal) * 100) : used > 0 ? 100 : 0;
+              const over = used > goal;
+              return (
+                <div key={g.k}>
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="w-7 h-7 rounded-lg flex items-center justify-center text-white shrink-0" style={{ background: g.color }}><Icon name={g.icon} size={15} /></span>
+                    <span className="flex-1 text-sm font-semibold leading-tight">{g.name}</span>
+                    <span className={cls('text-xs font-bold', over ? 'text-amber-600' : left === 0 && goal > 0 ? 'text-emerald-600' : 'text-gray-500')}>
+                      {over ? `+${fmtEq(used - goal)} de más` : goal > 0 && left === 0 ? '¡Completo!' : `Quedan ${fmtEq(left)}`}
+                    </span>
+                    <button onClick={() => openGuide(g.k)} aria-label={`Guía de ${g.name}`} className="w-9 h-9 rounded-full flex items-center justify-center text-emerald-700 bg-emerald-50 btn-press"><Icon name="HelpCircle" size={18} /></button>
+                  </div>
+                  <div className="h-3 rounded-full bg-gray-100 overflow-hidden">
+                    <div className="h-full rounded-full transition-all duration-300" style={{ width: pct + '%', background: over ? '#d97706' : g.color }} />
+                  </div>
+                  <div className="text-[11px] text-gray-400 mt-0.5 text-right">{fmtEq(used)} / {fmtEq(goal)} equivalentes</div>
+                </div>
+              );
+            })}
+          </div>
+        </Card>
+
+        <Card>
+          <div className="flex items-center justify-between">
+            <div>
+              <h2 className="font-bold text-emerald-900 flex items-center gap-2"><Icon name="Droplets" className="text-sky-500" /> Hidratación</h2>
+              <p className="text-xs text-gray-500">{water} de {waterGoal} vasos · {(water * GLASS_ML / 1000).toFixed(2)} L de {(waterGoal * GLASS_ML / 1000).toFixed(2)} L</p>
+            </div>
+            <Stepper value={water} onDec={() => setWater(water - 1)} onInc={() => setWater(water + 1)} color="#0ea5e9" small />
+          </div>
+          <div className="grid grid-cols-8 gap-1.5 mt-3">
+            {Array.from({ length: glasses }).map((_, i) => (
+              <button key={i} onClick={() => setWater(water === i + 1 ? i : i + 1)} aria-label={`Vaso ${i + 1}`}
+                className={cls('h-11 rounded-lg flex items-center justify-center btn-press', i < water ? 'bg-sky-500 text-white' : 'bg-sky-50 text-sky-300', i + 1 === waterGoal && 'ring-2 ring-sky-300')}>
+                <Icon name="GlassWater" size={18} />
+              </button>
+            ))}
+          </div>
+          <p className="text-[11px] text-gray-400 mt-2">Meta: 35 ml por kg de peso ({num(state.profile.peso) || 70} kg) en vasos de {GLASS_ML} ml.</p>
+        </Card>
+
+        <div>
+          <div className="flex items-center justify-between mb-2 px-1">
+            <h2 className="font-bold text-emerald-900">Registrar por tiempo de comida</h2>
+            <div className="flex items-center gap-1 text-xs">
+              <span className="text-gray-500">Paso</span>
+              {[1, 0.5].map((s) => (
+                <button key={s} onClick={() => setStep(s)} className={cls('min-w-[44px] min-h-[36px] rounded-lg font-bold', step === s ? 'bg-emerald-600 text-white' : 'bg-white border border-emerald-200 text-emerald-700')}>{s === 1 ? '1' : '½'}</button>
+              ))}
+            </div>
+          </div>
+          <div className="space-y-2.5">
+            {MEALS.map((m) => {
+              const items = day.portions[m.k] || {};
+              const chips = KEYS.filter((k) => items[k] > 0);
+              const isOpen = openMeal === m.k;
+              return (
+                <div key={m.k} className="bg-white rounded-2xl border border-emerald-100 shadow-sm overflow-hidden">
+                  <button onClick={() => setOpenMeal(isOpen ? null : m.k)} className="w-full flex items-center gap-3 p-3.5 min-h-[60px] text-left">
+                    <span className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0"><Icon name={m.icon} /></span>
+                    <span className="flex-1 min-w-0">
+                      <span className="block font-bold">{m.n}</span>
+                      <span className="block text-xs text-gray-500 truncate">{chips.length ? chips.map((k) => `${fmtEq(items[k])} ${G[k].short}`).join(' · ') : 'Sin registrar'}</span>
+                    </span>
+                    <Icon name="ChevronDown" className={cls('text-gray-400 transition-transform', isOpen && 'rotate-180')} />
+                  </button>
+                  {isOpen && (
+                    <div className="px-3.5 pb-3.5 divide-y divide-gray-100">
+                      {GROUPS.map((g) => (
+                        <div key={g.k} className="flex items-center gap-2 py-2">
+                          <span className="w-2.5 h-8 rounded-full shrink-0" style={{ background: g.color }} />
+                          <span className="flex-1 text-sm font-semibold leading-tight">{g.name}</span>
+                          <button onClick={() => openGuide(g.k)} aria-label={`Guía de ${g.name}`} className="w-9 h-9 rounded-full flex items-center justify-center text-emerald-700 bg-emerald-50"><Icon name="HelpCircle" size={17} /></button>
+                          <Stepper value={items[g.k] || 0} color={g.color} onDec={() => bump(m.k, g.k, -step)} onInc={() => bump(m.k, g.k, step)} small />
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ---------------------------------------------------------------------
+   RECORDATORIO DE 24 HORAS
+   --------------------------------------------------------------------- */
+const HAMBRE = [
+  { v: 1, e: '😫', t: 'Mucha hambre' }, { v: 2, e: '🙁', t: 'Algo de hambre' }, { v: 3, e: '😐', t: 'Neutral' },
+  { v: 4, e: '🙂', t: 'Satisfecho' }, { v: 5, e: '😌', t: 'Muy lleno' }
+];
+function buildSummary(state, date, targets) {
+  const day = state.logs[date] || { portions: {}, recall: [], water: 0 };
+  const L = [];
+  L.push('*Recordatorio de 24 horas*');
+  L.push(`Fecha: ${fmtLong(date)}`);
+  if (state.profile.nombre) L.push(`Nombre: ${state.profile.nombre}`);
+  if (state.profile.peso) L.push(`Peso actual: ${state.profile.peso} kg`);
+  L.push('');
+  MEALS.forEach((m) => {
+    const es = (day.recall || []).filter((e) => e.meal === m.k).sort((a, b) => a.hora.localeCompare(b.hora));
+    if (!es.length) return;
+    L.push(`*${m.n}*`);
+    es.forEach((e) => { const h = HAMBRE.find((x) => x.v === e.hambre); L.push(`• ${e.hora} – ${e.texto}${h ? ` (hambre/saciedad ${e.hambre}/5: ${h.t.toLowerCase()})` : ''}`); });
+    L.push('');
+  });
+  if (!(day.recall || []).length) { L.push('(Sin alimentos anotados)'); L.push(''); }
+  const t = dayTotals(day);
+  const rows = GROUPS.filter((g) => t[g.k] > 0 || targets[g.k] > 0).map((g) => `${g.short}: ${fmtEq(t[g.k])}/${fmtEq(targets[g.k] || 0)}`);
+  L.push('*Equivalentes consumidos / meta*');
+  L.push(rows.join(' | '));
+  L.push('');
+  L.push(`*Agua:* ${day.water || 0} vasos (${(day.water || 0) * GLASS_ML} ml)`);
+  return L.join('\n');
+}
+function RecallScreen({ ctx }) {
+  const { state, mutate, date, setDate, targets, toast } = ctx;
+  const [meal, setMeal] = useState(defaultMeal());
+  const [hora, setHora] = useState(nowTime());
+  const [texto, setTexto] = useState('');
+  const [hambre, setHambre] = useState(3);
+  const day = state.logs[date] || { portions: {}, water: 0, recall: [] };
+  const save = () => {
+    if (!texto.trim()) { toast('Escribe qué comiste'); return; }
+    mutate((n) => {
+      const d = n.logs[date] || (n.logs[date] = { portions: {}, water: 0, recall: [] });
+      d.recall.push({ id: uid(), meal, hora: hora || nowTime(), texto: texto.trim(), hambre });
+    });
+    setTexto(''); setHora(nowTime()); toast('Anotado ✓');
+  };
+  const del = (id) => mutate((n) => { const d = n.logs[date]; d.recall = d.recall.filter((e) => e.id !== id); });
+  const summary = buildSummary(state, date, targets);
+  const copy = async () => toast((await copyText(summary)) ? 'Resumen copiado ✓' : 'No se pudo copiar');
+  const wa = () => window.open('https://wa.me/?text=' + encodeURIComponent(summary), '_blank');
+  return (
+    <div>
+      <ScreenHeader title="Recordatorio de 24 horas" subtitle="Anota lo que comes y cómo te sientes"><DateNav date={date} setDate={setDate} /></ScreenHeader>
+      <div className="px-4 py-4 space-y-4">
+        <Card>
+          <h2 className="font-bold text-emerald-900 mb-3">Nueva anotación</h2>
+          <div className="space-y-3">
+            <div className="flex gap-1.5 overflow-x-auto pb-1">
+              {MEALS.map((m) => (
+                <button key={m.k} onClick={() => setMeal(m.k)} className={cls('shrink-0 min-h-[44px] px-3.5 rounded-full text-sm font-semibold btn-press', meal === m.k ? 'bg-emerald-600 text-white' : 'bg-emerald-50 text-emerald-800')}>{m.n}</button>
+              ))}
+            </div>
+            <Field label="Hora"><input type="time" value={hora} onChange={(e) => setHora(e.target.value)} className={inputCls} /></Field>
+            <Field label="¿Qué comiste o bebiste?">
+              <textarea value={texto} onChange={(e) => setTexto(e.target.value)} rows={3} placeholder="Ej. 2 huevos a la mexicana, 1 tortilla, café sin azúcar" className={cls(inputCls, 'py-2')} />
+            </Field>
+            <div>
+              <span className="block text-sm font-semibold text-gray-600 mb-1">Hambre / saciedad (1-5)</span>
+              <div className="grid grid-cols-5 gap-1.5">
+                {HAMBRE.map((h) => (
+                  <button key={h.v} onClick={() => setHambre(h.v)} className={cls('rounded-xl py-2 flex flex-col items-center min-h-[64px] btn-press border-2', hambre === h.v ? 'border-emerald-600 bg-emerald-50' : 'border-transparent bg-gray-50')}>
+                    <span className="text-2xl leading-none">{h.e}</span>
+                    <span className="text-[10px] font-semibold mt-1 text-gray-600 leading-tight text-center">{h.v}</span>
+                  </button>
+                ))}
+              </div>
+              <p className="text-xs text-gray-500 mt-1.5">{HAMBRE.find((h) => h.v === hambre).t}: 1 = mucha hambre · 5 = muy lleno</p>
+            </div>
+            <button onClick={save} className="w-full min-h-[52px] rounded-xl bg-emerald-600 text-white font-bold text-base btn-press flex items-center justify-center gap-2"><Icon name="Save" /> Guardar anotación</button>
+          </div>
+        </Card>
+
+        {MEALS.map((m) => {
+          const es = (day.recall || []).filter((e) => e.meal === m.k).sort((a, b) => a.hora.localeCompare(b.hora));
+          if (!es.length) return null;
+          return (
+            <Card key={m.k}>
+              <h3 className="font-bold text-emerald-800 flex items-center gap-2 mb-2"><Icon name={m.icon} size={18} /> {m.n}</h3>
+              <ul className="space-y-2.5">
+                {es.map((e) => {
+                  const h = HAMBRE.find((x) => x.v === e.hambre);
+                  return (
+                    <li key={e.id} className="flex gap-3 items-start">
+                      <span className="text-2xl">{h ? h.e : '😐'}</span>
+                      <div className="flex-1">
+                        <div className="text-xs font-bold text-emerald-700 flex items-center gap-1"><Icon name="Clock" size={12} /> {e.hora} <span className="text-gray-400 font-normal">· {h ? h.t : ''} ({e.hambre}/5)</span></div>
+                        <div className="text-sm">{e.texto}</div>
+                      </div>
+                      <button onClick={() => del(e.id)} aria-label="Eliminar" className="w-10 h-10 rounded-full flex items-center justify-center text-red-400 active:bg-red-50"><Icon name="Trash2" size={18} /></button>
+                    </li>
+                  );
+                })}
+              </ul>
+            </Card>
+          );
+        })}
+        {!(day.recall || []).length && <p className="text-center text-sm text-gray-400 py-2">Aún no hay anotaciones para este día.</p>}
+
+        <Card>
+          <h2 className="font-bold text-emerald-900 mb-2">Resumen para tu nutriólogo</h2>
+          <pre className="text-xs bg-gray-50 rounded-xl p-3 whitespace-pre-wrap break-words max-h-52 overflow-y-auto text-gray-700" style={{ fontFamily: 'inherit' }}>{summary}</pre>
+          <div className="grid grid-cols-2 gap-2 mt-3">
+            <button onClick={copy} className="min-h-[52px] rounded-xl bg-emerald-600 text-white font-bold btn-press flex items-center justify-center gap-2"><Icon name="Copy" size={18} /> Copiar</button>
+            <button onClick={wa} className="min-h-[52px] rounded-xl bg-green-500 text-white font-bold btn-press flex items-center justify-center gap-2"><Icon name="MessageCircle" size={18} /> WhatsApp</button>
+          </div>
+        </Card>
+      </div>
+    </div>
+  );
+}
+
+/* ---------------------------------------------------------------------
+   RECETAS / ARMADOR
+   --------------------------------------------------------------------- */
+function RecipesScreen({ ctx }) {
+  const { state, mutate, targets, date, toast } = ctx;
+  const [sel, setSel] = useState(Object.fromEntries(ARM.map((a) => [a.k, 0])));
+  const [cat, setCat] = useState('Todas');
+  const [openId, setOpenId] = useState(null);
+  const [adding, setAdding] = useState(null);
+  const day = state.logs[date] || { portions: {} };
+  const totals = useMemo(() => dayTotals(day), [day]);
+  const setS = (k, d) => setSel((s) => ({ ...s, [k]: Math.max(0, s[k] + d) }));
+  const useRemaining = () => {
+    const out = {};
+    ARM.forEach((a) => { out[a.k] = Math.max(0, Math.round(a.map.reduce((s, m) => s + (targets[m] || 0) - totals[m], 0))); });
+    setSel(out);
+  };
+  const any = ARM.some((a) => sel[a.k] > 0);
+  const list = RECIPES.filter((r) => cat === 'Todas' || r.cats.includes(cat)).map((r) => {
+    const a = armEq(r.eq);
+    const over = ARM.reduce((s, x) => s + Math.max(0, a[x.k] - sel[x.k]), 0);
+    return { r, a, over };
+  });
+  const fits = any ? list.filter((x) => x.over === 0) : list;
+  const near = any ? list.filter((x) => x.over > 0 && x.over <= 1) : [];
+  const addToDay = (recipe, mealKey) => {
+    mutate((n) => {
+      const d = n.logs[date] || (n.logs[date] = { portions: {}, water: 0, recall: [] });
+      const m = d.portions[mealKey] || (d.portions[mealKey] = {});
+      Object.entries(recipe.eq).forEach(([k, v]) => { m[k] = (m[k] || 0) + v; });
+    });
+    setAdding(null); toast('Porciones registradas ✓');
+  };
+  const RecipeCard = ({ r, a, over }) => {
+    const isOpen = openId === r.id;
+    const kcal = Math.round(sumKey(r.eq, 'kcal'));
+    return (
+      <div className="bg-white rounded-2xl border border-emerald-100 shadow-sm overflow-hidden">
+        <button onClick={() => setOpenId(isOpen ? null : r.id)} className="w-full p-3.5 text-left min-h-[64px]">
+          <div className="flex items-start gap-2">
+            <div className="flex-1">
+              <div className="font-bold leading-tight">{r.n}</div>
+              <div className="flex flex-wrap gap-1 mt-1.5">
+                {r.cats.map((c) => (<span key={c} className="text-[10px] font-bold uppercase bg-emerald-100 text-emerald-700 rounded-full px-2 py-0.5">{c}</span>))}
+                <span className="text-[10px] font-semibold bg-gray-100 text-gray-600 rounded-full px-2 py-0.5 flex items-center gap-1"><Icon name="Clock" size={10} /> {r.t}</span>
+                <span className="text-[10px] font-semibold bg-orange-100 text-orange-700 rounded-full px-2 py-0.5">≈ {kcal} kcal</span>
+                {over > 0 && <span className="text-[10px] font-semibold bg-amber-100 text-amber-700 rounded-full px-2 py-0.5">Casi cabe (+{over})</span>}
+              </div>
+              <div className="flex flex-wrap gap-1 mt-2">
+                {Object.entries(r.eq).map(([k, v]) => (<span key={k} className="text-[11px] font-bold rounded-md px-1.5 py-0.5 text-white" style={{ background: G[k].color }}>{fmtEq(v)} {G[k].short}</span>))}
+              </div>
+            </div>
+            <Icon name="ChevronDown" className={cls('text-gray-400 mt-1 transition-transform', isOpen && 'rotate-180')} />
+          </div>
+        </button>
+        {isOpen && (
+          <div className="px-4 pb-4 text-sm space-y-3">
+            <div><h4 className="font-bold text-emerald-800 mb-1">Ingredientes</h4><ul className="list-disc pl-5 space-y-0.5">{r.ing.map((i, x) => <li key={x}>{i}</li>)}</ul></div>
+            <div><h4 className="font-bold text-emerald-800 mb-1">Preparación</h4><ol className="list-decimal pl-5 space-y-0.5">{r.pasos.map((p, x) => <li key={x}>{p}</li>)}</ol></div>
+            <button onClick={() => setAdding(r)} className="w-full min-h-[48px] rounded-xl bg-emerald-600 text-white font-bold btn-press flex items-center justify-center gap-2"><Icon name="Plus" size={18} /> Registrar en mi día</button>
+          </div>
+        )}
+      </div>
+    );
+  };
+  return (
+    <div>
+      <ScreenHeader title="Armador de recetas" subtitle="Elige tus equivalentes y mira qué puedes cocinar" />
+      <div className="px-4 py-4 space-y-4">
+        <Card>
+          <div className="flex items-center justify-between mb-2">
+            <h2 className="font-bold text-emerald-900">Equivalentes disponibles</h2>
+            <button onClick={() => setSel(Object.fromEntries(ARM.map((a) => [a.k, 0])))} className="text-xs font-semibold text-gray-500 min-h-[44px] px-2">Limpiar</button>
+          </div>
+          <div className="grid grid-cols-2 gap-x-3 gap-y-2.5">
+            {ARM.map((a) => {
+              const col = G[a.map[a.map.length > 1 ? 1 : 0]].color;
+              return (
+                <div key={a.k} className="rounded-xl bg-gray-50 p-2">
+                  <div className="text-xs font-bold mb-1" style={{ color: col }}>{a.name}</div>
+                  <Stepper value={sel[a.k]} color={col} small onDec={() => setS(a.k, -1)} onInc={() => setS(a.k, 1)} />
+                </div>
+              );
+            })}
+          </div>
+          <button onClick={useRemaining} className="mt-3 w-full min-h-[48px] rounded-xl border-2 border-emerald-600 text-emerald-700 font-bold btn-press flex items-center justify-center gap-2"><Icon name="Sparkles" size={18} /> Usar lo que me queda hoy</button>
+        </Card>
+        <div className="flex gap-1.5 overflow-x-auto pb-1">
+          {['Todas', 'Desayuno', 'Comida', 'Cena', 'Snack'].map((c) => (
+            <button key={c} onClick={() => setCat(c)} className={cls('shrink-0 min-h-[44px] px-4 rounded-full text-sm font-semibold btn-press', cat === c ? 'bg-emerald-600 text-white' : 'bg-white border border-emerald-200 text-emerald-800')}>{c}</button>
+          ))}
+        </div>
+        <p className="text-sm text-gray-500 px-1">{any ? `${fits.length} receta${fits.length === 1 ? '' : 's'} caben en tus equivalentes` : 'Elige equivalentes arriba para filtrar. Mostrando todas las recetas.'}</p>
+        <div className="space-y-2.5">{fits.map((x) => <RecipeCard key={x.r.id} {...x} />)}</div>
+        {any && fits.length === 0 && <p className="text-center text-sm text-gray-400 py-3">Ninguna receta cabe exactamente. Sube un equivalente o revisa las que “casi caben”.</p>}
+        {near.length > 0 && (
+          <div>
+            <h3 className="font-bold text-amber-700 text-sm px-1 mb-2">Casi caben (te falta 1 equivalente)</h3>
+            <div className="space-y-2.5">{near.map((x) => <RecipeCard key={x.r.id} {...x} />)}</div>
+          </div>
+        )}
+      </div>
+      {adding && (
+        <Modal title="¿En qué tiempo de comida?" onClose={() => setAdding(null)}>
+          <p className="text-sm text-gray-500 mb-3">{adding.n} · {fmtLong(date)}</p>
+          <div className="space-y-2">
+            {MEALS.map((m) => (
+              <button key={m.k} onClick={() => addToDay(adding, m.k)} className="w-full min-h-[52px] rounded-xl bg-emerald-50 text-emerald-900 font-bold flex items-center gap-3 px-4 btn-press"><Icon name={m.icon} /> {m.n}</button>
+            ))}
+          </div>
+        </Modal>
+      )}
+    </div>
+  );
+}
+
+/* ---------------------------------------------------------------------
+   PROGRESO
+   --------------------------------------------------------------------- */
+function LineChart({ points, unit, color }) {
+  if (!points.length) return <p className="text-center text-sm text-gray-400 py-10">Sin datos para graficar.</p>;
+  const W = 320, H = 200, pl = 38, pr = 14, pt = 16, pb = 30;
+  const ys = points.map((p) => p.y);
+  let min = Math.min(...ys), max = Math.max(...ys);
+  const padY = (max - min || 1) * 0.2; min -= padY; max += padY;
+  const ts = points.map((p) => parseKey(p.x).getTime());
+  const t0 = Math.min(...ts), t1 = Math.max(...ts);
+  const X = (t) => (t1 === t0 ? (pl + W - pr) / 2 : pl + ((t - t0) / (t1 - t0)) * (W - pl - pr));
+  const Y = (v) => pt + (1 - (v - min) / (max - min)) * (H - pt - pb);
+  const path = points.map((p, i) => `${i ? 'L' : 'M'}${X(ts[i]).toFixed(1)},${Y(p.y).toFixed(1)}`).join(' ');
+  const area = `${path} L${X(ts[ts.length - 1]).toFixed(1)},${H - pb} L${X(ts[0]).toFixed(1)},${H - pb} Z`;
+  const ticks = [0, 1, 2, 3].map((i) => min + ((max - min) * i) / 3);
+  return (
+    <svg viewBox={`0 0 ${W} ${H}`} className="w-full" role="img" aria-label="Gráfica de evolución">
+      {ticks.map((v, i) => (
+        <g key={i}>
+          <line x1={pl} x2={W - pr} y1={Y(v)} y2={Y(v)} stroke="#e5e7eb" strokeDasharray="3 3" />
+          <text x={pl - 5} y={Y(v) + 3} fontSize="9" textAnchor="end" fill="#9ca3af">{v.toFixed(1)}</text>
+        </g>
+      ))}
+      <path d={area} fill={color} opacity="0.12" />
+      <path d={path} fill="none" stroke={color} strokeWidth="2.5" strokeLinejoin="round" strokeLinecap="round" />
+      {points.map((p, i) => (
+        <g key={i}>
+          <circle cx={X(ts[i])} cy={Y(p.y)} r="4" fill="#fff" stroke={color} strokeWidth="2" />
+          {(i === points.length - 1 || i === 0 || points.length <= 6) && (
+            <text x={X(ts[i])} y={Y(p.y) - 8} fontSize="9" fontWeight="700" textAnchor="middle" fill={color}>{p.y}</text>
+          )}
+        </g>
+      ))}
+      <text x={X(ts[0])} y={H - 10} fontSize="9" textAnchor={points.length > 1 ? 'start' : 'middle'} fill="#6b7280">{fmtShort(points[0].x)}</text>
+      {points.length > 1 && <text x={X(ts[ts.length - 1])} y={H - 10} fontSize="9" textAnchor="end" fill="#6b7280">{fmtShort(points[points.length - 1].x)}</text>}
+      <text x={W - pr} y={10} fontSize="9" textAnchor="end" fill="#9ca3af">{unit}</text>
+    </svg>
+  );
+}
+function ProgressScreen({ ctx }) {
+  const { state, mutate, toast } = ctx;
+  const [f, setF] = useState({ fecha: dateKey(), peso: '', cintura: '', cadera: '' });
+  const [metric, setMetric] = useState('peso');
+  const sexo = state.profile.sexo;
+  const rows = useMemo(() => [...state.progress].sort((a, b) => a.fecha.localeCompare(b.fecha)).map((r) => ({ ...r, icc: r.cintura > 0 && r.cadera > 0 ? r.cintura / r.cadera : null })), [state.progress]);
+  const save = () => {
+    const peso = num(f.peso), cintura = num(f.cintura), cadera = num(f.cadera);
+    if (!(peso > 0 || cintura > 0 || cadera > 0)) { toast('Captura al menos una medida'); return; }
+    mutate((n) => {
+      let e = n.progress.find((x) => x.fecha === f.fecha);
+      if (!e) { e = { id: uid(), fecha: f.fecha }; n.progress.push(e); }
+      if (peso > 0) e.peso = peso; if (cintura > 0) e.cintura = cintura; if (cadera > 0) e.cadera = cadera;
+      const conPeso = n.progress.filter((x) => x.peso > 0).sort((a, b) => a.fecha.localeCompare(b.fecha));
+      if (conPeso.length) n.profile.peso = conPeso[conPeso.length - 1].peso;
+    });
+    setF({ fecha: dateKey(), peso: '', cintura: '', cadera: '' }); toast('Medidas guardadas ✓');
+  };
+  const del = (id) => { if (window.confirm('¿Eliminar este registro?')) mutate((n) => { n.progress = n.progress.filter((x) => x.id !== id); }); };
+  const M = { peso: { t: 'Peso', u: 'kg', c: '#059669' }, cintura: { t: 'Cintura', u: 'cm', c: '#ea580c' }, cadera: { t: 'Cadera', u: 'cm', c: '#7c3aed' }, icc: { t: 'ICC', u: 'índice', c: '#0284c7' } };
+  const pts = rows.filter((r) => r[metric] > 0 && r[metric] != null).map((r) => ({ x: r.fecha, y: metric === 'icc' ? Math.round(r.icc * 100) / 100 : r[metric] }));
+  const first = pts[0], last = pts[pts.length - 1];
+  const delta = first && last ? r1(last.y - first.y) : 0;
+  const lastIcc = [...rows].reverse().find((r) => r.icc);
+  return (
+    <div>
+      <ScreenHeader title="Mi progreso" subtitle="Peso, cintura, cadera e índice cintura-cadera" />
+      <div className="px-4 py-4 space-y-4">
+        <Card>
+          <h2 className="font-bold text-emerald-900 mb-3">Nuevo registro</h2>
+          <div className="grid grid-cols-2 gap-3">
+            <div className="col-span-2"><Field label="Fecha"><input type="date" value={f.fecha} max={dateKey()} onChange={(e) => setF({ ...f, fecha: e.target.value })} className={inputCls} /></Field></div>
+            <Field label="Peso (kg)"><input inputMode="decimal" value={f.peso} onChange={(e) => setF({ ...f, peso: e.target.value })} placeholder="68.0" className={inputCls} /></Field>
+            <Field label="Cintura (cm)"><input inputMode="decimal" value={f.cintura} onChange={(e) => setF({ ...f, cintura: e.target.value })} placeholder="80" className={inputCls} /></Field>
+            <Field label="Cadera (cm)"><input inputMode="decimal" value={f.cadera} onChange={(e) => setF({ ...f, cadera: e.target.value })} placeholder="98" className={inputCls} /></Field>
+            <div className="flex items-end"><button onClick={save} className="w-full min-h-[48px] rounded-xl bg-emerald-600 text-white font-bold btn-press flex items-center justify-center gap-2"><Icon name="Save" size={18} /> Guardar</button></div>
+          </div>
+        </Card>
+        <Card>
+          <div className="flex gap-1.5 mb-3 overflow-x-auto">
+            {Object.entries(M).map(([k, m]) => (
+              <button key={k} onClick={() => setMetric(k)} className={cls('shrink-0 min-h-[44px] px-4 rounded-full text-sm font-semibold btn-press', metric === k ? 'text-white' : 'bg-gray-100 text-gray-600')} style={metric === k ? { background: m.c } : {}}>{m.t}</button>
+            ))}
+          </div>
+          <LineChart points={pts} unit={M[metric].u} color={M[metric].c} />
+          {first && last && pts.length > 1 && (
+            <div className="grid grid-cols-3 gap-2 mt-3 text-center">
+              <div className="rounded-xl bg-gray-50 p-2"><div className="text-[11px] text-gray-500">Inicial</div><div className="font-bold">{first.y}</div></div>
+              <div className="rounded-xl bg-gray-50 p-2"><div className="text-[11px] text-gray-500">Actual</div><div className="font-bold">{last.y}</div></div>
+              <div className="rounded-xl p-2" style={{ background: M[metric].c + '18' }}><div className="text-[11px] text-gray-500">Cambio</div><div className="font-bold" style={{ color: M[metric].c }}>{delta > 0 ? '+' : ''}{metric === 'icc' ? (last.y - first.y).toFixed(2) : delta}</div></div>
+            </div>
+          )}
+          {lastIcc && (
+            <div className="mt-3 rounded-xl bg-gray-50 p-3 text-sm flex items-center justify-between gap-2">
+              <span>ICC más reciente: <b>{lastIcc.icc.toFixed(2)}</b></span>
+              <span className={cls('text-xs font-bold rounded-full px-2.5 py-1', iccClass(lastIcc.icc, sexo).c)}>{iccClass(lastIcc.icc, sexo).t}</span>
+            </div>
+          )}
+        </Card>
+        <Card>
+          <h2 className="font-bold text-emerald-900 mb-2">Historial</h2>
+          {rows.length === 0 && <p className="text-sm text-gray-400">Sin registros todavía.</p>}
+          <ul className="divide-y divide-gray-100">
+            {[...rows].reverse().map((r) => (
+              <li key={r.id} className="flex items-center gap-2 py-2.5">
+                <div className="flex-1">
+                  <div className="text-sm font-bold capitalize">{parseKey(r.fecha).toLocaleDateString('es-MX', { day: 'numeric', month: 'short', year: 'numeric' })}</div>
+                  <div className="text-xs text-gray-600">
+                    {r.peso ? `${r.peso} kg` : ''}{r.cintura ? ` · Cintura ${r.cintura} cm` : ''}{r.cadera ? ` · Cadera ${r.cadera} cm` : ''}{r.icc ? ` · ICC ${r.icc.toFixed(2)}` : ''}
+                  </div>
+                </div>
+                <button onClick={() => del(r.id)} aria-label="Eliminar" className="w-11 h-11 rounded-full flex items-center justify-center text-red-400 active:bg-red-50"><Icon name="Trash2" size={18} /></button>
+              </li>
+            ))}
+          </ul>
+        </Card>
+      </div>
+    </div>
+  );
+}
+
+/* ---------------------------------------------------------------------
+   PERFIL
+   --------------------------------------------------------------------- */
+function ProfileScreen({ ctx }) {
+  const { state, mutate, setState, metrics, targets, plan, doBackup, copies, toast, startOwn, loadSample } = ctx;
+  const p = state.profile;
+  const fileRef = useRef(null);
+  const set = (k, v) => mutate((n) => { n.profile[k] = v; });
+  const fat = 100 - p.pc - p.pp;
+  const editEq = (k, d) => mutate((n) => {
+    const base = n.profile.manualEq || { ...plan };
+    base[k] = Math.max(0, Math.round(((base[k] || 0) + d) * 2) / 2);
+    n.profile.manualEq = base;
+  });
+  const mac = eqMacros(targets), kc = eqKcal(targets);
+  const onFile = async (e) => {
+    const file = e.target.files && e.target.files[0]; e.target.value = '';
+    if (!file) return;
+    try {
+      const s = parseBackup(await file.text());
+      if (window.confirm('Esto reemplazará los datos actuales de la app con los del archivo. ¿Continuar?')) { setState(s); toast('Datos restaurados ✓'); }
+    } catch (err) { toast('Archivo no válido'); }
+  };
+  const restoreCopy = (c) => {
+    if (!window.confirm(`¿Restaurar la copia interna del ${c.date}? Se reemplazarán los datos actuales.`)) return;
+    try { const s = normalize(JSON.parse(c.data)); s.meta.isSample = false; setState(s); toast('Copia restaurada ✓'); } catch (e) { toast('No se pudo restaurar'); }
+  };
+  const ic = metrics ? imcClass(metrics.imc) : null;
+  return (
+    <div>
+      <ScreenHeader title="Mi perfil y metas" subtitle="Evaluación personal y equivalentes diarios" />
+      <div className="px-4 py-4 space-y-4">
+        <Card>
+          <h2 className="font-bold text-emerald-900 mb-3">Datos personales</h2>
+          <div className="space-y-3">
+            <Field label="Nombre (opcional)"><input value={p.nombre} onChange={(e) => set('nombre', e.target.value)} className={inputCls} placeholder="Tu nombre" /></Field>
+            <div className="grid grid-cols-2 gap-3">
+              <Field label="Edad (años)"><input inputMode="numeric" value={p.edad} onChange={(e) => set('edad', e.target.value)} className={inputCls} /></Field>
+              <Field label="Sexo"><Segmented value={p.sexo} onChange={(v) => set('sexo', v)} options={[{ v: 'M', t: 'Mujer' }, { v: 'H', t: 'Hombre' }]} /></Field>
+              <Field label="Peso actual (kg)"><input inputMode="decimal" value={p.peso} onChange={(e) => set('peso', e.target.value)} className={inputCls} /></Field>
+              <Field label="Talla (cm)"><input inputMode="decimal" value={p.talla} onChange={(e) => set('talla', e.target.value)} className={inputCls} /></Field>
+            </div>
+            <Field label="Nivel de actividad física">
+              <select value={p.actividad} onChange={(e) => set('actividad', e.target.value)} className={inputCls}>
+                {Object.entries(ACT).map(([k, a]) => <option key={k} value={k}>{a.n}</option>)}
+              </select>
+            </Field>
+            <Field label="Objetivo">
+              <Segmented value={p.objetivo} onChange={(v) => set('objetivo', v)} options={Object.entries(OBJ).map(([k, o]) => ({ v: k, t: o.n.split(' ')[0] }))} />
+              <span className="block text-xs text-gray-500 mt-1">{OBJ[p.objetivo].n} ({OBJ[p.objetivo].s} sobre tu gasto energético total)</span>
+            </Field>
+          </div>
+        </Card>
+
+        <Card>
+          <h2 className="font-bold text-emerald-900 mb-3">Mi evaluación</h2>
+          {!metrics ? <p className="text-sm text-gray-500">Captura edad, peso y talla para calcular tu IMC, TMB y GET.</p> : (
+            <div className="grid grid-cols-2 gap-2.5">
+              <div className="rounded-xl bg-emerald-50 p-3 col-span-2">
+                <div className="text-xs text-gray-500">Índice de masa corporal (IMC)</div>
+                <div className="flex items-center justify-between gap-2"><span className="text-2xl font-extrabold text-emerald-800">{metrics.imc.toFixed(1)}</span><span className={cls('text-xs font-bold rounded-full px-2.5 py-1', ic.c)}>{ic.t}</span></div>
+              </div>
+              <div className="rounded-xl bg-gray-50 p-3"><div className="text-xs text-gray-500">TMB (Mifflin-St Jeor)</div><div className="text-xl font-extrabold">{Math.round(metrics.tmb)} <span className="text-xs font-semibold text-gray-500">kcal</span></div></div>
+              <div className="rounded-xl bg-gray-50 p-3"><div className="text-xs text-gray-500">GET (gasto total)</div><div className="text-xl font-extrabold">{Math.round(metrics.get)} <span className="text-xs font-semibold text-gray-500">kcal</span></div></div>
+              <div className="rounded-xl bg-emerald-600 text-white p-3 col-span-2 flex items-center justify-between"><span className="text-sm font-semibold">Meta diaria según tu objetivo</span><span className="text-2xl font-extrabold">{metrics.meta} <span className="text-xs">kcal</span></span></div>
+            </div>
+          )}
+        </Card>
+
+        <Card>
+          <h2 className="font-bold text-emerald-900 mb-1">Distribución de macronutrientes</h2>
+          <p className="text-xs text-gray-500 mb-3">Ajusta carbohidratos y proteínas; las grasas se calculan solas.</p>
+          <div className="space-y-3">
+            <div>
+              <div className="flex justify-between text-sm font-semibold"><span>Carbohidratos</span><span>{p.pc} %</span></div>
+              <input type="range" min="40" max="65" step="1" value={p.pc} onChange={(e) => mutate((n) => { n.profile.pc = +e.target.value; n.profile.manualEq = null; })} />
+            </div>
+            <div>
+              <div className="flex justify-between text-sm font-semibold"><span>Proteínas</span><span>{p.pp} %</span></div>
+              <input type="range" min="10" max="35" step="1" value={p.pp} onChange={(e) => mutate((n) => { n.profile.pp = +e.target.value; n.profile.manualEq = null; })} />
+            </div>
+            <div className="flex justify-between text-sm font-semibold"><span>Grasas (automático)</span><span className={fat < 20 || fat > 35 ? 'text-amber-600' : ''}>{fat} %</span></div>
+            {(fat < 20 || fat > 35) && <p className="text-xs text-amber-600">Lo habitual es 20-35 % de grasas. Ajusta carbohidratos o proteínas.</p>}
+            {metrics && <p className="text-xs text-gray-500">Meta en gramos: HC {Math.round(metrics.meta * p.pc / 400)} g · P {Math.round(metrics.meta * p.pp / 400)} g · L {Math.round(metrics.meta * fat / 900)} g</p>}
+          </div>
+        </Card>
+
+        <Card>
+          <div className="flex items-center justify-between mb-1">
+            <h2 className="font-bold text-emerald-900">Mi meta de equivalentes</h2>
+            {p.manualEq && <span className="text-[10px] font-bold uppercase bg-amber-100 text-amber-700 rounded-full px-2 py-0.5">Manual</span>}
+          </div>
+          <p className="text-xs text-gray-500 mb-2">Total: <b>{kc} kcal</b> · HC {mac.c} g · P {mac.p} g · L {mac.l} g. Si tu nutriólogo te dio otro plan, ajústalo aquí.</p>
+          <div className="divide-y divide-gray-100">
+            {GROUPS.map((g) => (
+              <div key={g.k} className="flex items-center gap-2 py-2">
+                <span className="w-2.5 h-8 rounded-full" style={{ background: g.color }} />
+                <span className="flex-1 text-sm font-semibold leading-tight">{g.name}</span>
+                <Stepper value={targets[g.k] || 0} color={g.color} small onDec={() => editEq(g.k, -0.5)} onInc={() => editEq(g.k, 0.5)} />
+              </div>
+            ))}
+          </div>
+          {p.manualEq && <button onClick={() => set('manualEq', null)} className="mt-3 w-full min-h-[48px] rounded-xl border-2 border-emerald-600 text-emerald-700 font-bold btn-press flex items-center justify-center gap-2"><Icon name="RefreshCw" size={18} /> Volver al cálculo automático</button>}
+        </Card>
+
+        <Card>
+          <h2 className="font-bold text-emerald-900 mb-1 flex items-center gap-2"><Icon name="Share2" size={18} /> Respaldo en Google Drive</h2>
+          <p className="text-xs text-gray-500 mb-3">Último respaldo externo: <b>{sinceText(state.meta.lastBackup)}</b>. Se abre el menú de compartir de tu teléfono: elige <b>Drive</b> y guarda el archivo.</p>
+          <button onClick={doBackup} className="w-full min-h-[56px] rounded-xl bg-emerald-600 text-white font-bold text-base btn-press flex items-center justify-center gap-2"><Icon name="Share2" /> Guardar respaldo en Drive</button>
+          <button onClick={() => fileRef.current && fileRef.current.click()} className="mt-2 w-full min-h-[52px] rounded-xl border-2 border-emerald-600 text-emerald-700 font-bold btn-press flex items-center justify-center gap-2"><Icon name="Upload" size={18} /> Restaurar desde archivo (.json)</button>
+          <input ref={fileRef} type="file" accept=".json,application/json,text/plain" className="hidden" onChange={onFile} />
+          <div className="mt-4">
+            <h3 className="text-sm font-bold text-gray-700 flex items-center gap-1.5"><Icon name="Database" size={15} /> Copias internas (últimos 7 días)</h3>
+            {copies.length === 0 ? <p className="text-xs text-gray-400 mt-1">Aún no hay copias. Se crean automáticamente al usar la app.</p> : (
+              <ul className="mt-1 divide-y divide-gray-100">
+                {copies.map((c) => (
+                  <li key={c.date} className="flex items-center justify-between py-1.5">
+                    <span className="text-sm capitalize">{fmtLong(c.date)}</span>
+                    <button onClick={() => restoreCopy(c)} className="min-h-[40px] px-3 rounded-lg bg-emerald-50 text-emerald-700 text-sm font-semibold btn-press">Restaurar</button>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+          <p className="text-xs text-gray-400 mt-3 flex gap-1.5"><Icon name="ShieldCheck" size={14} className="shrink-0" /> Privacidad total: tus datos viven solo en este dispositivo. Ningún dato se envía a servidores y el código no contiene claves ni credenciales.</p>
+        </Card>
+
+        <Card>
+          <h2 className="font-bold text-emerald-900 mb-2">Datos de la app</h2>
+          {state.meta.isSample && <p className="text-xs text-amber-700 bg-amber-50 rounded-lg p-2 mb-2">Ahora mismo ves datos de ejemplo.</p>}
+          <button onClick={startOwn} className="w-full min-h-[52px] rounded-xl bg-amber-500 text-white font-bold btn-press flex items-center justify-center gap-2"><Icon name="RotateCcw" size={18} /> Borrar ejemplo y empezar con mis datos</button>
+          <button onClick={loadSample} className="mt-2 w-full min-h-[48px] rounded-xl bg-gray-100 text-gray-700 font-semibold btn-press">Cargar datos de ejemplo</button>
+        </Card>
+        <p className="text-center text-[11px] text-gray-400 pb-2">MiNutriApp · Basada en el Sistema Mexicano de Alimentos Equivalentes (SMAE). Herramienta de apoyo personal; no sustituye la consulta con un profesional de la salud.</p>
+      </div>
+    </div>
+  );
+}
+
+/* ---------------------------------------------------------------------
+   APP
+   --------------------------------------------------------------------- */
+const TABS = [
+  { k: 'porciones', n: 'Porciones', icon: 'ListChecks' },
+  { k: 'recordatorio', n: '24 Horas', icon: 'Clock' },
+  { k: 'recetas', n: 'Recetas', icon: 'ChefHat' },
+  { k: 'progreso', n: 'Progreso', icon: 'TrendingUp' },
+  { k: 'perfil', n: 'Perfil', icon: 'User' }
+];
+function App() {
+  const [state, setState] = useState(loadState);
+  const [tab, setTab] = useState('porciones');
+  const [date, setDate] = useState(dateKey());
+  const [guide, setGuide] = useState(undefined); // undefined = cerrada, null = todas, 'key' = enfocada
+  const [msg, setMsg] = useState('');
+  const [copies, setCopies] = useState([]);
+  const [now, setNow] = useState(Date.now());
+  const toastT = useRef(null);
+
+  const toast = useCallback((m) => { setMsg(m); clearTimeout(toastT.current); toastT.current = setTimeout(() => setMsg(''), 2400); }, []);
+  const mutate = useCallback((fn) => setState((s) => { const n = clone(s); fn(n); return n; }), []);
+
+  /* Persistencia: localStorage + copia diaria en IndexedDB */
+  useEffect(() => {
+    const t = setTimeout(() => { try { localStorage.setItem(LS_KEY, JSON.stringify(state)); } catch (e) { /* cuota/privado */ } }, 250);
+    return () => clearTimeout(t);
+  }, [state]);
+  const refreshCopies = useCallback(() => { idb.all().then((r) => setCopies(r.sort((a, b) => b.date.localeCompare(a.date)))).catch(() => {}); }, []);
+  useEffect(() => { refreshCopies(); }, []);
+  useEffect(() => {
+    const t = setTimeout(() => {
+      idb.put({ date: dateKey(), savedAt: Date.now(), data: JSON.stringify(state) }).then(refreshCopies).catch(() => {});
+    }, 2500);
+    return () => clearTimeout(t);
+  }, [state]);
+  useEffect(() => { const i = setInterval(() => setNow(Date.now()), 60000); return () => clearInterval(i); }, []);
+  useEffect(() => { window.scrollTo(0, 0); }, [tab]);
+
+  const metrics = useMemo(() => calcMetrics(state.profile), [state.profile]);
+  const plan = useMemo(() => planEq(metrics ? metrics.meta : 1800, state.profile.pc, state.profile.pp), [metrics, state.profile.pc, state.profile.pp]);
+  const targets = state.profile.manualEq || plan;
+  const waterGoal = Math.max(1, Math.ceil(((num(state.profile.peso) || 70) * 35) / GLASS_ML));
+  const last = state.meta.lastBackup;
+  const backupDue = !state.meta.isSample && (!last || now - last > 24 * 36e5);
+
+  const doBackup = async () => {
+    try {
+      const r = await exportBackup(state);
+      if (r === 'cancelled') return;
+      mutate((n) => { n.meta.lastBackup = Date.now(); });
+      toast(r === 'shared' ? 'Respaldo enviado ✓' : 'Respaldo descargado en tu dispositivo ✓');
+    } catch (e) { toast('No se pudo generar el respaldo'); }
+  };
+  const startOwn = () => {
+    if (!window.confirm('Se borrarán los datos de ejemplo (o los actuales) para empezar con tus propios datos. ¿Continuar?')) return;
+    setState(makeEmpty()); setTab('perfil'); toast('Listo. Captura tu perfil');
+  };
+  const loadSample = () => { if (window.confirm('Se reemplazarán tus datos actuales por datos de ejemplo. ¿Continuar?')) { setState(makeSample()); toast('Datos de ejemplo cargados'); } };
+
+  const ctx = {
+    state, mutate, setState, date, setDate, targets, plan, metrics, provisional: !metrics, waterGoal, backupDue, doBackup, startOwn, loadSample,
+    copies, toast, go: setTab, openGuide: (k) => setGuide(k)
+  };
+  return (
+    <div className="max-w-md mx-auto min-h-screen bg-[#eef5f1] relative pb-28">
+      {tab === 'porciones' && <PortionsScreen ctx={ctx} />}
+      {tab === 'recordatorio' && <RecallScreen ctx={ctx} />}
+      {tab === 'recetas' && <RecipesScreen ctx={ctx} />}
+      {tab === 'progreso' && <ProgressScreen ctx={ctx} />}
+      {tab === 'perfil' && <ProfileScreen ctx={ctx} />}
+      {guide !== undefined && <GuideModal focus={guide} onClose={() => setGuide(undefined)} />}
+      {msg && <div className="fixed left-1/2 -translate-x-1/2 bottom-28 z-[60] bg-gray-900 text-white text-sm font-semibold rounded-full px-5 py-3 shadow-lg max-w-[90%] text-center">{msg}</div>}
+      <nav className="fixed bottom-0 inset-x-0 z-40 bg-white border-t border-emerald-100 shadow-[0_-4px_16px_rgba(5,150,105,.08)] safe-bottom">
+        <div className="max-w-md mx-auto grid grid-cols-5">
+          {TABS.map((t) => (
+            <button key={t.k} onClick={() => setTab(t.k)} className={cls('flex flex-col items-center justify-center gap-0.5 min-h-[62px] btn-press', tab === t.k ? 'text-emerald-700' : 'text-gray-400')}>
+              <span className={cls('px-4 py-1 rounded-full', tab === t.k && 'bg-emerald-100')}><Icon name={t.icon} size={22} sw={tab === t.k ? 2.5 : 2} /></span>
+              <span className="text-[11px] font-bold">{t.n}</span>
+            </button>
+          ))}
+        </div>
+      </nav>
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+
+</script>
+</body>
+</html>
