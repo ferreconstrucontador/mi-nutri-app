@@ -111,25 +111,31 @@ const clone = (o) => JSON.parse(JSON.stringify(o));
    ===================================================================== */
 const GROUPS = [
   { k: 'ver', name: 'Verduras', short: 'Verduras', color: '#16a34a', icon: 'Carrot', kcal: 25, p: 2, c: 4, l: 0,
-    ej: ['1 taza de verdura cruda (lechuga, espinaca, pepino, jícama)', '½ taza de verdura cocida (brócoli, calabacitas, nopales, ejotes, zanahoria)', '1 jitomate grande', '½ taza de chayote o col cocidos'] },
+    ej: ['1 taza de verdura cruda de hoja verde (lechuga, espinaca)', '½ taza de verdura cocida (brócoli, calabacitas, ejotes, zanahoria)', '1 jitomate mediano', '½ taza de nopales'] },
   { k: 'fru', name: 'Frutas', short: 'Frutas', color: '#ea580c', icon: 'Apple', kcal: 60, p: 0, c: 15, l: 0,
-    ej: ['1 manzana chica', '1 naranja o 2 mandarinas', '1 taza de papaya, melón o sandía picados', '½ plátano chico', '1 taza de fresas', '½ mango petacón'] },
+    ej: ['1 manzana o naranja mediana', '½ plátano', '1 taza de papaya, melón, sandía o fresas', '2 guayabas'] },
   { k: 'cer', name: 'Cereales sin grasa', short: 'Cereal', color: '#ca8a04', icon: 'Wheat', kcal: 70, p: 2, c: 15, l: 0,
-    ej: ['1 tortilla de maíz', '½ taza de arroz cocido', '⅓ de taza de avena en hojuelas', '1 rebanada de pan de caja integral', '½ taza de pasta cocida', '3 tazas de palomitas naturales', '½ taza de papa cocida'] },
+    ej: ['1 tortilla de maíz', '½ taza de arroz o pasta cocidos', '⅓ de taza de avena cruda', '1 rebanada de pan integral', '½ bolillo sin migajón'] },
   { k: 'cerg', name: 'Cereales con grasa', short: 'Cereal c/grasa', color: '#b45309', icon: 'Cookie', kcal: 115, p: 2, c: 15, l: 5,
-    ej: ['1 tortilla de harina chica', '½ pieza de pan dulce chico (concha)', '1 sope o gordita chica', '½ taza de granola', '2 tostadas fritas o 1 taco dorado', '1 galleta de mantequilla grande'] },
+    ej: ['½ pieza de pan dulce chico', '2 galletas con chispas', '3 totopos fritos'] },
   { k: 'leg', name: 'Leguminosas', short: 'Leguminosas', color: '#7c3aed', icon: 'Bean', kcal: 120, p: 8, c: 20, l: 1,
-    ej: ['½ taza de frijoles cocidos (de la olla)', '½ taza de lentejas cocidas', '½ taza de garbanzos cocidos', '½ taza de habas o alubias cocidas'] },
+    ej: ['½ taza de frijoles cocidos', '½ taza de lentejas cocidas', '½ taza de garbanzos cocidos'] },
   { k: 'aomb', name: 'AOA muy bajo aporte de grasa', short: 'AOA muy bajo', color: '#0891b2', icon: 'Fish', kcal: 40, p: 7, c: 0, l: 1,
-    ej: ['2 claras de huevo', '40 g de filete de pescado blanco', '35 g de camarón', '30 g de pechuga de pavo', '¼ de taza de queso cottage'] },
-  { k: 'aob', name: 'AOA bajo aporte de grasa', short: 'AOA bajo', color: '#0284c7', icon: 'Egg', kcal: 55, p: 7, c: 0, l: 3,
-    ej: ['30 g de pollo sin piel', '35 g de atún en agua', '1 huevo entero', '40 g de queso panela', '30 g de carne de res magra', '50 g de sardina en tomate'] },
-  { k: 'aom', name: 'AOA moderado aporte de grasa', short: 'AOA moderado', color: '#2563eb', icon: 'Drumstick', kcal: 75, p: 7, c: 0, l: 5,
-    ej: ['30 g de queso Oaxaca o manchego', '40 g de bistec de res', '1 huevo + 1 clara fritos', '30 g de pierna o muslo de pollo con piel', '40 g de carne molida de res'] },
-  { k: 'lec', name: 'Leche descremada', short: 'Leche', color: '#6366f1', icon: 'Milk', kcal: 95, p: 9, c: 12, l: 2,
-    ej: ['1 taza (240 ml) de leche descremada', '¾ de taza de yogurt natural bajo en grasa', '1 taza de bebida de soya sin azúcar (aprox.)'] },
-  { k: 'gra', name: 'Aceites y grasas', short: 'Grasas', color: '#db2777', icon: 'Droplet', kcal: 45, p: 0, c: 0, l: 5,
-    ej: ['1 cucharadita de aceite de oliva o canola', '⅓ de aguacate chico (≈ 30 g)', '10 almendras o 10 cacahuates', '2 nueces', '1 cucharadita de mayonesa o mantequilla', '1 cucharada de crema'] }
+    ej: ['30 g de pechuga de pollo', '35 g de pescado blanco o atún en agua', '2 claras de huevo', '40 g de requesón'] },
+  { k: 'aob', name: 'AOA bajo aporte de grasa', short: 'AOA bajo', color: '#0284c7', icon: 'Beef', kcal: 55, p: 7, c: 0, l: 3,
+    ej: ['30 g de res magra', '35 g de lomo de cerdo', '40 g de queso panela o fresco'] },
+  { k: 'aom', name: 'AOA moderado aporte de grasa', short: 'AOA moderado', color: '#2563eb', icon: 'Egg', kcal: 75, p: 7, c: 0, l: 5,
+    ej: ['1 huevo entero', '30 g de queso Oaxaca o manchego', '1 salchicha de pavo'] },
+  { k: 'lec', name: 'Leche descremada', short: 'Leche desc.', color: '#6366f1', icon: 'Milk', kcal: 95, p: 9, c: 12, l: 2,
+    ej: ['1 taza (240 ml) de leche descremada', '¾ de taza de yogur natural sin azúcar'] },
+  { k: 'lecs', name: 'Leche semidescremada', short: 'Leche semi', color: '#818cf8', icon: 'Milk', kcal: 110, p: 9, c: 12, l: 4, opt: true,
+    ej: ['1 taza (240 ml) de leche semidescremada', '¾ de taza de yogur natural sin azúcar'] },
+  { k: 'lece', name: 'Leche entera', short: 'Leche entera', color: '#a5b4fc', icon: 'Milk', kcal: 150, p: 9, c: 12, l: 8, opt: true,
+    ej: ['1 taza (240 ml) de leche entera', '¾ de taza de yogur natural sin azúcar'] },
+  { k: 'gra', name: 'Aceites y grasas sin proteína', short: 'Grasas', color: '#db2777', icon: 'Droplet', kcal: 45, p: 0, c: 0, l: 5,
+    ej: ['1 cucharadita de aceite vegetal', '⅓ de aguacate Hass', '1 cucharada de crema o mayonesa'] },
+  { k: 'grap', name: 'Aceites y grasas con proteína', short: 'Grasas c/prot.', color: '#be185d', icon: 'Nut', kcal: 70, p: 3, c: 3, l: 5, opt: true,
+    ej: ['10 almendras', '14 cacahuates', '3 nueces en mitades', '1 cucharada de chía'] }
 ];
 const G = Object.fromEntries(GROUPS.map((g) => [g.k, g]));
 const KEYS = GROUPS.map((g) => g.k);
@@ -183,7 +189,7 @@ const sumKey = (E, key) => GROUPS.reduce((s, g) => s + g[key] * (E[g.k] || 0), 0
 function planEq(kcal, pc, pp) {
   const pl = 100 - pc - pp;
   const Cg = (kcal * pc) / 400, Pg = (kcal * pp) / 400, Lg = (kcal * pl) / 900;
-  const E = { ver: 4, fru: 3, leg: 1, lec: 1, cer: 0, cerg: 0, aomb: 0, aob: 0, aom: 0, gra: 0 };
+  const E = { ver: 4, fru: 3, leg: 1, lec: 1, lecs: 0, lece: 0, cer: 0, cerg: 0, aomb: 0, aob: 0, aom: 0, gra: 0, grap: 0 };
   if (kcal < 1400) { E.ver = 3; E.fru = 2; }
   if (kcal > 2400) { E.ver = 5; E.fru = 4; E.leg = 2; }
   const cerT = Math.max(2, Math.round((Cg - sumKey(E, 'c')) / 15));
@@ -206,19 +212,19 @@ function dayTotals(day) {
    ===================================================================== */
 const RECIPES = [
   { id: 'r1', n: 'Huevos a la mexicana con frijoles', cats: ['Desayuno'], t: '15 min',
-    eq: { aob: 2, ver: 1, leg: 1, cer: 1, gra: 1 },
+    eq: { aom: 2, ver: 1, leg: 1, cer: 1, gra: 1 },
     ing: ['2 huevos', '½ taza de jitomate, cebolla y chile serrano picados', '½ taza de frijoles de la olla', '1 tortilla de maíz', '1 cucharadita de aceite'],
     pasos: ['Sofríe jitomate, cebolla y chile en el aceite 3 minutos.', 'Agrega los huevos batidos y revuelve hasta que cuajen.', 'Sirve con los frijoles calientes y la tortilla.'] },
   { id: 'r2', n: 'Chilaquiles verdes con pollo', cats: ['Desayuno', 'Comida'], t: '20 min',
-    eq: { cer: 2, aob: 2, ver: 1, gra: 1 },
+    eq: { cer: 2, aomb: 2, ver: 1, gra: 1 },
     ing: ['2 tortillas de maíz horneadas en triángulos', '60 g de pollo deshebrado', '½ taza de salsa verde (tomatillo, chile, cilantro)', '⅓ de aguacate en rebanadas', 'Cebolla y cilantro'],
     pasos: ['Hornea los triángulos de tortilla a 200 °C por 10 minutos hasta que estén crujientes.', 'Calienta la salsa verde y mezcla con el pollo.', 'Incorpora los totopos un minuto y sirve con aguacate, cebolla y cilantro.'] },
   { id: 'r3', n: 'Avena con papaya y nueces', cats: ['Desayuno', 'Snack'], t: '10 min',
-    eq: { cer: 2, lec: 1, fru: 1, gra: 1 },
-    ing: ['⅔ de taza de avena en hojuelas', '1 taza de leche descremada', '1 taza de papaya picada', '2 nueces picadas', 'Canela al gusto'],
+    eq: { cer: 2, lec: 1, fru: 1, grap: 1 },
+    ing: ['⅔ de taza de avena en hojuelas', '1 taza (240 ml) de leche descremada', '1 taza de papaya picada', '3 mitades de nuez picadas', 'Canela al gusto'],
     pasos: ['Cuece la avena con la leche a fuego bajo 5 minutos moviendo.', 'Sirve en un tazón y agrega la papaya y las nueces.', 'Espolvorea canela.'] },
   { id: 'r4', n: 'Omelette de espinaca y queso panela', cats: ['Desayuno', 'Cena'], t: '12 min',
-    eq: { aomb: 1, aob: 2, ver: 2, cer: 1, gra: 1 },
+    eq: { aomb: 1, aom: 1, aob: 1, ver: 2, cer: 1, gra: 1 },
     ing: ['1 huevo entero + 2 claras', '40 g de queso panela en cubos', '1 taza de espinaca fresca', '1 cucharadita de aceite', '1 tortilla de maíz'],
     pasos: ['Bate el huevo con las claras y una pizca de sal.', 'Sofríe la espinaca en el aceite 1 minuto.', 'Vierte el huevo, agrega el panela, dobla y cocina 2 minutos por lado.', 'Acompaña con la tortilla.'] },
   { id: 'r5', n: 'Tacos de nopal con queso panela', cats: ['Comida', 'Cena'], t: '15 min',
@@ -231,18 +237,18 @@ const RECIPES = [
     pasos: ['Acitrona cebolla y ajo en el aceite.', 'Agrega las verduras y 2 tazas de agua; cuece 15 minutos.', 'Añade las lentejas cocidas y deja hervir 5 minutos. Sirve con la tortilla.'] },
   { id: 'r7', n: 'Pechuga a la plancha con arroz y ensalada', cats: ['Comida'], t: '25 min',
     eq: { aomb: 3, cer: 2, ver: 2, gra: 1 },
-    ing: ['100 g de pechuga de pollo sin piel', '1 taza de arroz cocido', '2 tazas de lechuga, jitomate y pepino', '1 cucharadita de aceite de oliva', 'Jugo de limón, sal y pimienta'],
+    ing: ['90 g de pechuga de pollo sin piel', '1 taza de arroz cocido', '2 tazas de lechuga, jitomate y pepino', '1 cucharadita de aceite de oliva', 'Jugo de limón, sal y pimienta'],
     pasos: ['Sazona la pechuga con limón, sal y pimienta.', 'Cocínala en sartén caliente 5-6 minutos por lado.', 'Mezcla la ensalada con el aceite y limón. Sirve junto al arroz.'] },
   { id: 'r8', n: 'Caldo de pollo casero', cats: ['Comida', 'Cena'], t: '40 min',
-    eq: { aob: 3, ver: 3, cer: 1 },
-    ing: ['90 g de pollo sin piel', '1½ tazas de chayote, zanahoria y calabacita', '½ taza de arroz cocido', 'Cebolla, ajo, cilantro y limón'],
+    eq: { aomb: 3, ver: 3, cer: 1 },
+    ing: ['90 g de pechuga de pollo', '1½ tazas de chayote, zanahoria y calabacita', '½ taza de arroz cocido', 'Cebolla, ajo, cilantro y limón'],
     pasos: ['Hierve el pollo con cebolla y ajo 20 minutos.', 'Agrega las verduras y cocina 10 minutos más.', 'Sirve con arroz, cilantro y limón.'] },
   { id: 'r9', n: 'Pescado a la veracruzana', cats: ['Comida', 'Cena'], t: '30 min',
     eq: { aomb: 3, ver: 2, gra: 1, cer: 1 },
-    ing: ['120 g de filete de pescado blanco', '1 jitomate grande, ¼ de cebolla, chile güero', '3 aceitunas y 1 cucharadita de aceite de oliva', '½ taza de arroz cocido'],
+    ing: ['105 g de filete de pescado blanco', '1 jitomate grande, ¼ de cebolla, chile güero', '3 aceitunas y 1 cucharadita de aceite de oliva', '½ taza de arroz cocido'],
     pasos: ['Sofríe cebolla, jitomate y chile en el aceite 5 minutos.', 'Coloca el pescado encima, agrega las aceitunas y tapa 10 minutos.', 'Sirve con el arroz.'] },
   { id: 'r10', n: 'Ensalada de atún con garbanzos', cats: ['Comida', 'Cena'], t: '10 min',
-    eq: { aob: 3, leg: 1, ver: 2, gra: 1, cer: 1 },
+    eq: { aomb: 3, leg: 1, ver: 2, gra: 1, cer: 1 },
     ing: ['1 lata de atún en agua escurrido (≈ 105 g)', '½ taza de garbanzos cocidos', '2 tazas de lechuga, pepino y jitomate', '1 cucharadita de aceite de oliva y limón', '1 tostada horneada'],
     pasos: ['Mezcla las verduras con los garbanzos.', 'Agrega el atún y el aderezo de aceite y limón.', 'Sirve sobre la tostada o a un lado.'] },
   { id: 'r11', n: 'Quesadillas de flor de calabaza', cats: ['Cena', 'Comida'], t: '15 min',
@@ -250,19 +256,19 @@ const RECIPES = [
     ing: ['2 tortillas de maíz', '60 g de queso Oaxaca deshebrado', '½ taza de flor de calabaza picada', 'Salsa roja al gusto'],
     pasos: ['Rellena las tortillas con el queso y la flor de calabaza.', 'Cocínalas en comal caliente hasta que el queso se derrita.', 'Sirve con salsa.'] },
   { id: 'r12', n: 'Tostadas de tinga de pollo', cats: ['Comida', 'Cena'], t: '25 min',
-    eq: { cer: 2, aob: 2, ver: 1, gra: 1 },
+    eq: { cer: 2, aomb: 2, ver: 1, gra: 1 },
     ing: ['2 tostadas horneadas', '60 g de pollo deshebrado', '½ taza de jitomate, cebolla y chipotle', '½ taza de lechuga', '⅓ de aguacate'],
     pasos: ['Licúa jitomate con chipotle y cocina con la cebolla 8 minutos.', 'Mezcla con el pollo deshebrado.', 'Sirve sobre las tostadas con lechuga y aguacate.'] },
   { id: 'r13', n: 'Yogurt con fresas y granola', cats: ['Snack', 'Desayuno'], t: '5 min',
     eq: { lec: 1, fru: 1, cer: 1 },
-    ing: ['¾ de taza de yogurt natural bajo en grasa', '1 taza de fresas rebanadas', '2 cucharadas de granola o avena tostada'],
+    ing: ['¾ de taza de yogur natural sin azúcar', '1 taza de fresas rebanadas', '2 cucharadas de granola o avena tostada'],
     pasos: ['Pon el yogurt en un vaso o tazón.', 'Agrega las fresas y la granola justo antes de comer.'] },
   { id: 'r14', n: 'Jícama y papaya con limón y chile', cats: ['Snack'], t: '5 min',
     eq: { ver: 1, fru: 1 },
     ing: ['1 taza de jícama en bastones', '1 taza de papaya picada', 'Limón y chile en polvo al gusto'],
     pasos: ['Corta la jícama y la papaya.', 'Agrega limón y espolvorea chile en polvo.'] },
   { id: 'r15', n: 'Huevo cocido con pepino y tostada', cats: ['Snack', 'Cena'], t: '12 min',
-    eq: { aob: 2, ver: 1, cer: 1 },
+    eq: { aom: 2, ver: 1, cer: 1 },
     ing: ['2 huevos cocidos', '1 taza de pepino en rodajas', '1 tostada horneada', 'Limón, sal y salsa picante'],
     pasos: ['Cuece los huevos 10 minutos y pélalos.', 'Sirve con pepino, limón y salsa sobre la tostada.'] },
   { id: 'r16', n: 'Palomitas con limón y chile', cats: ['Snack'], t: '5 min',
@@ -276,8 +282,8 @@ const ARM = [
   { k: 'cer', name: 'Cereales', map: ['cer', 'cerg'] },
   { k: 'leg', name: 'Leguminosas', map: ['leg'] },
   { k: 'aoa', name: 'AOA', map: ['aomb', 'aob', 'aom'] },
-  { k: 'lec', name: 'Leche', map: ['lec'] },
-  { k: 'gra', name: 'Grasas', map: ['gra'] }
+  { k: 'lec', name: 'Leche', map: ['lec', 'lecs', 'lece'] },
+  { k: 'gra', name: 'Grasas', map: ['gra', 'grap'] }
 ];
 const armEq = (eq) => Object.fromEntries(ARM.map((a) => [a.k, a.map.reduce((s, m) => s + (eq[m] || 0), 0)]));
 
@@ -299,9 +305,9 @@ function makeSample() {
   logs[today] = {
     water: 3,
     portions: {
-      des: { cer: 2, aob: 2, fru: 1, gra: 1, lec: 1 },
+      des: { cer: 2, aom: 2, fru: 1, gra: 1, lec: 1 },
       col1: { fru: 1, ver: 1 },
-      com: { ver: 2, cer: 1, aomb: 2, leg: 1 }
+      com: { ver: 2, cer: 1, aomb: 3, leg: 1 }
     },
     recall: [
       { id: uid(), meal: 'des', hora: '08:15', texto: 'Huevos a la mexicana con 1 tortilla, frijoles y vaso de leche descremada', hambre: 2 },
@@ -311,7 +317,7 @@ function makeSample() {
   };
   logs[addDays(today, -1)] = {
     water: 6,
-    portions: { des: { cer: 2, aob: 2, fru: 1 }, com: { ver: 3, cer: 2, aob: 3, gra: 1 }, cen: { ver: 2, aom: 2, cer: 2 } },
+    portions: { des: { cer: 2, aom: 2, fru: 1 }, com: { ver: 3, cer: 2, aomb: 3, gra: 1 }, cen: { ver: 2, aom: 2, cer: 2 } },
     recall: [{ id: uid(), meal: 'cen', hora: '20:00', texto: 'Quesadillas de flor de calabaza con salsa', hambre: 3 }]
   };
   return { profile, logs, progress, meta: { isSample: true, lastBackup: null } };
@@ -491,11 +497,121 @@ function Field({ label, children, hint }) {
   );
 }
 const inputCls = 'w-full min-h-[48px] rounded-xl border border-emerald-200 bg-white px-3 focus:outline-none focus:ring-2 focus:ring-emerald-400';
-function ScreenHeader({ title, subtitle, children }) {
+const HelpCtx = React.createContext({ open: () => {} });
+const TOUR = [
+  { t: 'Bienvenida y filosofía de Equivalentes', icon: 'Leaf', tab: 'perfil',
+    pts: ['No necesitas pesar todo: cada alimento vale por **equivalentes** (fichas) según su aporte de energía y nutrientes (SMAE).',
+      'Tu perfil calcula un **presupuesto diario**: cuántas fichas de cada grupo (verduras, frutas, cereales, leguminosas, AOA, leche y grasas) puedes usar hoy.',
+      'Tú solo registras lo que comes en medidas caseras (1 tortilla, ½ taza de arroz…) y la app te dice cuántas fichas te quedan.',
+      'Empieza en **Perfil**: captura edad, peso, talla, actividad y objetivo.'] },
+  { t: 'Porciones y Guía de bolsillo', icon: 'ListChecks', tab: 'porciones',
+    pts: ['En **Porciones** abre un tiempo de comida (Desayuno, Colación 1, Comida, Colación 2, Cena) y usa **+** y **−** en cada grupo.',
+      'Las barras muestran cuántas porciones **te quedan** hoy; si te pasas se marcan en ámbar.',
+      'Con el botón **?** de cada grupo (o “Guía de bolsillo”) ves qué equivale a 1 porción en medidas caseras.',
+      'El selector **Paso ½** permite registrar medias porciones.'] },
+  { t: 'Hidratación diaria', icon: 'Droplets', tab: 'porciones',
+    pts: ['Tu meta de agua se calcula sola: **35 ml por cada kg** de peso, en vasos de 250 ml.',
+      'En la tarjeta de Hidratación toca un vaso para llenarlo, o usa **+** y **−**.',
+      'Si actualizas tu peso en Perfil o Progreso, la meta se ajusta automáticamente.'] },
+  { t: 'Bitácora de 24 horas', icon: 'Clock', tab: 'recordatorio',
+    pts: ['Anota con tus palabras qué comiste, a qué hora y en qué tiempo de comida.',
+      'Califica tu **hambre/saciedad del 1 al 5**: 1 = mucha hambre, 3 = neutral, 5 = muy lleno.',
+      'Al final del día toca **Copiar** o **WhatsApp** para enviar el resumen (con tus equivalentes y agua) a tu nutriólogo.'] },
+  { t: 'Armador de recetas', icon: 'ChefHat', tab: 'recetas',
+    pts: ['Elige cuántos equivalentes tienes disponibles (por ejemplo 2 AOA + 2 Cereales + 1 Verdura + 1 Grasa).',
+      'Toca **“Usar lo que me queda hoy”** para llenar el filtro con las fichas que no has usado.',
+      'Verás las recetas que caben y las que “casi caben”. Ábrelas para ver ingredientes y pasos, y regístralas en tu día con un toque.'] },
+  { t: 'Mi progreso', icon: 'TrendingUp', tab: 'progreso',
+    pts: ['Registra peso, cintura y cadera con su fecha; la gráfica muestra tu evolución.',
+      'El **Índice Cintura-Cadera (ICC)** = cintura ÷ cadera. Se considera riesgo elevado desde 0.85 en mujeres y 0.90 en hombres.',
+      'Mide siempre en las mismas condiciones (por la mañana, en ayunas) para comparar mejor.'] },
+  { t: 'Seguridad y respaldo en Google Drive', icon: 'ShieldCheck', tab: 'perfil',
+    pts: ['Tus datos viven **solo en tu teléfono** (almacenamiento local) y la app guarda una copia interna de los últimos 7 días. Nada se envía a servidores.',
+      'Con **“Guardar respaldo en Drive”** se abre el menú de compartir: elige el ícono de Drive y guarda el archivo .json. Si tu navegador no lo permite, se descarga.',
+      'Para recuperar tus datos o cambiar de teléfono usa **“Restaurar desde archivo (.json)”** en Perfil.'] }
+];
+const TAB_NAME = { porciones: 'Porciones', recordatorio: '24 Horas', recetas: 'Recetas', progreso: 'Progreso', perfil: 'Perfil' };
+function RichText({ text }) {
+  return <>{text.split('**').map((p, i) => (i % 2 ? <b key={i} className="text-emerald-800">{p}</b> : <span key={i}>{p}</span>))}</>;
+}
+function TourModal({ onClose, onGo }) {
+  const [i, setI] = useState(0);
+  const st = TOUR[i];
   return (
-    <header className="safe-top bg-gradient-to-br from-emerald-600 to-emerald-500 text-white px-5 pt-5 pb-5 rounded-b-3xl shadow">
+    <Modal title="Manual interactivo" onClose={onClose}>
+      <div className="flex items-center justify-between text-sm font-bold text-emerald-700 mb-1.5"><span>Paso {i + 1}/{TOUR.length}</span><span className="text-xs text-gray-400 font-semibold">{Math.round(((i + 1) / TOUR.length) * 100)}%</span></div>
+      <div className="flex gap-1 mb-4">{TOUR.map((_, x) => (<button key={x} onClick={() => setI(x)} aria-label={`Paso ${x + 1}`} className={cls('h-2 flex-1 rounded-full', x <= i ? 'bg-emerald-600' : 'bg-emerald-100')} />))}</div>
+      <div className="flex items-center gap-3 mb-3">
+        <span className="w-12 h-12 rounded-2xl bg-emerald-600 text-white flex items-center justify-center shrink-0"><Icon name={st.icon} size={24} /></span>
+        <h3 className="text-lg font-extrabold text-emerald-900 leading-tight">{st.t}</h3>
+      </div>
+      <ul className="space-y-2.5 text-[15px] leading-snug">
+        {st.pts.map((p, x) => (<li key={x} className="flex gap-2"><span className="text-emerald-500 mt-0.5">●</span><span><RichText text={p} /></span></li>))}
+      </ul>
+      <button onClick={() => onGo(st.tab)} className="mt-4 w-full min-h-[48px] rounded-xl border-2 border-emerald-600 text-emerald-700 font-bold btn-press flex items-center justify-center gap-2"><Icon name="ChevronRight" size={18} /> Ir a {TAB_NAME[st.tab]}</button>
+      <div className="grid grid-cols-2 gap-2 mt-2">
+        <button onClick={() => setI(i - 1)} disabled={i === 0} className="min-h-[52px] rounded-xl bg-gray-100 text-gray-700 font-bold btn-press disabled:opacity-40">Anterior</button>
+        {i < TOUR.length - 1
+          ? <button onClick={() => setI(i + 1)} className="min-h-[52px] rounded-xl bg-emerald-600 text-white font-bold btn-press">Siguiente</button>
+          : <button onClick={onClose} className="min-h-[52px] rounded-xl bg-emerald-600 text-white font-bold btn-press">Finalizar</button>}
+      </div>
+    </Modal>
+  );
+}
+const FAQ = [
+  { q: '¿Qué es un equivalente?', a: 'Es una porción de alimento que aporta casi lo mismo en energía y nutrientes que otras del mismo grupo. Por ejemplo, 1 tortilla de maíz = ½ taza de arroz cocido = 1 equivalente de Cereal sin grasa (70 kcal). Así puedes intercambiar alimentos sin perder tu plan.' },
+  { q: '¿Qué hago si me paso de mi meta de un grupo?', a: 'No pasa nada grave: la barra se pone en ámbar y te muestra cuánto te pasaste. Puedes compensar con menos porciones del mismo grupo en la siguiente comida o simplemente continuar mañana. Si te pasas seguido, coméntalo con tu nutriólogo.' },
+  { q: '¿Cómo registro medias porciones?', a: 'En Porciones activa “Paso ½” y los botones + y − sumarán o restarán media porción. Ejemplo: ½ aguacate chico ≈ 1½ equivalentes de Grasa.' },
+  { q: '¿Para qué sirven la leche semidescremada, entera y las grasas con proteína?', a: 'Son grupos opcionales del SMAE (110 y 150 kcal por taza de leche; 70 kcal por porción de almendras, cacahuates, nueces o chía). Aparecen en las barras cuando les asignas meta en Perfil o cuando los registras.' },
+  { q: '¿Cómo uso el plan que me dio mi nutriólogo?', a: 'En Perfil → “Mi meta de equivalentes” ajusta cada grupo con + y − (de media en media). Verás la etiqueta “Manual”; para volver al cálculo automático toca “Volver al cálculo automático”.' },
+  { q: '¿Qué pasa si cambio de teléfono?', a: 'Antes de cambiar, toca “Guardar respaldo en Drive” en Perfil. En el teléfono nuevo abre la app, descarga el archivo .json desde Drive y usa “Restaurar desde archivo (.json)”.' }
+];
+const EJEMPLOS = [
+  { q: '¿Cómo registro 2 tacos de pollo con aguacate y salsa?', eq: { cer: 2, aomb: 2, gra: 1, ver: 0.5 }, n: '2 tortillas de maíz + 60 g de pechuga de pollo + ⅓ de aguacate + salsa y cebolla (≈ ½ verdura).' },
+  { q: '2 quesadillas chicas de maíz con queso Oaxaca', eq: { cer: 2, aom: 1 }, n: '2 tortillas + 30 g de queso Oaxaca en total. Si las doras con aceite, agrega 1 Grasa.' },
+  { q: 'Huevos a la mexicana (2 huevos) con 1 tortilla', eq: { aom: 2, ver: 0.5, gra: 1, cer: 1 }, n: '2 huevos enteros + jitomate, cebolla y chile + 1 cdita de aceite + 1 tortilla.' },
+  { q: 'Plato de frijoles de la olla con tortilla', eq: { leg: 1, cer: 1 }, n: '½ taza de frijoles cocidos + 1 tortilla de maíz.' },
+  { q: 'Caldo de pollo con verduras y arroz', eq: { aomb: 3, ver: 3, cer: 1 }, n: '90 g de pechuga + 1½ tazas de verdura cocida + ½ taza de arroz.' },
+  { q: 'Café con 1 taza de leche descremada, sin azúcar', eq: { lec: 1 }, n: 'Si usas leche entera, regístrala en “Leche entera” (150 kcal).' },
+  { q: 'Colación: 1 manzana y 10 almendras', eq: { fru: 1, grap: 1 }, n: 'Las almendras son Grasa con proteína (70 kcal por 10 piezas).' },
+  { q: 'Ensalada con ½ aguacate y 1 lata de atún en agua', eq: { aomb: 3, gra: 1.5, ver: 2 }, n: '105 g de atún + ½ aguacate Hass chico + 2 tazas de verduras crudas (aprox.).' }
+];
+function ManualCard() {
+  const [open, setOpen] = useState(null);
+  const Item = ({ id, q, children }) => (
+    <div className="border-b border-gray-100 last:border-0">
+      <button onClick={() => setOpen(open === id ? null : id)} className="w-full flex items-center gap-2 py-3 min-h-[52px] text-left">
+        <span className="flex-1 text-sm font-semibold">{q}</span>
+        <Icon name="ChevronDown" size={18} className={cls('text-gray-400 shrink-0 transition-transform', open === id && 'rotate-180')} />
+      </button>
+      {open === id && <div className="pb-3 text-sm text-gray-600">{children}</div>}
+    </div>
+  );
+  return (
+    <Card>
+      <h2 className="font-bold text-emerald-900 mb-1 flex items-center gap-2"><Icon name="BookOpen" size={18} /> Manual y ejemplos prácticos</h2>
+      <p className="text-xs text-gray-500 mb-2">Preguntas frecuentes y comidas mexicanas desglosadas en equivalentes.</p>
+      <h3 className="text-xs font-bold uppercase tracking-wide text-emerald-700 mt-2">Preguntas frecuentes</h3>
+      {FAQ.map((f, i) => <Item key={'f' + i} id={'f' + i} q={f.q}>{f.a}</Item>)}
+      <h3 className="text-xs font-bold uppercase tracking-wide text-emerald-700 mt-4">¿Cómo lo registro? Ejemplos reales</h3>
+      {EJEMPLOS.map((e, i) => (
+        <Item key={'e' + i} id={'e' + i} q={e.q}>
+          <div className="flex flex-wrap gap-1.5 mb-2">
+            {Object.entries(e.eq).map(([k, v]) => (<span key={k} className="text-xs font-bold rounded-lg px-2 py-1 text-white" style={{ background: G[k].color }}>{fmtEq(v)} {G[k].short}</span>))}
+          </div>
+          <p>{e.n}</p>
+        </Item>
+      ))}
+    </Card>
+  );
+}
+function ScreenHeader({ title, subtitle, children }) {
+  const help = React.useContext(HelpCtx);
+  return (
+    <header className="safe-top relative bg-gradient-to-br from-emerald-600 to-emerald-500 text-white px-5 pt-5 pb-5 rounded-b-3xl shadow">
+      <button onClick={help.open} aria-label="Abrir manual" className="absolute right-4 flex items-center gap-1.5 min-h-[44px] px-3.5 rounded-full bg-white/20 text-sm font-bold btn-press" style={{ top: 'calc(env(safe-area-inset-top) + 10px)' }}><Icon name="HelpCircle" size={18} /> Manual</button>
       <div className="flex items-center gap-2 text-emerald-100 text-xs font-semibold tracking-wide uppercase"><Icon name="Leaf" size={14} /> MiNutriApp</div>
-      <h1 className="text-2xl font-extrabold mt-0.5">{title}</h1>
+      <h1 className="text-2xl font-extrabold mt-0.5 pr-24">{title}</h1>
       {subtitle && <p className="text-emerald-50 text-sm">{subtitle}</p>}
       {children}
     </header>
@@ -617,7 +733,8 @@ function PortionsScreen({ ctx }) {
           </div>
           <div className="space-y-3.5">
             {GROUPS.map((g) => {
-              const used = totals[g.k], goal = targets[g.k] || 0, left = goal - used;
+              const used = totals[g.k] || 0, goal = targets[g.k] || 0, left = goal - used;
+              if (g.opt && !goal && !used) return null;
               const pct = goal > 0 ? Math.min(100, (used / goal) * 100) : used > 0 ? 100 : 0;
               const over = used > goal;
               return (
@@ -903,7 +1020,7 @@ function RecipesScreen({ ctx }) {
           </div>
           <div className="grid grid-cols-2 gap-x-3 gap-y-2.5">
             {ARM.map((a) => {
-              const col = G[a.map[a.map.length > 1 ? 1 : 0]].color;
+              const col = G[a.map[0]].color;
               return (
                 <div key={a.k} className="rounded-xl bg-gray-50 p-2">
                   <div className="text-xs font-bold mb-1" style={{ color: col }}>{a.name}</div>
@@ -1169,6 +1286,8 @@ function ProfileScreen({ ctx }) {
           {p.manualEq && <button onClick={() => set('manualEq', null)} className="mt-3 w-full min-h-[48px] rounded-xl border-2 border-emerald-600 text-emerald-700 font-bold btn-press flex items-center justify-center gap-2"><Icon name="RefreshCw" size={18} /> Volver al cálculo automático</button>}
         </Card>
 
+        <ManualCard />
+
         <Card>
           <h2 className="font-bold text-emerald-900 mb-1 flex items-center gap-2"><Icon name="Share2" size={18} /> Respaldo en Google Drive</h2>
           <p className="text-xs text-gray-500 mb-3">Último respaldo externo: <b>{sinceText(state.meta.lastBackup)}</b>. Se abre el menú de compartir de tu teléfono: elige <b>Drive</b> y guarda el archivo.</p>
@@ -1217,6 +1336,8 @@ function App() {
   const [state, setState] = useState(loadState);
   const [tab, setTab] = useState('porciones');
   const [date, setDate] = useState(dateKey());
+  const [tour, setTour] = useState(false);
+  const helpApi = useMemo(() => ({ open: () => setTour(true) }), []);
   const [guide, setGuide] = useState(undefined); // undefined = cerrada, null = todas, 'key' = enfocada
   const [msg, setMsg] = useState('');
   const [copies, setCopies] = useState([]);
@@ -1268,12 +1389,14 @@ function App() {
     copies, toast, go: setTab, openGuide: (k) => setGuide(k)
   };
   return (
+    <HelpCtx.Provider value={helpApi}>
     <div className="max-w-md mx-auto min-h-screen bg-[#eef5f1] relative pb-28">
       {tab === 'porciones' && <PortionsScreen ctx={ctx} />}
       {tab === 'recordatorio' && <RecallScreen ctx={ctx} />}
       {tab === 'recetas' && <RecipesScreen ctx={ctx} />}
       {tab === 'progreso' && <ProgressScreen ctx={ctx} />}
       {tab === 'perfil' && <ProfileScreen ctx={ctx} />}
+      {tour && <TourModal onClose={() => setTour(false)} onGo={(t) => { setTab(t); setTour(false); }} />}
       {guide !== undefined && <GuideModal focus={guide} onClose={() => setGuide(undefined)} />}
       {msg && <div className="fixed left-1/2 -translate-x-1/2 bottom-28 z-[60] bg-gray-900 text-white text-sm font-semibold rounded-full px-5 py-3 shadow-lg max-w-[90%] text-center">{msg}</div>}
       <nav className="fixed bottom-0 inset-x-0 z-40 bg-white border-t border-emerald-100 shadow-[0_-4px_16px_rgba(5,150,105,.08)] safe-bottom">
@@ -1287,6 +1410,7 @@ function App() {
         </div>
       </nav>
     </div>
+    </HelpCtx.Provider>
   );
 }
 ReactDOM.createRoot(document.getElementById('root')).render(<App />);
