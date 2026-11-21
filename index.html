@@ -492,6 +492,59 @@ const sinceText = (ts) => {
 };
 
 /* =====================================================================
+   NAVEGACIÓN MÓVIL: botón "Atrás" (History API)
+   Cada ventana abierta (NutriBot, Tour, modales) y cada pestaña distinta de
+   Porciones ocupa una entrada del historial. "Atrás" cierra primero la ventana
+   superior; sin ventanas, regresa a Porciones; en Porciones, sale de la app.
+   ===================================================================== */
+const TAB_KEY = 'minutriapp_activeTab';
+const TAB_KEYS = ['porciones', 'recordatorio', 'recetas', 'progreso', 'perfil'];
+const NAV = { stack: [], toGo: 0, sched: false, pending: 0, queue: 0, timer: null, onBase: null };
+function navFlush() {
+  NAV.pending = 0; clearTimeout(NAV.timer);
+  while (NAV.queue > 0) { NAV.queue--; history.pushState({ mna: 1 }, ''); }
+}
+function navPush() {
+  if (NAV.sched || NAV.pending) { NAV.queue++; return; }   // espera a que termine un "atrás" en curso
+  try { history.pushState({ mna: 1 }, ''); } catch (e) { /* entorno sin historial */ }
+}
+function navBack() {
+  if (NAV.queue > 0) { NAV.queue--; return; }              // anula una entrada que aún no se creó
+  NAV.toGo++;
+  if (NAV.sched) return;
+  NAV.sched = true;
+  Promise.resolve().then(() => {
+    NAV.sched = false;
+    const n = NAV.toGo; NAV.toGo = 0;
+    if (!n) return navFlush();
+    NAV.pending++;
+    clearTimeout(NAV.timer); NAV.timer = setTimeout(navFlush, 800); // por si el navegador no emite popstate
+    history.go(-n);
+  });
+}
+window.addEventListener('popstate', () => {
+  if (NAV.pending) { NAV.pending--; if (!NAV.pending) navFlush(); return; } // atrás provocado por la app
+  const top = NAV.stack.pop();
+  if (top) { top.popped = true; top.close(); return; }
+  if (NAV.onBase) NAV.onBase();
+});
+/* Registra una ventana: "Atrás" la cierra; si se cierra con su botón, se retira su entrada */
+function useBackClose(onClose) {
+  const ref = useRef(onClose); ref.current = onClose;
+  useEffect(() => {
+    const entry = { close: () => ref.current && ref.current(), popped: false };
+    NAV.stack.push(entry); navPush();
+    return () => {
+      const i = NAV.stack.indexOf(entry);
+      if (i >= 0) { NAV.stack.splice(i, 1); if (!entry.popped) navBack(); }
+    };
+  }, []);
+}
+function loadTab() {
+  try { const t = localStorage.getItem(TAB_KEY); return TAB_KEYS.includes(t) ? t : 'porciones'; } catch (e) { return 'porciones'; }
+}
+
+/* =====================================================================
    COMPONENTES BASE
    ===================================================================== */
 function Icon({ name, size = 20, className = '', sw = 2 }) {
@@ -509,6 +562,7 @@ function Card({ children, className = '' }) {
   return <section className={cls('bg-white rounded-2xl border border-emerald-100 shadow-sm p-4', className)}>{children}</section>;
 }
 function Modal({ title, onClose, children }) {
+  useBackClose(onClose);
   useEffect(() => {
     const prev = document.body.style.overflow; document.body.style.overflow = 'hidden';
     return () => { document.body.style.overflow = prev; };
@@ -1787,6 +1841,7 @@ function NutriBot({ ctx, chat, setChat, onClose, onAvatar }) {
   const [input, setInput] = useState('');
   const listRef = useRef(null);
   const lex = getLex(state.custom.foods);
+  useBackClose(onClose);
   useEffect(() => { const prev = document.body.style.overflow; document.body.style.overflow = 'hidden'; return () => { document.body.style.overflow = prev; }; }, []);
   useEffect(() => { if (!chat.msgs.length) setChat((c) => ({ ...c, msgs: [{ id: uid(), from: 'bot', ...welcomeMsg(state) }] })); }, []);
   useEffect(() => { const el = listRef.current; if (el) setTimeout(() => { el.scrollTop = el.scrollHeight; }, 30); }, [chat.msgs.length, vp.height]);
@@ -2742,7 +2797,25 @@ const TABS = [
 ];
 function App() {
   const [state, setState] = useState(loadState);
-  const [tab, setTab] = useState('porciones');
+  const [tab, setTabRaw] = useState(loadTab);
+  const tabRef = useRef(tab);
+  /* Cambiar de pestaña: Porciones es la base; las demás ocupan una entrada del historial */
+  const setTab = useCallback((t) => {
+    const prev = tabRef.current;
+    if (prev === t) return;
+    if (prev === 'porciones') navPush();
+    else if (t === 'porciones') navBack();
+    tabRef.current = t; setTabRaw(t);
+  }, []);
+  useEffect(() => {
+    // Al abrir la app: si se restauró otra pestaña, "Atrás" debe volver a Porciones
+    const onEntry = !!(history.state && history.state.mna);
+    if (tab !== 'porciones' && !onEntry) navPush();
+    if (tab === 'porciones' && onEntry) navBack();
+    NAV.onBase = () => { if (tabRef.current !== 'porciones') { tabRef.current = 'porciones'; setTabRaw('porciones'); } };
+    return () => { NAV.onBase = null; };
+  }, []);
+  useEffect(() => { try { localStorage.setItem(TAB_KEY, tab); } catch (e) { /* privado */ } }, [tab]);
   const [date, setDate] = useState(dateKey());
   const [tour, setTour] = useState(false);
   const [botOpen, setBotOpen] = useState(false);
