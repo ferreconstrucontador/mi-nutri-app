@@ -2,7 +2,7 @@
 <html lang="es-MX">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>MiNutriApp</title>
 <meta name="description" content="MiNutriApp: control personal de porciones por equivalentes (SMAE), recordatorio de 24 horas, recetas y progreso.">
 <meta name="theme-color" content="#059669">
@@ -14,6 +14,17 @@
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%20512%20512'%3E%3Crect%20width%3D'512'%20height%3D'512'%20rx%3D'112'%20fill%3D'%23059669'%2F%3E%3Cpath%20d%3D'M256%20160c-34-24-92-20-118%2026-30%2054-4%20134%2036%20170%2024%2022%2052%2016%2082%202%2030%2014%2058%2020%2082-2%2040-36%2066-116%2036-170-26-46-84-50-118-26z'%20fill%3D'%23fff'%2F%3E%3Cpath%20d%3D'M268%20150c-6-38%2010-68%2046-84%206%2040-10%2072-46%2084z'%20fill%3D'%23a7f3d0'%2F%3E%3Cpath%20d%3D'M256%20168v24'%20stroke%3D'%23059669'%20stroke-width%3D'14'%20stroke-linecap%3D'round'%2F%3E%3C%2Fsvg%3E">
 <link rel="manifest" href="data:application/manifest+json;charset=utf-8,%7B%22name%22%3A%22MiNutriApp%22%2C%22short_name%22%3A%22MiNutriApp%22%2C%22description%22%3A%22Porciones%20por%20equivalentes%20(SMAE)%2C%20recordatorio%20de%2024%20horas%2C%20recetas%20y%20progreso.%22%2C%22start_url%22%3A%22.%22%2C%22scope%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22orientation%22%3A%22portrait%22%2C%22background_color%22%3A%22%23eef5f1%22%2C%22theme_color%22%3A%22%23059669%22%2C%22lang%22%3A%22es-MX%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%2520xmlns%253D'http%253A%252F%252Fwww.w3.org%252F2000%252Fsvg'%2520viewBox%253D'0%25200%2520512%2520512'%253E%253Crect%2520width%253D'512'%2520height%253D'512'%2520rx%253D'112'%2520fill%253D'%2523059669'%252F%253E%253Cpath%2520d%253D'M256%2520160c-34-24-92-20-118%252026-30%252054-4%2520134%252036%2520170%252024%252022%252052%252016%252082%25202%252030%252014%252058%252020%252082-2%252040-36%252066-116%252036-170-26-46-84-50-118-26z'%2520fill%253D'%2523fff'%252F%253E%253Cpath%2520d%253D'M268%2520150c-6-38%252010-68%252046-84%25206%252040-10%252072-46%252084z'%2520fill%253D'%2523a7f3d0'%252F%253E%253Cpath%2520d%253D'M256%2520168v24'%2520stroke%253D'%2523059669'%2520stroke-width%253D'14'%2520stroke-linecap%253D'round'%252F%253E%253C%252Fsvg%253E%22%2C%22sizes%22%3A%22any%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%22%7D%2C%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%2520xmlns%253D'http%253A%252F%252Fwww.w3.org%252F2000%252Fsvg'%2520viewBox%253D'0%25200%2520512%2520512'%253E%253Crect%2520width%253D'512'%2520height%253D'512'%2520rx%253D'112'%2520fill%253D'%2523059669'%252F%253E%253Cpath%2520d%253D'M256%2520160c-34-24-92-20-118%252026-30%252054-4%2520134%252036%2520170%252024%252022%252052%252016%252082%25202%252030%252014%252058%252020%252082-2%252040-36%252066-116%252036-170-26-46-84-50-118-26z'%2520fill%253D'%2523fff'%252F%253E%253Cpath%2520d%253D'M268%2520150c-6-38%252010-68%252046-84%25206%252040-10%252072-46%252084z'%2520fill%253D'%2523a7f3d0'%252F%253E%253Cpath%2520d%253D'M256%2520168v24'%2520stroke%253D'%2523059669'%2520stroke-width%253D'14'%2520stroke-linecap%253D'round'%252F%253E%253C%252Fsvg%253E%22%2C%22sizes%22%3A%22any%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22maskable%22%7D%5D%7D">
 <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>
+  if (window.tailwind) { tailwind.config = { darkMode: 'class' }; }
+  /* Aplica el tema guardado antes de pintar (evita parpadeo) */
+  (function () {
+    try {
+      var t = localStorage.getItem('minutriapp_theme') || 'light';
+      var d = t === 'dark' || (t === 'system' && window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches);
+      if (d) { document.documentElement.classList.add('dark'); document.querySelector('meta[name="theme-color"]').setAttribute('content', '#064e3b'); }
+    } catch (e) {}
+  })();
+</script>
 <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin></script>
 <script src="https://unpkg.com/@babel/standalone@7.24.7/babel.min.js"></script>
@@ -30,6 +41,51 @@
   @keyframes up { from { transform: translateY(40px); opacity:.4 } to { transform:none; opacity:1 } }
   input[type=range] { accent-color:#059669; width:100%; }
   ::-webkit-scrollbar { display:none; }
+  .app-bg { background:#eef5f1; }
+  .mascot-wave { transform-box: view-box; animation: wave 1.4s ease-in-out infinite; }
+  span.mascot-wave { display:inline-block; transform-box: border-box; }
+  @keyframes wave { 0%,100% { transform: rotate(0deg) } 50% { transform: rotate(-22deg) } }
+  @media (prefers-reduced-motion: reduce) { .mascot-wave, .sheet { animation: none; } }
+  /* ---------- Modo oscuro (Tailwind darkMode: 'class') ---------- */
+  html.dark, html.dark body { background:#0b1411; color:#e5ece8; color-scheme: dark; }
+  .dark .app-bg { background:#0b1411; }
+  .dark .app-header { background-image: linear-gradient(135deg,#065f46,#064e3b); }
+  .dark .bg-white { background-color:#13211b; }
+  .dark .bg-gray-50 { background-color:#18291f; }
+  .dark .bg-gray-100 { background-color:#1f3229; }
+  .dark .bg-emerald-50 { background-color:rgba(16,185,129,.13); }
+  .dark .bg-emerald-100 { background-color:rgba(16,185,129,.24); }
+  .dark .bg-amber-50 { background-color:rgba(245,158,11,.12); }
+  .dark .bg-amber-100 { background-color:rgba(245,158,11,.22); }
+  .dark .bg-sky-50 { background-color:rgba(14,165,233,.12); }
+  .dark .bg-sky-100 { background-color:rgba(14,165,233,.22); }
+  .dark .bg-red-50 { background-color:rgba(239,68,68,.12); }
+  .dark .bg-red-100, .dark .bg-red-200 { background-color:rgba(239,68,68,.22); }
+  .dark .bg-orange-100 { background-color:rgba(249,115,22,.22); }
+  .dark .bg-violet-50 { background-color:rgba(139,92,246,.12); }
+  .dark .bg-violet-100 { background-color:rgba(139,92,246,.22); }
+  .dark .bg-gray-900 { background-color:#e5ece8; color:#0b1411; }
+  .dark .border-emerald-100, .dark .border-emerald-200, .dark .border-emerald-300 { border-color:#1f3a2f; }
+  .dark .border-gray-100 { border-color:#22362c; }
+  .dark .border-amber-200 { border-color:rgba(245,158,11,.35); }
+  .dark .border-sky-200 { border-color:rgba(14,165,233,.35); }
+  .dark .divide-gray-100 > :not([hidden]) ~ :not([hidden]) { border-color:#22362c; }
+  .dark .text-gray-400 { color:#7d8f87; }
+  .dark .text-gray-500 { color:#98a9a1; }
+  .dark .text-gray-600 { color:#b3c2bb; }
+  .dark .text-gray-700 { color:#cdd8d3; }
+  .dark .text-emerald-700 { color:#6ee7b7; }
+  .dark .text-emerald-800 { color:#a7f3d0; }
+  .dark .text-emerald-900 { color:#d1fae5; }
+  .dark .text-amber-700, .dark .text-amber-800, .dark .text-amber-900 { color:#fcd34d; }
+  .dark .text-sky-700, .dark .text-sky-900 { color:#7dd3fc; }
+  .dark .text-red-700, .dark .text-red-800 { color:#fca5a5; }
+  .dark .text-orange-700 { color:#fdba74; }
+  .dark .text-violet-700 { color:#c4b5fd; }
+  .dark input, .dark select, .dark textarea { color:#e5ece8; background-color:#0f1a15; }
+  .dark input::placeholder, .dark textarea::placeholder { color:#6b7c74; }
+  .dark .shadow-sm, .dark .shadow { box-shadow:none; }
+  .dark .ring-white { --tw-ring-color:#13211b; }
 </style>
 </head>
 <body>
@@ -291,13 +347,14 @@ const armEq = (eq) => Object.fromEntries(ARM.map((a) => [a.k, a.map.reduce((s, m
    ESTADO INICIAL, DATOS DE EJEMPLO Y NORMALIZACIÓN
    ===================================================================== */
 const LS_KEY = 'minutriapp_v1';
-const emptyProfile = () => ({ nombre: '', edad: '', sexo: 'M', peso: '', talla: '', actividad: 'ligero', objetivo: 'mantenimiento', pc: 50, pp: 20, manualEq: null });
+const emptyProfile = () => ({ nombre: '', edad: '', sexo: 'M', peso: '', talla: '', actividad: 'ligero', objetivo: 'mantenimiento', pc: 50, pp: 20, manualEq: null, alergias: [], disgustos: [] });
+const defaultSettings = () => ({ theme: 'light', avatar: 'zorro', photo: null, photoFit: 'cover', hideUnwanted: false });
 function makeEmpty() {
-  return { profile: emptyProfile(), logs: {}, progress: [], meta: { isSample: false, lastBackup: null } };
+  return { profile: emptyProfile(), logs: {}, progress: [], meta: { isSample: false, lastBackup: null }, settings: defaultSettings(), custom: { foods: [], recipes: [] } };
 }
 function makeSample() {
   const today = dateKey();
-  const profile = { nombre: 'Ejemplo', edad: 32, sexo: 'M', peso: 68, talla: 162, actividad: 'ligero', objetivo: 'deficit', pc: 50, pp: 20, manualEq: null };
+  const profile = { nombre: 'Ejemplo', edad: 32, sexo: 'M', peso: 68, talla: 162, actividad: 'ligero', objetivo: 'deficit', pc: 50, pp: 20, manualEq: null, alergias: [], disgustos: [] };
   const progress = [];
   const pesos = [71.4, 70.8, 70.1, 69.5, 68.9, 68.0], cint = [84, 83, 82, 81, 80, 79], cad = [101, 100.5, 100, 99.5, 99, 98.5];
   for (let i = 0; i < 6; i++) progress.push({ id: uid(), fecha: addDays(today, -7 * (5 - i)), peso: pesos[i], cintura: cint[i], cadera: cad[i] });
@@ -320,7 +377,7 @@ function makeSample() {
     portions: { des: { cer: 2, aom: 2, fru: 1 }, com: { ver: 3, cer: 2, aomb: 3, gra: 1 }, cen: { ver: 2, aom: 2, cer: 2 } },
     recall: [{ id: uid(), meal: 'cen', hora: '20:00', texto: 'Quesadillas de flor de calabaza con salsa', hambre: 3 }]
   };
-  return { profile, logs, progress, meta: { isSample: true, lastBackup: null } };
+  return { profile, logs, progress, meta: { isSample: true, lastBackup: null }, settings: defaultSettings(), custom: { foods: [], recipes: [] } };
 }
 function normalize(s) {
   const base = makeEmpty();
@@ -329,8 +386,15 @@ function normalize(s) {
     profile: Object.assign(emptyProfile(), o.profile || {}),
     logs: o.logs && typeof o.logs === 'object' ? o.logs : {},
     progress: Array.isArray(o.progress) ? o.progress : [],
-    meta: Object.assign(base.meta, o.meta || {})
+    meta: Object.assign(base.meta, o.meta || {}),
+    settings: Object.assign(defaultSettings(), o.settings || {}),
+    custom: {
+      foods: o.custom && Array.isArray(o.custom.foods) ? o.custom.foods : [],
+      recipes: o.custom && Array.isArray(o.custom.recipes) ? o.custom.recipes : []
+    }
   };
+  if (!Array.isArray(out.profile.alergias)) out.profile.alergias = [];
+  if (!Array.isArray(out.profile.disgustos)) out.profile.disgustos = [];
   Object.values(out.logs).forEach((d) => { d.portions = d.portions || {}; d.recall = d.recall || []; d.water = d.water || 0; });
   return out;
 }
@@ -497,7 +561,7 @@ function Field({ label, children, hint }) {
   );
 }
 const inputCls = 'w-full min-h-[48px] rounded-xl border border-emerald-200 bg-white px-3 focus:outline-none focus:ring-2 focus:ring-emerald-400';
-const HelpCtx = React.createContext({ open: () => {} });
+const HelpCtx = React.createContext({ open: () => {}, theme: 'light', cycleTheme: () => {} });
 const TOUR = [
   { t: 'Bienvenida y filosofía de Equivalentes', icon: 'Leaf', tab: 'perfil',
     pts: ['No necesitas pesar todo: cada alimento vale por **equivalentes** (fichas) según su aporte de energía y nutrientes (SMAE).',
@@ -517,10 +581,16 @@ const TOUR = [
     pts: ['Anota con tus palabras qué comiste, a qué hora y en qué tiempo de comida.',
       'Califica tu **hambre/saciedad del 1 al 5**: 1 = mucha hambre, 3 = neutral, 5 = muy lleno.',
       'Al final del día toca **Copiar** o **WhatsApp** para enviar el resumen (con tus equivalentes y agua) a tu nutriólogo.'] },
-  { t: 'Armador de recetas', icon: 'ChefHat', tab: 'recetas',
-    pts: ['Elige cuántos equivalentes tienes disponibles (por ejemplo 2 AOA + 2 Cereales + 1 Verdura + 1 Grasa).',
-      'Toca **“Usar lo que me queda hoy”** para llenar el filtro con las fichas que no has usado.',
-      'Verás las recetas que caben y las que “casi caben”. Ábrelas para ver ingredientes y pasos, y regístralas en tu día con un toque.'] },
+  { t: 'Recetas: equivalentes, refri y propias', icon: 'ChefHat', tab: 'recetas',
+    pts: ['**Por equivalentes:** elige cuántos tienes (ej. 2 AOA + 2 Cereales + 1 Verdura + 1 Grasa) o toca **“Usar lo que me queda hoy”**.',
+      '**🧊 ¿Qué tengo en mi refri?:** marca o escribe tus ingredientes (pollo, huevo, tortillas…). Verás primero lo que puedes cocinar y con **“🔄 Dame otra opción”** rotas sugerencias que caben en tu día. Si nada coincide, te armo un platillo con lo que tienes.',
+      'Con **“+ Crear mi propia receta”** guardas tus recetas con ingredientes, pasos y equivalentes (NutriBot puede calcularlos).',
+      'Las recetas con tus alergias se marcan con **⚠️** y puedes ocultar las que no te gustan.'] },
+  { t: 'NutriBot, tu asistente', icon: 'Bot', tab: 'bot',
+    pts: ['Toca la mascota flotante (abajo a la derecha) para abrir el chat. Funciona **100 % sin internet**.',
+      'Escribe lo que comiste como lo dirías: “2 panuchos y una taza de papaya”. NutriBot entiende números escritos, plurales y acentos, calcula tus equivalentes y con **“➕ Descontar estas porciones de hoy”** los registra.',
+      'Pregúntale **“¿Qué me falta comer hoy?”**, **“¿Qué puedo cenar con lo que me queda?”** o “¿cuánto es una porción de mamey?”.',
+      'Si no conoce algo, toca **“+ Enseñar alimento nuevo”**: le das nombre, medida casera y equivalentes, y lo recordará (también va en tu respaldo).'] },
   { t: 'Mi progreso', icon: 'TrendingUp', tab: 'progreso',
     pts: ['Registra peso, cintura y cadera con su fecha; la gráfica muestra tu evolución.',
       'El **Índice Cintura-Cadera (ICC)** = cintura ÷ cadera. Se considera riesgo elevado desde 0.85 en mujeres y 0.90 en hombres.',
@@ -530,7 +600,7 @@ const TOUR = [
       'Con **“Guardar respaldo en Drive”** se abre el menú de compartir: elige el ícono de Drive y guarda el archivo .json. Si tu navegador no lo permite, se descarga.',
       'Para recuperar tus datos o cambiar de teléfono usa **“Restaurar desde archivo (.json)”** en Perfil.'] }
 ];
-const TAB_NAME = { porciones: 'Porciones', recordatorio: '24 Horas', recetas: 'Recetas', progreso: 'Progreso', perfil: 'Perfil' };
+const TAB_NAME = { porciones: 'Porciones', recordatorio: '24 Horas', recetas: 'Recetas', progreso: 'Progreso', perfil: 'Perfil', bot: 'NutriBot' };
 function RichText({ text }) {
   return <>{text.split('**').map((p, i) => (i % 2 ? <b key={i} className="text-emerald-800">{p}</b> : <span key={i}>{p}</span>))}</>;
 }
@@ -564,7 +634,11 @@ const FAQ = [
   { q: '¿Cómo registro medias porciones?', a: 'En Porciones activa “Paso ½” y los botones + y − sumarán o restarán media porción. Ejemplo: ½ aguacate chico ≈ 1½ equivalentes de Grasa.' },
   { q: '¿Para qué sirven la leche semidescremada, entera y las grasas con proteína?', a: 'Son grupos opcionales del SMAE (110 y 150 kcal por taza de leche; 70 kcal por porción de almendras, cacahuates, nueces o chía). Aparecen en las barras cuando les asignas meta en Perfil o cuando los registras.' },
   { q: '¿Cómo uso el plan que me dio mi nutriólogo?', a: 'En Perfil → “Mi meta de equivalentes” ajusta cada grupo con + y − (de media en media). Verás la etiqueta “Manual”; para volver al cálculo automático toca “Volver al cálculo automático”.' },
-  { q: '¿Qué pasa si cambio de teléfono?', a: 'Antes de cambiar, toca “Guardar respaldo en Drive” en Perfil. En el teléfono nuevo abre la app, descarga el archivo .json desde Drive y usa “Restaurar desde archivo (.json)”.' }
+  { q: '¿Qué pasa si cambio de teléfono?', a: 'Antes de cambiar, toca “Guardar respaldo en Drive” en Perfil. En el teléfono nuevo abre la app, descarga el archivo .json desde Drive y usa “Restaurar desde archivo (.json)”.' },
+  { q: '¿Cómo cambio el avatar del NutriBot o pongo una foto mía?', a: 'Ve a Perfil → “Mi NutriBot” (o toca la figura dentro del chat). Elige una de las 6 mascotas (zorrito, panda, tortuguita, búho, gatito chef o perrito) o toca “Subir foto”: elige cualquier imagen de tu galería, decide si se recorta o se ajusta completa, y la app la reduce a 160×160 px. Se guarda solo en tu teléfono y en tu respaldo .json.' },
+  { q: '¿Cómo configuro mis alergias y alimentos que no me gustan?', a: 'En Perfil → “Alergias y gustos” escribe o toca etiquetas como Mariscos, Lácteos, Gluten o Huevo (alergias, en rojo) y alimentos que no te agradan (en ámbar). Las recetas que los contienen se marcan con “⚠️ Contiene ingrediente alérgico” o “👎 No te agrada”, puedes ocultarlas en Recetas, y el NutriBot deja de recomendarlas y te avisa si registras alguno.' },
+  { q: '¿Cómo cambio entre tema claro, oscuro o automático?', a: 'Toca el botón de sol/luna en la cabecera de cualquier pantalla para alternar Claro → Oscuro → Sistema, o elige en Perfil → “Tema visual”. “Sistema” sigue automáticamente el modo de tu teléfono. Tu elección se guarda en el dispositivo.' },
+  { q: '¿Cómo le enseño un alimento nuevo al NutriBot?', a: 'En el chat toca “+ Enseñar alimento nuevo” (o en Perfil → “Mis alimentos personalizados”). Escribe el nombre, otros nombres, la medida casera de 1 porción y sus equivalentes. Desde ese momento lo reconoce al escribir, por ejemplo, “comí 2 vasos de horchata”.' }
 ];
 const EJEMPLOS = [
   { q: '¿Cómo registro 2 tacos de pollo con aguacate y salsa?', eq: { cer: 2, aomb: 2, gra: 1, ver: 0.5 }, n: '2 tortillas de maíz + 60 g de pechuga de pollo + ⅓ de aguacate + salsa y cebolla (≈ ½ verdura).' },
@@ -608,10 +682,13 @@ function ManualCard() {
 function ScreenHeader({ title, subtitle, children }) {
   const help = React.useContext(HelpCtx);
   return (
-    <header className="safe-top relative bg-gradient-to-br from-emerald-600 to-emerald-500 text-white px-5 pt-5 pb-5 rounded-b-3xl shadow">
-      <button onClick={help.open} aria-label="Abrir manual" className="absolute right-4 flex items-center gap-1.5 min-h-[44px] px-3.5 rounded-full bg-white/20 text-sm font-bold btn-press" style={{ top: 'calc(env(safe-area-inset-top) + 10px)' }}><Icon name="HelpCircle" size={18} /> Manual</button>
+    <header className="app-header safe-top relative bg-gradient-to-br from-emerald-600 to-emerald-500 text-white px-5 pt-5 pb-5 rounded-b-3xl shadow">
+      <div className="absolute right-4 flex items-center gap-1.5" style={{ top: 'calc(env(safe-area-inset-top) + 10px)' }}>
+        <button onClick={help.cycleTheme} aria-label={`Tema: ${(THEMES.find((x) => x.v === help.theme) || THEMES[0]).t}. Tocar para cambiar`} title="Cambiar tema" className="w-11 h-11 flex items-center justify-center rounded-full bg-white/20 btn-press"><Icon name={(THEMES.find((x) => x.v === help.theme) || THEMES[0]).icon} size={19} /></button>
+        <button onClick={help.open} aria-label="Abrir manual" className="flex items-center gap-1.5 min-h-[44px] px-3.5 rounded-full bg-white/20 text-sm font-bold btn-press"><Icon name="HelpCircle" size={18} /> Manual</button>
+      </div>
       <div className="flex items-center gap-2 text-emerald-100 text-xs font-semibold tracking-wide uppercase"><Icon name="Leaf" size={14} /> MiNutriApp</div>
-      <h1 className="text-2xl font-extrabold mt-0.5 pr-24">{title}</h1>
+      <h1 className="text-2xl font-extrabold mt-0.5 pr-36">{title}</h1>
       {subtitle && <p className="text-emerald-50 text-sm">{subtitle}</p>}
       {children}
     </header>
@@ -631,6 +708,1246 @@ function DateNav({ date, setDate }) {
   );
 }
 
+/* =====================================================================
+   NUTRIBOT · DICCIONARIO DE ALIMENTOS (SMAE + regional Campeche / Yucatán)
+   F(nombre, alias|alias, medida casera de 1 porción, equivalentes por porción, opciones)
+   opciones: g = gramos por porción · pz = piezas por porción · u = {unidad: porciones por unidad}
+             water = cuenta como vasos de agua · reg = regional · dish = platillo (aprox.)
+   ===================================================================== */
+const F = (n, a, m, eq, o) => Object.assign({ id: 'b-' + n, n, a: a.split('|'), m, eq }, o || {});
+const FOODS = [
+  // Verduras
+  F('Chaya', 'chaya|hoja de chaya|hojas de chaya', '½ taza cocida o 1 taza cruda', { ver: 1 }, { u: { taza: 2 }, reg: 1 }),
+  F('Nopales', 'nopal|nopales|nopalitos', '½ taza cocidos', { ver: 1 }, { u: { taza: 2 } }),
+  F('Calabacita', 'calabacita|calabacitas|calabacita italiana', '½ taza cocida', { ver: 1 }, { u: { taza: 2 } }),
+  F('Calabaza local', 'calabaza local|calabaza|calabaza de castilla|calabaza criolla|kum', '½ taza cocida', { ver: 1 }, { u: { taza: 2 }, reg: 1 }),
+  F('Brócoli', 'brocoli', '½ taza cocido', { ver: 1 }, { u: { taza: 2 } }),
+  F('Espinaca', 'espinaca|espinacas', '1 taza cruda (½ taza cocida)', { ver: 1 }, { u: { taza: 1 } }),
+  F('Lechuga / ensalada verde', 'lechuga|ensalada verde|ensalada', '1 taza cruda de hoja verde', { ver: 1 }, { u: { taza: 1 } }),
+  F('Jitomate', 'jitomate|tomate rojo|tomate', '1 pieza mediana', { ver: 1 }),
+  F('Zanahoria', 'zanahoria', '½ taza picada o cocida', { ver: 1 }, { u: { taza: 2 } }),
+  F('Pepino', 'pepino', '1 taza rebanado', { ver: 1 }, { u: { taza: 1 } }),
+  F('Chayote', 'chayote', '½ taza cocido', { ver: 1 }, { u: { taza: 2 } }),
+  F('Ejotes', 'ejote|ejotes', '½ taza cocidos', { ver: 1 }, { u: { taza: 2 } }),
+  F('Cebolla', 'cebolla|cebolla morada|cebolla asada', '½ taza picada', { ver: 1 }, { u: { taza: 2 } }),
+  F('Champiñones', 'champinon|champinones|hongo|hongos', '1 taza crudos', { ver: 1 }, { u: { taza: 1 } }),
+  F('Flor de calabaza', 'flor de calabaza|flores de calabaza', '1 taza cocida', { ver: 1 }, { u: { taza: 1 } }),
+  F('Jícama', 'jicama', '½ taza picada', { ver: 1 }, { u: { taza: 2 } }),
+  F('Pimiento morrón', 'pimiento|morron|pimiento morron', '½ taza picado', { ver: 1 }, { u: { taza: 2 } }),
+  F('Rábano', 'rabano|rabanos', '1 taza rebanado', { ver: 1 }, { u: { taza: 1 } }),
+  F('Salsa casera', 'salsa|salsa verde|salsa roja|pico de gallo|chiltomate|xnipek|xni pec', '¼ de taza', { ver: 0.5 }, { u: { taza: 4, cda: 0.125 } }),
+  F('Verduras mixtas', 'verdura|verduras|verduras al vapor|verduras cocidas', '½ taza cocidas', { ver: 1 }, { u: { taza: 2 } }),
+  // Frutas
+  F('Manzana', 'manzana', '1 pieza mediana', { fru: 1 }),
+  F('Naranja', 'naranja', '1 pieza mediana', { fru: 1 }),
+  F('Plátano', 'platano|banana|platano tabasco', '½ pieza', { fru: 1 }, { pz: 0.5 }),
+  F('Papaya', 'papaya', '1 taza picada', { fru: 1 }, { u: { taza: 1 } }),
+  F('Melón', 'melon', '1 taza picado', { fru: 1 }, { u: { taza: 1 } }),
+  F('Sandía', 'sandia', '1 taza picada', { fru: 1 }, { u: { taza: 1 } }),
+  F('Fresas', 'fresa|fresas', '1 taza', { fru: 1 }, { u: { taza: 1 }, pz: 15 }),
+  F('Guayaba', 'guayaba', '2 piezas', { fru: 1 }, { pz: 2 }),
+  F('Mango', 'mango', '½ pieza', { fru: 1 }, { pz: 0.5, u: { taza: 1 } }),
+  F('Mamey', 'mamey', '½ taza (⅓ de pieza chica)', { fru: 1 }, { pz: 1 / 3, u: { taza: 2 }, reg: 1 }),
+  F('Pitahaya', 'pitahaya|pitaya|pitajaya', '1 taza en cubos (½ pieza)', { fru: 1 }, { pz: 0.5, u: { taza: 1 }, reg: 1 }),
+  F('Marañón', 'maranon|fruta de maranon', '2 piezas', { fru: 1 }, { pz: 2, reg: 1 }),
+  F('Huaya', 'huaya|guaya', '1 taza (≈ 20 piezas)', { fru: 1 }, { pz: 20, u: { taza: 1 }, reg: 1 }),
+  F('Mandarina', 'mandarina', '2 piezas', { fru: 1 }, { pz: 2 }),
+  F('Uvas', 'uva|uvas', '18 piezas (⅔ de taza)', { fru: 1 }, { pz: 18, u: { taza: 1.5 } }),
+  F('Piña', 'pina', '¾ de taza', { fru: 1 }, { u: { taza: 4 / 3 } }),
+  F('Pera', 'pera', '½ pieza', { fru: 1 }, { pz: 0.5 }),
+  F('Durazno', 'durazno', '2 piezas', { fru: 1 }, { pz: 2 }),
+  F('Kiwi', 'kiwi', '1½ piezas', { fru: 1 }, { pz: 1.5 }),
+  F('Toronja', 'toronja', '½ pieza', { fru: 1 }, { pz: 0.5 }),
+  F('Ciruela', 'ciruela|ciruelas', '3 piezas', { fru: 1 }, { pz: 3 }),
+  F('Guanábana', 'guanabana', '½ taza', { fru: 1 }, { u: { taza: 2 } }),
+  F('Jugo de naranja', 'jugo|jugo de naranja|jugo natural', '½ taza', { fru: 1 }, { u: { taza: 2, ml: 1 / 120 } }),
+  // Cereales
+  F('Tortilla de maíz', 'tortilla|tortilla de maiz|tortillita|tortilla hecha a mano', '1 pieza (30 g)', { cer: 1 }, { g: 30 }),
+  F('Tortilla de harina', 'tortilla de harina', '1 pieza chica', { cerg: 1 }),
+  F('Tostada horneada', 'tostada|tostada horneada', '2 piezas', { cer: 1 }, { pz: 2 }),
+  F('Totopos fritos', 'totopo|totopos|nachos', '3 piezas', { cerg: 1 }, { pz: 3 }),
+  F('Arroz cocido', 'arroz|arroz blanco|arroz cocido', '½ taza', { cer: 1 }, { u: { taza: 2 } }),
+  F('Arroz rojo', 'arroz rojo|sopa de arroz|arroz a la mexicana', '½ taza', { cer: 1, gra: 0.5 }, { u: { taza: 2 } }),
+  F('Pasta cocida', 'pasta|espagueti|spaghetti|fideo|fideos|sopa de pasta|macarron|macarrones', '½ taza', { cer: 1 }, { u: { taza: 2 } }),
+  F('Avena', 'avena|hojuelas de avena', '⅓ de taza cruda', { cer: 1 }, { u: { taza: 3, cda: 0.2 } }),
+  F('Pan integral', 'pan integral|pan de caja|pan|rebanada de pan', '1 rebanada', { cer: 1 }, { u: { rebanada: 1 } }),
+  F('Bolillo', 'bolillo|telera|pan frances', '½ pieza sin migajón', { cer: 1 }, { pz: 0.5 }),
+  F('Pan dulce', 'pan dulce|concha|cuerno|cuernito|dona', '½ pieza chica', { cerg: 1 }, { pz: 0.5 }),
+  F('Galletas con chispas', 'galleta|galletas con chispas|galleta con chispas|galleta de chispas', '2 piezas', { cerg: 1 }, { pz: 2 }),
+  F('Galletas Marías', 'galleta maria|galletas maria|maria', '5 piezas', { cer: 1 }, { pz: 5 }),
+  F('Galletas saladas', 'galleta salada|galletas saladas|salmas', '4 piezas', { cer: 1 }, { pz: 4 }),
+  F('Papa cocida', 'papa|papa cocida|papa al horno', '½ taza (½ pieza mediana)', { cer: 1 }, { pz: 0.5, u: { taza: 2 } }),
+  F('Camote', 'camote', '½ taza', { cer: 1 }, { u: { taza: 2 } }),
+  F('Elote', 'elote|esquite|granos de elote|maiz', '½ taza de granos (½ pieza)', { cer: 1 }, { pz: 0.5, u: { taza: 2 } }),
+  F('Palomitas naturales', 'palomita|palomitas', '3 tazas', { cer: 1 }, { u: { taza: 1 / 3 } }),
+  F('Cereal de caja sin azúcar', 'cereal|cereal de caja|hojuelas de maiz|corn flakes', '¾ de taza', { cer: 1 }, { u: { taza: 4 / 3 } }),
+  F('Granola', 'granola', '3 cucharadas', { cerg: 1 }, { u: { cda: 1 / 3, taza: 16 / 3 } }),
+  F('Hot cakes', 'hot cake|hotcake|hot cakes|panqueque', '1 pieza chica', { cerg: 1 }),
+  // Leguminosas
+  F('Frijoles de la olla', 'frijol|frijoles|frijoles de la olla|frijol negro|frijol colado|frijoles colados', '½ taza cocidos', { leg: 1 }, { u: { taza: 2 } }),
+  F('Frijoles refritos', 'frijoles refritos|frijol refrito|refritos', '½ taza', { leg: 1, gra: 1 }, { u: { taza: 2 } }),
+  F('Lentejas', 'lenteja|lentejas', '½ taza cocidas', { leg: 1 }, { u: { taza: 2 } }),
+  F('Garbanzos', 'garbanzo|garbanzos', '½ taza cocidos', { leg: 1 }, { u: { taza: 2 } }),
+  F('Habas', 'haba|habas', '½ taza cocidas', { leg: 1 }, { u: { taza: 2 } }),
+  F('Ibes / espelón', 'ib|ibes|frijol ib|espelon|espelones', '½ taza cocidos', { leg: 1 }, { u: { taza: 2 }, reg: 1 }),
+  // Alimentos de origen animal
+  F('Pechuga de pollo', 'pollo|pechuga|pechuga de pollo|pollo deshebrado|pollo asado|pollo a la plancha', '30 g', { aomb: 1 }, { g: 30 }),
+  F('Pescado blanco', 'pescado|pescado blanco|filete de pescado|filete|tilapia|mojarra|robalo|mero', '35 g', { aomb: 1 }, { g: 35 }),
+  F('Atún en agua', 'atun|atun en agua', '35 g', { aomb: 1 }, { g: 35, u: { lata: 3 } }),
+  F('Claras de huevo', 'clara|claras de huevo', '2 piezas', { aomb: 1 }, { pz: 2 }),
+  F('Requesón', 'requeson', '40 g (3 cucharadas)', { aomb: 1 }, { g: 40, u: { cda: 1 / 3 } }),
+  F('Camarón', 'camaron|camarones', '35 g (5 piezas medianas)', { aomb: 1 }, { g: 35, pz: 5, reg: 1 }),
+  F('Pulpo', 'pulpo', '40 g', { aomb: 1 }, { g: 40, reg: 1 }),
+  F('Cazón', 'cazon', '35 g', { aomb: 1 }, { g: 35, reg: 1 }),
+  F('Pámpano', 'pampano', '35 g', { aob: 1 }, { g: 35, reg: 1 }),
+  F('Pavo', 'pavo|pechuga de pavo|pavo asado', '30 g', { aomb: 1 }, { g: 30 }),
+  F('Res magra', 'res|carne de res|bistec|bistec de res|carne magra|carne asada|carne', '30 g', { aob: 1 }, { g: 30 }),
+  F('Lomo de cerdo', 'cerdo|lomo|lomo de cerdo|puerco|carne de cerdo', '35 g', { aob: 1 }, { g: 35 }),
+  F('Queso panela o fresco', 'panela|queso panela|queso fresco|queso', '40 g', { aob: 1 }, { g: 40, u: { rebanada: 1 } }),
+  F('Jamón de pavo', 'jamon|jamon de pavo', '2 rebanadas', { aob: 1 }, { pz: 2, u: { rebanada: 0.5 } }),
+  F('Sardina en tomate', 'sardina|sardinas', '½ pieza', { aob: 1 }, { pz: 0.5 }),
+  F('Huevo entero', 'huevo|huevo entero|huevo cocido|huevo estrellado|huevo revuelto', '1 pieza', { aom: 1 }),
+  F('Queso Oaxaca', 'queso oaxaca|quesillo', '30 g', { aom: 1 }, { g: 30 }),
+  F('Queso manchego', 'queso manchego|manchego', '30 g', { aom: 1 }, { g: 30, u: { rebanada: 1 } }),
+  F('Salchicha de pavo', 'salchicha|salchicha de pavo', '1 pieza', { aom: 1 }),
+  F('Queso de bola', 'queso de bola|queso edam|queso holandes', '30 g', { aom: 1, gra: 0.5 }, { g: 30, reg: 1 }),
+  F('Pollo con piel', 'pierna de pollo|muslo|muslo de pollo|pollo con piel|pierna', '30 g', { aom: 1 }, { g: 30 }),
+  F('Arrachera', 'arrachera', '30 g', { aom: 1 }, { g: 30 }),
+  F('Chorizo / longaniza', 'chorizo|longaniza', '20 g', { aom: 1, gra: 1 }, { g: 20, reg: 1 }),
+  // Leche
+  F('Leche descremada', 'leche|leche descremada|leche light|vaso de leche', '1 taza (240 ml)', { lec: 1 }, { u: { taza: 1, ml: 1 / 240 } }),
+  F('Leche semidescremada', 'leche semidescremada|leche semi', '1 taza (240 ml)', { lecs: 1 }, { u: { taza: 1, ml: 1 / 240 } }),
+  F('Leche entera', 'leche entera', '1 taza (240 ml)', { lece: 1 }, { u: { taza: 1, ml: 1 / 240 } }),
+  F('Yogur natural sin azúcar', 'yogur|yogurt|yoghurt|yogur natural|yogurt natural|yogur griego', '¾ de taza', { lec: 1 }, { u: { taza: 4 / 3 } }),
+  F('Café con leche', 'cafe con leche|lechero|latte', '1 taza (½ taza de leche descremada)', { lec: 0.5 }, { u: { taza: 1 } }),
+  // Grasas
+  F('Aceite vegetal', 'aceite|aceite de oliva|aceite vegetal|aceite de canola', '1 cucharadita', { gra: 1 }, { u: { cdita: 1, cda: 3 } }),
+  F('Aguacate', 'aguacate|aguacate hass|palta', '⅓ de pieza', { gra: 1 }, { pz: 1 / 3, u: { rebanada: 0.5 } }),
+  F('Guacamole', 'guacamole|aguacate machacado', '¼ de taza', { gra: 1.5 }, { u: { taza: 4, cda: 0.25 } }),
+  F('Crema', 'crema|crema acida', '1 cucharada', { gra: 1 }, { u: { cda: 1, cdita: 1 / 3 } }),
+  F('Mayonesa', 'mayonesa|mayo', '1 cucharada', { gra: 1 }, { u: { cda: 1, cdita: 1 / 3 } }),
+  F('Mantequilla', 'mantequilla|margarina', '1 cucharadita', { gra: 1 }, { u: { cdita: 1, cda: 3 } }),
+  F('Manteca', 'manteca|manteca de cerdo', '1 cucharadita', { gra: 1 }, { u: { cdita: 1, cda: 3 } }),
+  F('Almendras', 'almendra|almendras', '10 piezas', { grap: 1 }, { pz: 10 }),
+  F('Cacahuates', 'cacahuate|cacahuates|mani', '14 piezas', { grap: 1 }, { pz: 14 }),
+  F('Nueces', 'nuez|nueces', '3 mitades', { grap: 1 }, { pz: 3 }),
+  F('Chía', 'chia|semilla de chia', '1 cucharada', { grap: 1 }, { u: { cda: 1 } }),
+  F('Pepita de calabaza', 'pepita|pepitas|semilla de calabaza|sikil', '1 cucharada', { grap: 1 }, { u: { cda: 1 }, reg: 1 }),
+  F('Crema de cacahuate', 'crema de cacahuate|mantequilla de cacahuate', '2 cucharaditas', { grap: 1 }, { u: { cdita: 0.5, cda: 1.5 } }),
+  // Platillos regionales (Campeche y península de Yucatán) — valores aproximados
+  F('Panucho', 'panucho|panuchos', '1 pieza (aprox.)', { cerg: 1, leg: 0.5, aomb: 1, ver: 0.5 }, { reg: 1, dish: 1 }),
+  F('Salbute', 'salbute|salbutes', '1 pieza (aprox.)', { cerg: 1, aomb: 1, ver: 0.5, gra: 0.5 }, { reg: 1, dish: 1 }),
+  F('Poc chuc', 'poc chuc|pok chuk|poc chuk', '1 porción: 90 g de lomo asado con cebolla (aprox.)', { aob: 3, ver: 1 }, { reg: 1, dish: 1, g: 90 }),
+  F('Cochinita pibil', 'cochinita|cochinita pibil|pibil', '90 g de carne (aprox.)', { aom: 3 }, { reg: 1, dish: 1, g: 90 }),
+  F('Taco de cochinita', 'taco de cochinita|tacos de cochinita', '1 pieza (aprox.)', { cer: 1, aom: 1, ver: 0.25 }, { reg: 1, dish: 1 }),
+  F('Torta de cochinita', 'torta de cochinita', '1 pieza (aprox.)', { cer: 2, aom: 2, ver: 0.25 }, { reg: 1, dish: 1 }),
+  F('Papadzules', 'papadzul|papadzules|papatzul', '1 pieza (aprox.)', { cer: 1, aom: 0.5, grap: 1, ver: 0.25 }, { reg: 1, dish: 1 }),
+  F('Dzikilpak (sikil pak)', 'dzikilpak|dzikil pak|sikil pak|sikilpak|ha sikil pak', '¼ de taza (aprox.)', { grap: 1, ver: 0.5 }, { reg: 1, dish: 1, u: { taza: 4, cda: 0.25 } }),
+  F('Sopa de lima', 'sopa de lima', '1 plato (aprox.)', { aomb: 2, cerg: 1, ver: 1 }, { reg: 1, dish: 1 }),
+  F('Frijol con puerco', 'frijol con puerco', '1 plato (aprox.)', { leg: 1, aob: 2, ver: 0.5 }, { reg: 1, dish: 1 }),
+  F('Pan de cazón', 'pan de cazon', '1 porción (aprox.)', { cer: 2, leg: 1, aomb: 2, ver: 0.5, gra: 1 }, { reg: 1, dish: 1 }),
+  F('Empanada de cazón', 'empanada de cazon|empanada', '1 pieza frita (aprox.)', { cerg: 1, aomb: 0.5 }, { reg: 1, dish: 1 }),
+  F('Cóctel de camarón / campechana', 'coctel de camaron|coctel|campechana', '1 copa (aprox.)', { aomb: 3, ver: 1, gra: 1 }, { reg: 1, dish: 1 }),
+  F('Ceviche', 'ceviche|ceviche de pescado|ceviche de cazon|ceviche de pulpo|ceviche de camaron', '1 taza (aprox.)', { aomb: 2, ver: 1 }, { reg: 1, dish: 1, u: { taza: 1 } }),
+  F('Relleno negro', 'relleno negro|chilmole', '1 plato (aprox.)', { aomb: 3, aom: 1, ver: 0.5 }, { reg: 1, dish: 1 }),
+  F('Marquesita', 'marquesita|marquesitas', '1 pieza (aprox.)', { cerg: 2, aom: 1 }, { reg: 1, dish: 1 }),
+  F('Tamal', 'tamal|tamal colado|vaporcito|tamal de pollo', '1 pieza (aprox.)', { cerg: 2, aomb: 0.5 }, { dish: 1 }),
+  F('Taco de pollo', 'taco de pollo', '1 pieza', { cer: 1, aomb: 1 }, { dish: 1 }),
+  F('Taco de bistec', 'taco de bistec|taco de carne asada|taco de res|taco de carne', '1 pieza', { cer: 1, aob: 1 }, { dish: 1 }),
+  F('Taco de pescado', 'taco de pescado|taco de cazon', '1 pieza', { cer: 1, aomb: 1, gra: 0.5 }, { dish: 1 }),
+  F('Quesadilla', 'quesadilla', '1 pieza (tortilla de maíz + 30 g de queso Oaxaca)', { cer: 1, aom: 1 }, { dish: 1 }),
+  F('Sope', 'sope', '1 pieza', { cerg: 1, leg: 0.5, ver: 0.25 }, { dish: 1 }),
+  F('Enchilada', 'enchilada', '1 pieza', { cer: 1, aomb: 0.5, gra: 0.5 }, { dish: 1 }),
+  F('Chilaquiles', 'chilaquiles|chilaquil', '1 plato (aprox.)', { cerg: 3, aob: 1, gra: 1 }, { dish: 1 }),
+  F('Huevos a la mexicana', 'huevo a la mexicana|huevos a la mexicana', '2 huevos con jitomate, cebolla y chile', { aom: 2, ver: 0.5, gra: 1 }, { dish: 1, pz: 2 }),
+  F('Torta de jamón', 'torta|torta de jamon', '1 pieza (aprox.)', { cer: 3, aob: 1, gra: 1 }, { dish: 1 }),
+  F('Caldo de pollo', 'caldo de pollo|caldo', '1 plato', { aomb: 3, ver: 2, cer: 1 }, { dish: 1 }),
+  F('Pozole', 'pozole', '1 plato (aprox.)', { cer: 2, aob: 2, ver: 0.5 }, { dish: 1 }),
+  // Libres
+  F('Agua natural', 'agua|agua natural|agua simple', '1 vaso (250 ml)', {}, { water: 1, u: { taza: 1, ml: 1 / 250, litro: 4 } }),
+  F('Café o té sin azúcar', 'cafe|cafe negro|cafe americano|te verde|te de manzanilla|infusion', '1 taza (libre)', {})
+];
+
+/* Ingredientes para "Mi refri / alacena" (cond = condimento, siempre disponible) */
+const ING = (k, n, a, f, cond) => ({ k, n, a: a.split('|'), f, cond: !!cond });
+const INGS = [
+  ING('pollo', 'pollo', 'pollo|pechuga|pechuga de pollo|pollo deshebrado', 'pechuga de pollo'),
+  ING('huevo', 'huevo', 'huevo|clara', 'huevo'),
+  ING('atun', 'atún', 'atun', 'atun'),
+  ING('pescado', 'pescado', 'pescado|filete|tilapia|mojarra|cazon|pampano|robalo', 'pescado'),
+  ING('camaron', 'camarón', 'camaron', 'camaron'),
+  ING('pulpo', 'pulpo', 'pulpo', 'pulpo'),
+  ING('res', 'carne de res', 'res|bistec|carne de res|carne molida|carne', 'res'),
+  ING('cerdo', 'cerdo', 'cerdo|lomo|puerco|cochinita', 'lomo de cerdo'),
+  ING('queso', 'queso', 'queso|panela|oaxaca|requeson|manchego|queso de bola', 'queso panela'),
+  ING('jamon', 'jamón', 'jamon', 'jamon'),
+  ING('tortilla', 'tortillas', 'tortilla|tostada|totopo', 'tortilla'),
+  ING('pan', 'pan', 'pan|bolillo|telera|pan integral|pan de caja', 'pan integral'),
+  ING('arroz', 'arroz', 'arroz', 'arroz'),
+  ING('pasta', 'pasta', 'pasta|fideo|espagueti|macarron', 'pasta'),
+  ING('avena', 'avena', 'avena|granola', 'avena'),
+  ING('papa', 'papa', 'papa', 'papa'),
+  ING('elote', 'elote', 'elote|esquite', 'elote'),
+  ING('frijol', 'frijoles', 'frijol|ibes', 'frijol'),
+  ING('lenteja', 'lentejas', 'lenteja', 'lentejas'),
+  ING('garbanzo', 'garbanzos', 'garbanzo', 'garbanzos'),
+  ING('aguacate', 'aguacate', 'aguacate', 'aguacate'),
+  ING('leche', 'leche o yogur', 'leche|yogur|yogurt', 'leche'),
+  ING('calabacita', 'calabacita', 'calabacita|calabaza', 'calabacita'),
+  ING('chaya', 'chaya', 'chaya', 'chaya'),
+  ING('nopal', 'nopales', 'nopal', 'nopal'),
+  ING('jitomate', 'jitomate', 'jitomate|tomate', 'jitomate'),
+  ING('espinaca', 'espinaca', 'espinaca', 'espinaca'),
+  ING('zanahoria', 'zanahoria', 'zanahoria', 'zanahoria'),
+  ING('brocoli', 'brócoli', 'brocoli', 'brocoli'),
+  ING('lechuga', 'lechuga', 'lechuga', 'lechuga'),
+  ING('pepino', 'pepino', 'pepino', 'pepino'),
+  ING('chayote', 'chayote', 'chayote', 'chayote'),
+  ING('champinon', 'champiñones', 'champinon|hongo', 'champinon'),
+  ING('flor', 'flor de calabaza', 'flor de calabaza', 'flor de calabaza'),
+  ING('ejote', 'ejotes', 'ejote', 'ejote'),
+  ING('jicama', 'jícama', 'jicama', 'jicama'),
+  ING('platano', 'plátano', 'platano', 'platano'),
+  ING('manzana', 'manzana', 'manzana', 'manzana'),
+  ING('papaya', 'papaya', 'papaya', 'papaya'),
+  ING('fresa', 'fresas', 'fresa', 'fresa'),
+  ING('naranja', 'naranja', 'naranja', 'naranja'),
+  ING('mango', 'mango', 'mango', 'mango'),
+  ING('mamey', 'mamey', 'mamey', 'mamey'),
+  ING('pitahaya', 'pitahaya', 'pitahaya|pitaya', 'pitahaya'),
+  ING('nuez', 'nueces o almendras', 'nuez|almendra|cacahuate', 'nuez'),
+  ING('pepita', 'pepita', 'pepita|semilla de calabaza', 'pepita'),
+  ING('aceite', 'aceite', 'aceite', 'aceite', 1),
+  ING('cebolla', 'cebolla', 'cebolla', 'cebolla', 1),
+  ING('chile', 'chile', 'chile|chipotle|habanero|chile guero', '', 1),
+  ING('limon', 'limón', 'limon|lima|naranja agria', '', 1),
+  ING('ajo', 'ajo', 'ajo', '', 1),
+  ING('cilantro', 'cilantro', 'cilantro|perejil', '', 1),
+  ING('sal', 'sal y especias', 'sal|pimienta|canela|oregano|achiote|especias|recado', '', 1),
+  ING('salsa', 'salsa', 'salsa', 'salsa', 1)
+];
+const ING_BY = Object.fromEntries(INGS.map((i) => [i.k, i]));
+const COMMON_INGS = ['pollo', 'huevo', 'atun', 'tortilla', 'aguacate', 'calabacita', 'frijol', 'queso', 'jitomate', 'nopal', 'chaya', 'arroz', 'avena', 'pescado', 'camaron', 'leche', 'platano', 'papaya', 'pan', 'lenteja'];
+
+/* Grupos de alergias / alimentos para expandir etiquetas */
+const ALLERGY_GROUPS = {
+  mariscos: ['camaron', 'pulpo', 'langosta', 'jaiba', 'ostion', 'calamar', 'marisco', 'coctel', 'campechana'],
+  marisco: ['camaron', 'pulpo', 'langosta', 'jaiba', 'ostion', 'calamar', 'coctel', 'campechana'],
+  lacteos: ['leche', 'queso', 'yogur', 'yogurt', 'crema', 'mantequilla', 'requeson', 'panela', 'marquesita', 'quesadilla', 'cafe con leche'],
+  lactosa: ['leche', 'queso', 'yogur', 'yogurt', 'crema', 'requeson', 'panela', 'quesadilla', 'cafe con leche'],
+  gluten: ['pan', 'trigo', 'harina', 'galleta', 'pasta', 'bolillo', 'granola', 'concha', 'torta', 'hot cake', 'dona', 'cereal', 'avena', 'fideo', 'espagueti', 'marquesita', 'empanada'],
+  huevo: ['huevo', 'clara', 'papadzul', 'relleno negro', 'omelette'],
+  pescado: ['pescado', 'atun', 'cazon', 'pampano', 'sardina', 'tilapia', 'mojarra', 'filete', 'ceviche', 'robalo', 'mero'],
+  'frutos secos': ['nuez', 'almendra', 'cacahuate', 'pistache', 'avellana', 'granola'],
+  nueces: ['nuez', 'almendra', 'cacahuate', 'pistache', 'avellana'],
+  cacahuate: ['cacahuate', 'mani', 'crema de cacahuate'],
+  soya: ['soya', 'soja'],
+  cerdo: ['cerdo', 'puerco', 'lomo', 'cochinita', 'poc chuc', 'chorizo', 'manteca', 'longaniza', 'jamon', 'frijol con puerco'],
+  picante: ['chile', 'chipotle', 'habanero', 'xnipek', 'chiltomate'],
+  chile: ['chile', 'chipotle', 'habanero', 'xnipek']
+};
+const ALLERGY_SUGGEST = ['Mariscos', 'Lácteos', 'Gluten', 'Huevo', 'Pescado', 'Cacahuate', 'Nueces'];
+const DISLIKE_SUGGEST = ['Hígado', 'Brócoli', 'Cebolla', 'Chile', 'Pescado', 'Aguacate', 'Champiñones'];
+const SUGGEST_FOODS = {
+  ver: ['Chaya', 'Nopales', 'Calabaza local', 'Jícama', 'Pepino', 'Calabacita'],
+  fru: ['Papaya', 'Mamey', 'Pitahaya', 'Naranja', 'Manzana', 'Guayaba'],
+  cer: ['Tortilla de maíz', 'Avena', 'Arroz cocido', 'Tostada horneada'],
+  cerg: ['Pan dulce', 'Totopos fritos'],
+  leg: ['Frijoles de la olla', 'Ibes / espelón', 'Lentejas'],
+  aomb: ['Pechuga de pollo', 'Cazón', 'Pulpo', 'Pescado blanco', 'Camarón'],
+  aob: ['Queso panela o fresco', 'Lomo de cerdo', 'Res magra'],
+  aom: ['Huevo entero', 'Queso Oaxaca'],
+  lec: ['Leche descremada', 'Yogur natural sin azúcar'],
+  lecs: ['Leche semidescremada'], lece: ['Leche entera'],
+  gra: ['Aguacate', 'Aceite vegetal'],
+  grap: ['Almendras', 'Pepita de calabaza', 'Nueces']
+};
+const MEAL_CAT = { des: 'Desayuno', col1: 'Snack', com: 'Comida', col2: 'Snack', cen: 'Cena' };
+
+/* ---------- Normalización: minúsculas, acentos, números escritos, plurales ---------- */
+const NUM_WORDS = { un: 1, una: 1, uno: 1, dos: 2, tres: 3, cuatro: 4, cinco: 5, seis: 6, siete: 7, ocho: 8, nueve: 9, diez: 10, once: 11, doce: 12, trece: 13, catorce: 14, quince: 15, veinte: 20, treinta: 30, cuarenta: 40, cincuenta: 50, cien: 100, doscientos: 200, trescientos: 300, medio: 0.5, media: 0.5 };
+const UNITS = { taza: 'taza', tazas: 'taza', tazon: 'taza', vaso: 'taza', vasos: 'taza', cda: 'cda', cdas: 'cda', cucharada: 'cda', cucharadas: 'cda', cdita: 'cdita', cditas: 'cdita', cucharadita: 'cdita', cucharaditas: 'cdita', pieza: 'pieza', piezas: 'pieza', pza: 'pieza', pzas: 'pieza', pz: 'pieza', rebanada: 'rebanada', rebanadas: 'rebanada', lata: 'lata', latas: 'lata', plato: 'plato', platos: 'plato', orden: 'orden', ordenes: 'orden', porcion: 'porcion', porciones: 'porcion', copa: 'plato', g: 'g', gr: 'g', grs: 'g', gramo: 'g', gramos: 'g', kg: 'kg', kilo: 'kg', kilos: 'kg', ml: 'ml', mililitros: 'ml', litro: 'litro', litros: 'litro' };
+const STOP = new Set('de del la el los las lo y o con sin en a al para por mi mis me se hoy ayer anoche comi desayune almorce cene merende tome bebi probe comer comida desayuno cena colacion poquito poco mucho muy rico rica asado asada cocido cocida frito frita guisado guisada natural casero casera que yo tambien ademas mas solo nada otra otro algo unos unas como fue fueron tipo tantito pedazo pedacito chico chica grande mediano mediana normal light azucar acompanado acompanada encima arriba vez veces dia noche manana tarde estuvo estaba ahora luego despues antes'.split(' '));
+const isNum = (t) => /^\d+(\.\d+)?$/.test(t);
+function rawTokens(s) {
+  let t = String(s || '').toLowerCase()
+    .replace(/½/g, ' 0.5 ').replace(/¼/g, ' 0.25 ').replace(/¾/g, ' 0.75 ').replace(/⅓/g, ' 0.333 ').replace(/⅔/g, ' 0.667 ');
+  t = t.normalize('NFD').replace(/[̀-ͯ]/g, '');
+  t = t.replace(/(\d+)\s+(\d+)\/(\d+)/g, (_, a, b, c) => ' ' + (+a + b / c) + ' ')
+    .replace(/(\d+)\/(\d+)/g, (_, b, c) => ' ' + (b / c) + ' ')
+    .replace(/(\d),(\d)/g, '$1.$2')
+    .replace(/(\d)([a-z])/g, '$1 $2').replace(/([a-z])(\d)/g, '$1 $2')
+    .replace(/[^a-z0-9.\s]/g, ' ').replace(/(^|\s)\.+|\.+(\s|$)/g, ' ');
+  return t.split(/\s+/).filter(Boolean);
+}
+function numberize(toks) {
+  const out = [];
+  for (let i = 0; i < toks.length; i++) {
+    let t = toks[i];
+    if (t === 'par' && toks[i + 1] === 'de') { if (out.length && out[out.length - 1] === '1') out.pop(); out.push('2'); i++; continue; }
+    if (NUM_WORDS[t] != null) t = String(NUM_WORDS[t]);
+    if (isNum(t)) {
+      let v = +t;
+      const n1 = toks[i + 1], n2 = toks[i + 2];
+      if (n1 === 'y' && (n2 === 'medio' || n2 === 'media')) { v += 0.5; i += 2; }
+      else if (n1 === 'cuarto' || n1 === 'cuartos') { v *= 0.25; i += 1; }
+      else if (n1 === 'tercio' || n1 === 'tercios') { v /= 3; i += 1; }
+      const prev = out[out.length - 1];
+      if (prev && isNum(prev) && v < 1 && +prev >= 1 && toks[i] !== 'media' && toks[i] !== 'medio') { out[out.length - 1] = String(+prev + v); continue; }
+      out.push(String(Math.round(v * 1000) / 1000));
+      continue;
+    }
+    out.push(t);
+  }
+  return out;
+}
+let LEX = null;
+function getLex(custom) {
+  custom = custom || [];
+  const key = custom.map((f) => f.id + ':' + f.n + ':' + (f.a || []).join(',') + ':' + JSON.stringify(f.eq)).join('|');
+  if (LEX && LEX.key === key) return LEX;
+  const foods = [...custom.map((f) => Object.assign({}, f, { a: f.a || [], custom: true })), ...FOODS];
+  const vocab = new Set();
+  const addv = (s) => rawTokens(s).forEach((w) => vocab.add(w));
+  foods.forEach((f) => { addv(f.n); f.a.forEach(addv); });
+  INGS.forEach((i) => i.a.forEach(addv));
+  Object.entries(ALLERGY_GROUPS).forEach(([k, v]) => { addv(k); v.forEach(addv); });
+  const canon = (w) => {
+    if (w.length > 3 && !isNum(w) && !UNITS[w]) {
+      if (w.endsWith('ces') && vocab.has(w.slice(0, -3) + 'z')) return w.slice(0, -3) + 'z';
+      if (w.endsWith('es') && vocab.has(w.slice(0, -2))) return w.slice(0, -2);
+      if (w.endsWith('s') && vocab.has(w.slice(0, -1))) return w.slice(0, -1);
+    }
+    return w;
+  };
+  const ctoks = (s) => numberize(rawTokens(s)).map(canon);
+  const mk = (list, getAliases) => {
+    const out = [];
+    list.forEach((x) => { const seen = new Set(); getAliases(x).forEach((al) => { const t = ctoks(al); const k = t.join(' '); if (t.length && !seen.has(k)) { seen.add(k); out.push({ x, t }); } }); });
+    return out.sort((a, b) => b.t.length - a.t.length);
+  };
+  const entries = mk(foods, (f) => [f.n, ...f.a]);
+  const ingEntries = mk(INGS, (i) => i.a);
+  const findFood = (phrase) => { const k = ctoks(phrase).join(' '); const e = entries.find((en) => en.t.join(' ') === k); return e ? e.x : null; };
+  LEX = { key, foods, canon, ctoks, entries, ingEntries, findFood, phrase: (s) => ' ' + ctoks(s).join(' ') + ' ' };
+  return LEX;
+}
+function matchAll(toks, entries) {
+  const res = []; let i = 0;
+  while (i < toks.length) {
+    let hit = null;
+    for (const e of entries) {
+      const L = e.t.length;
+      if (i + L > toks.length) continue;
+      let ok = true;
+      for (let j = 0; j < L; j++) if (toks[i + j] !== e.t[j]) { ok = false; break; }
+      if (ok) { hit = e; break; }
+    }
+    if (hit) { res.push({ e: hit, i, end: i + hit.t.length }); i += hit.t.length; } else i++;
+  }
+  return res;
+}
+function foodMult(f, qty, unit) {
+  if (qty == null && !unit) return 1;
+  const q = qty == null ? 1 : qty;
+  const u = f.u || {};
+  if (unit === 'g' || unit === 'kg') { const g = unit === 'kg' ? q * 1000 : q; return f.g ? g / f.g : 1; }
+  if (unit === 'ml' || unit === 'litro') {
+    const ml = unit === 'litro' ? q * 1000 : q;
+    if (u.ml) return ml * u.ml;
+    if (u.taza) return (ml / 240) * u.taza;
+    return 1;
+  }
+  if (unit && u[unit] != null) return q * u[unit];
+  if (!unit || unit === 'pieza') return q / (f.pz || 1);
+  return q;
+}
+function parseMeal(text, lex) {
+  const toks = lex.ctoks(text);
+  const hits = matchAll(toks, lex.entries);
+  const used = new Set(); const items = [];
+  hits.forEach((h, idx) => {
+    for (let k = h.i; k < h.end; k++) used.add(k);
+    const prevEnd = idx ? hits[idx - 1].end : 0;
+    let qty = null, unit = null;
+    for (let j = h.i - 1; j >= Math.max(prevEnd, h.i - 5); j--) {
+      const t = toks[j];
+      if (!unit && UNITS[t]) { unit = UNITS[t]; used.add(j); continue; }
+      if (isNum(t)) { qty = +t; used.add(j); break; }
+    }
+    if (qty == null && !unit) {
+      const t1 = toks[h.end], t2 = toks[h.end + 1];
+      if (isNum(t1) && ['g', 'kg', 'ml', 'litro'].includes(UNITS[t2])) { qty = +t1; unit = UNITS[t2]; used.add(h.end); used.add(h.end + 1); }
+    }
+    const f = h.e.x;
+    items.push({ fid: f.id, n: f.n, m: Math.round(foodMult(f, qty, unit) * 100) / 100, qty, unit, water: !!f.water });
+  });
+  const unknown = [];
+  toks.forEach((t, i) => { if (!used.has(i) && !isNum(t) && !UNITS[t] && !STOP.has(t) && t.length >= 3 && !unknown.includes(t)) unknown.push(t); });
+  const eq = {}; let water = 0;
+  items.forEach((it) => {
+    const f = lex.foods.find((x) => x.id === it.fid);
+    if (f.water) water += it.m;
+    Object.entries(f.eq || {}).forEach(([k, v]) => { eq[k] = (eq[k] || 0) + v * it.m; });
+  });
+  Object.keys(eq).forEach((k) => { let v = Math.round(eq[k] * 2) / 2; if (v === 0 && eq[k] > 0.1) v = 0.5; if (v) eq[k] = v; else delete eq[k]; });
+  return { items, eq, water: Math.round(water), unknown: unknown.slice(0, 4) };
+}
+function ingKeysIn(text, lex, withCond) {
+  const hits = matchAll(lex.ctoks(text), lex.ingEntries);
+  const keys = [];
+  hits.forEach((h) => { const i = h.e.x; if ((withCond || !i.cond) && !keys.includes(i.k)) keys.push(i.k); });
+  return keys;
+}
+const _rkCache = new Map();
+function recipeKeys(r, lex) {
+  const k = r.id + '|' + r.n + '|' + (r.ing || []).join('|');
+  if (!_rkCache.has(k)) _rkCache.set(k, ingKeysIn(r.n + ', ' + (r.ing || []).join(', '), lex));
+  return _rkCache.get(k);
+}
+/* Alergias e ingredientes no deseados */
+function tagTerms(tag, lex) {
+  const ct = lex.ctoks(tag).join(' ');
+  const plain = rawTokens(tag).join(' ');
+  const grp = ALLERGY_GROUPS[plain] || ALLERGY_GROUPS[ct] || [];
+  return [ct, ...grp.map((g) => lex.ctoks(g).join(' '))].filter(Boolean);
+}
+function flagsFor(text, profile, lex) {
+  const ph = lex.phrase(text).replace(/ sin \S+/g, ' ');
+  const test = (tags) => (tags || []).filter((t) => tagTerms(t, lex).some((term) => ph.includes(' ' + term + ' ')));
+  return { alerg: test(profile.alergias), disg: test(profile.disgustos) };
+}
+const recipeText = (r) => r.n + ', ' + (r.ing || []).join(', ');
+const foodText = (f) => f.n + ', ' + (f.a || []).join(', ');
+const allRecipes = (state) => [...((state.custom && state.custom.recipes) || []), ...RECIPES];
+function remainingFor(state, targets, dk) {
+  const t = dayTotals(state.logs[dk]);
+  const rem = {}; KEYS.forEach((k) => { rem[k] = (targets[k] || 0) - (t[k] || 0); });
+  return rem;
+}
+const remArmOf = (rem) => Object.fromEntries(ARM.map((a) => [a.k, Math.round(a.map.reduce((s, m) => s + Math.max(0, rem[m] || 0), 0) * 2) / 2]));
+const fitsArm = (eq, remArm) => { const a = armEq(eq); return ARM.every((x) => a[x.k] <= (remArm[x.k] || 0) + 0.001); };
+function rankByIngredients(have, recipes, remArm, lex) {
+  return recipes.map((r) => {
+    const keys = recipeKeys(r, lex);
+    const matched = keys.filter((k) => have.includes(k));
+    const missing = keys.filter((k) => !have.includes(k));
+    return { r, keys, matched, missing, fits: fitsArm(r.eq, remArm) };
+  }).filter((x) => x.matched.length > 0)
+    .sort((a, b) => a.missing.length - b.missing.length || (b.fits - a.fits) || b.matched.length - a.matched.length);
+}
+/* Generador rápido de platillo con lo que hay */
+function genPlate(have, remArm, lex) {
+  const roleOf = (f) => {
+    const k = Object.keys(f.eq || {})[0] || '';
+    if (k.startsWith('ao')) return 'prot';
+    if (k === 'leg') return 'leg';
+    if (k.startsWith('cer')) return 'cer';
+    if (k === 'ver') return 'ver';
+    if (k.startsWith('gra')) return 'gra';
+    if (k === 'fru') return 'fru';
+    if (k.startsWith('lec')) return 'lec';
+    return '';
+  };
+  const picks = {};
+  have.forEach((k) => {
+    const ing = ING_BY[k]; if (!ing || ing.cond || !ing.f) return;
+    const f = lex.findFood(ing.f); if (!f) return;
+    const r = roleOf(f); if (!r) return;
+    (picks[r] = picks[r] || []).push({ ing, f });
+  });
+  if (!picks.prot && !picks.leg && !picks.cer && !picks.ver) return null;
+  const lines = [], eq = {};
+  const add = (p, q) => { Object.entries(p.f.eq).forEach(([k, v]) => { eq[k] = (eq[k] || 0) + v * q; }); lines.push(`${p.f.n}: ${fmtEq(q)} × ${p.f.m}`); };
+  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+  const prot = picks.prot && picks.prot[0], leg = picks.leg && picks.leg[0];
+  if (prot) add(prot, clamp(Math.round(remArm.aoa || 0), 1, 3));
+  if (leg) add(leg, 1);
+  const vegs = (picks.ver || []).slice(0, 2);
+  vegs.forEach((v) => add(v, vegs.length > 1 ? 1 : clamp(Math.round(remArm.ver || 0), 1, 2)));
+  const cer = picks.cer && picks.cer[0];
+  if (cer) add(cer, clamp(Math.round(remArm.cer || 0), 1, 2));
+  const fat = picks.gra && picks.gra[0];
+  if (fat) add(fat, 1);
+  else if (prot && (remArm.gra || 0) >= 1) add({ f: lex.findFood('aceite') }, 1);
+  const fru = picks.fru && picks.fru[0];
+  if (fru && (remArm.fru || 0) >= 1) add(fru, 1);
+  const lec = picks.lec && picks.lec[0];
+  if (lec && !prot && (remArm.lec || 0) >= 1) add(lec, 1);
+  Object.keys(eq).forEach((k) => { eq[k] = Math.round(eq[k] * 2) / 2; if (!eq[k]) delete eq[k]; });
+  const main = prot || leg || cer || vegs[0];
+  const nm = (p) => p.ing.n;
+  const parts = [vegs.map(nm).join(' y '), cer && cer !== main ? nm(cer) : ''].filter(Boolean);
+  const n = `Plato de ${nm(main)}${parts.length ? ' con ' + parts.join(' y ') : ''}`;
+  const pasos = [];
+  if (prot) {
+    const k = prot.ing.k;
+    if (k === 'huevo') pasos.push('Prepara los huevos revueltos o a la mexicana junto con las verduras picadas.');
+    else if (k === 'atun') pasos.push('Escurre el atún y mézclalo con las verduras picadas, limón y sal.');
+    else if (k === 'queso') pasos.push('Asa el queso en un sartén antiadherente hasta dorar.');
+    else pasos.push(`Sazona el ${nm(prot)} con limón, sal, especias o recado y cocínalo a la plancha.`);
+  }
+  if (leg) pasos.push(`Calienta los ${nm(leg)} cocidos (sin manteca).`);
+  if (vegs.length) pasos.push(`Cuece al vapor o saltea: ${vegs.map(nm).join(' y ')}.`);
+  if (cer) pasos.push(`Acompaña con ${nm(cer)} en la medida indicada.`);
+  if (fat) pasos.push(`Agrega ${nm(fat)} al servir.`);
+  if (fru && lines.some((l) => l.startsWith(fru.f.n))) pasos.push(`De postre: ${nm(fru)}.`);
+  return { id: 'gen-' + uid(), n, cats: [], t: '15 min', eq, ing: lines, pasos, gen: true };
+}
+
+/* ---------- Motor de respuestas del NutriBot (100 % local) ---------- */
+function botReply(text, env) {
+  const { state, targets, waterGoal, lex, pending } = env;
+  const profile = state.profile;
+  const t = ' ' + numberize(rawTokens(text)).join(' ') + ' ';
+  const has = (re) => re.test(t);
+  const out = []; let next = null;
+  const say = (txt) => out.push({ type: 'text', text: txt });
+  const today = dateKey();
+  const rem = remainingFor(state, targets, today);
+  const remArm = remArmOf(rem);
+  const nombre = profile.nombre && profile.nombre !== 'Ejemplo' ? ' ' + profile.nombre : '';
+  const okRecipe = (r) => { const fl = flagsFor(recipeText(r), profile, lex); return !fl.alerg.length && !fl.disg.length; };
+
+  if (has(/ (ensenar|ensena|ensenale|aprende|aprender|nuevo alimento|alimento nuevo|agregar alimento|platillo nuevo) /)) {
+    say('¡Me encanta aprender! 📚 Llena los datos del alimento o platillo y lo recordaré para siempre (también se guarda en tu respaldo .json).');
+    out.push({ type: 'teach', data: {} });
+    return { msgs: out, pending: null };
+  }
+  const refri = pending === 'refri' || (has(/ (refri|refrigerador|alacena|despensa|ingrediente|ingredientes|tengo) /) && !has(/ hambre /));
+  if (refri) {
+    const keys = ingKeysIn(text, lex);
+    if (!keys.length) {
+      say('¡Va! 🧊 Escríbeme qué tienes en tu refri o alacena, por ejemplo: **pollo, tortillas, calabacita y aguacate**.');
+      return { msgs: out, pending: 'refri' };
+    }
+    const bad = keys.filter((k) => flagsFor(ING_BY[k].n + ' ' + ING_BY[k].a.join(' '), profile, lex).alerg.length);
+    const haveK = keys.filter((k) => !bad.includes(k));
+    if (bad.length) say(`⚠️ Ojo: **${bad.map((k) => ING_BY[k].n).join(', ')}** está en tus alergias; no lo usaré en las sugerencias.`);
+    const ranked = rankByIngredients(haveK, allRecipes(state).filter(okRecipe), remArm, lex);
+    const pool = ranked.filter((x) => x.fits).length ? [...ranked.filter((x) => x.fits), ...ranked.filter((x) => !x.fits)] : ranked;
+    say(`Con **${haveK.map((k) => ING_BY[k].n).join(', ')}** esto es lo que te propongo 👇`);
+    if (pool.length) out.push({ type: 'recipes', data: { ids: pool.map((x) => x.r.id), idx: 0, meal: defaultMeal(), have: haveK } });
+    if (!ranked.some((x) => x.missing.length === 0)) {
+      const g = genPlate(haveK, remArm, lex);
+      if (g) out.push({ type: 'gen', data: g });
+    }
+    if (!pool.length && !out.some((m) => m.type === 'gen')) say('No encontré combinaciones con eso. Prueba agregando una proteína (pollo, huevo, atún…) o un cereal (tortillas, arroz).');
+    return { msgs: out, pending: null };
+  }
+  if (has(/ (puedo|podria|sugier\w*|sugerencia|recomiend\w*|recomendacion|idea|ideas|antoj\w*|ceno|cenar|desayunar|hambre|que como|que desayuno) /)) {
+    const cat = has(/ (cenar|ceno|cena) /) ? 'Cena' : has(/ (desayun\w*) /) ? 'Desayuno' : has(/ (colacion|snack|botana|merienda|antojo|antoja) /) ? 'Snack' : has(/ (comer|comida|almorzar) /) ? 'Comida' : MEAL_CAT[defaultMeal()];
+    const mealK = { Desayuno: 'des', Comida: 'com', Cena: 'cen', Snack: defaultMeal() === 'col2' ? 'col2' : 'col1' }[cat];
+    const recs = allRecipes(state).filter(okRecipe).map((r) => ({ r, fits: fitsArm(r.eq, remArm), catOk: (r.cats || []).includes(cat), kcal: sumKey(r.eq, 'kcal') }));
+    recs.sort((a, b) => (b.fits && b.catOk) - (a.fits && a.catOk) || b.fits - a.fits || b.catOk - a.catOk || a.kcal - b.kcal);
+    const anyFit = recs.some((x) => x.fits);
+    const left = ARM.filter((a) => remArm[a.k] > 0).map((a) => `${fmtEq(remArm[a.k])} ${a.name}`);
+    say(anyFit
+      ? `Para tu **${cat.toLowerCase()}** te quedan: ${left.join(', ') || 'pocas porciones'}. Esta opción cabe en tus equivalentes 👇`
+      : 'Ya casi completas tus porciones del día 👏. Te propongo la opción más ligera; si te pasas un poco, no pasa nada.');
+    out.push({ type: 'recipes', data: { ids: recs.map((x) => x.r.id), idx: 0, meal: mealK } });
+    return { msgs: out, pending: null };
+  }
+  if (has(/ (falta|faltan|queda|quedan|restante|restan|saldo|llevo|sobra|sobran|resumen|como voy|cuanto me) /)) {
+    const day = state.logs[today] || {};
+    const pos = GROUPS.filter((g) => rem[g.k] > 0.01);
+    const neg = GROUPS.filter((g) => rem[g.k] < -0.01);
+    const water = day.water || 0;
+    const used = KEYS.reduce((s, k) => s + G[k].kcal * (dayTotals(day)[k] || 0), 0);
+    const L = [];
+    if (pos.length) { L.push(`**Hoy te falta comer${nombre ? ',' + nombre : ''}:**`); pos.forEach((g) => L.push(`• ${fmtEq(rem[g.k])} ${g.name}`)); }
+    else L.push('🎉 ¡Ya completaste todos tus equivalentes de hoy!');
+    if (neg.length) L.push(`Te pasaste en: ${neg.map((g) => `+${fmtEq(-rem[g.k])} ${g.short}`).join(', ')}.`);
+    L.push(`💧 Agua: ${water} de ${waterGoal} vasos${water < waterGoal ? ` (te faltan ${waterGoal - water})` : ' ✅'}.`);
+    L.push(`🔥 Energía: ${Math.round(used)} de ${eqKcal(targets)} kcal.`);
+    const ideas = pos.slice(0, 3).map((g) => {
+      const names = (SUGGEST_FOODS[g.k] || []).map((n) => lex.findFood(n)).filter((f) => f && !(() => { const fl = flagsFor(foodText(f), profile, lex); return fl.alerg.length || fl.disg.length; })()).slice(0, 3);
+      return names.length ? `• ${g.short}: ${names.map((f) => `${f.n} (${f.m})`).join(', ')}` : '';
+    }).filter(Boolean);
+    if (ideas.length) { L.push(''); L.push('**Ideas para completarlos:**'); L.push(...ideas); }
+    say(L.join('\n'));
+    return { msgs: out, pending: null };
+  }
+  const parsed = parseMeal(text, lex);
+  if (parsed.items.length) {
+    const ate = has(/ (comi|desayune|cene|almorce|tome|bebi|merende|me comi|me tome|registra|registrar|anota|anotar|agrega) /);
+    if (!ate && has(/ (cuanto|cuanta|cuantas|cuantos|equivale|equivalen|caloria|calorias|kcal|grupo|medida|que es|informacion|info|macro|macros|proteina|porcion de|busca|buscar) /)) {
+      const seen = [];
+      parsed.items.forEach((it) => { if (!seen.includes(it.fid)) seen.push(it.fid); });
+      seen.slice(0, 4).forEach((fid) => out.push({ type: 'lookup', data: { fid } }));
+      return { msgs: out, pending: null };
+    }
+    out.push({ type: 'meal', data: { ...parsed, meal: defaultMeal(), text } });
+    return { msgs: out, pending: null };
+  }
+  if (has(/ (gracias|grax|thanks) /)) { say('¡Con mucho gusto! 💚 Aquí estoy cuando me necesites.'); return { msgs: out, pending: null }; }
+  if (has(/ (hola|buenas|buenos|hey|que tal|saludos) /)) { say(`¡Hola${nombre}! 👋 ¿Qué comiste hoy? Escríbelo tal cual, por ejemplo: **2 panuchos y 1 taza de papaya**.`); return { msgs: out, pending: null }; }
+  say(`Mmm, no entendí del todo 🤔${parsed.unknown.length ? ` No conozco: **${parsed.unknown.join(', ')}**.` : ''}\nPuedes escribirme:\n• Lo que comiste: *2 tacos de pollo con aguacate*\n• Una consulta: *¿cuánto es una porción de mamey?*\n• *¿Qué me falta comer hoy?*\n• *Tengo huevo, chaya y tortillas*`);
+  if (parsed.unknown.length) out.push({ type: 'teach', data: { name: parsed.unknown[0] } });
+  return { msgs: out, pending: null };
+}
+const welcomeMsg = (state) => ({
+  type: 'text',
+  text: `¡Hola${state.profile.nombre && state.profile.nombre !== 'Ejemplo' ? ' ' + state.profile.nombre : ''}! Soy **NutriBot** 🌱\nFunciono sin internet y conozco más de 140 alimentos del SMAE, incluidos platillos de **Campeche y Yucatán** (panuchos, poc chuc, cochinita, chaya, mamey…).\n\nEscríbeme lo que comiste, por ejemplo *2 salbutes y 1 taza de papaya*, y te calculo tus equivalentes. También puedes usar los botones de abajo.`
+});
+
+/* =====================================================================
+   AVATARES (SVG de cuerpo completo) + FOTO PROPIA
+   ===================================================================== */
+const AVATARS = [
+  { k: 'zorro', n: 'Zorrito saludable' }, { k: 'panda', n: 'Osito panda con manzana' }, { k: 'tortuga', n: 'Tortuguita marina' },
+  { k: 'buho', n: 'Búho nutriólogo' }, { k: 'gato', n: 'Gatito chef' }, { k: 'perro', n: 'Perrito alegre' }
+];
+const MASCOT_C = {
+  zorro: { main: '#f97316', belly: '#fff7ed', dark: '#431407', limb: '#ea580c', cheek: '#fda4af' },
+  panda: { main: '#f8fafc', belly: '#ffffff', dark: '#1f2937', limb: '#1f2937', cheek: '#fda4af' },
+  tortuga: { main: '#6ee7b7', belly: '#fef3c7', dark: '#064e3b', limb: '#34d399', cheek: '#fda4af' },
+  buho: { main: '#b45309', belly: '#fde68a', dark: '#451a03', limb: '#92400e', cheek: '#fdba74' },
+  gato: { main: '#fdba74', belly: '#fff7ed', dark: '#431407', limb: '#fb923c', cheek: '#fda4af' },
+  perro: { main: '#e7c08f', belly: '#fffbeb', dark: '#422006', limb: '#d6a76b', cheek: '#fda4af' }
+};
+function Mascot({ kind = 'zorro', size = 120, head = false, wave = true }) {
+  const c = MASCOT_C[kind] || MASCOT_C.zorro;
+  const st = kind === 'panda' ? { stroke: '#e2e8f0', strokeWidth: 1.5 } : {};
+  const w = size, h = head ? size : (size * 150) / 120;
+  return (
+    <svg width={w} height={h} viewBox={head ? '18 6 84 84' : '0 0 120 150'} aria-hidden="true" style={{ overflow: 'visible' }}>
+      {!head && <ellipse cx="60" cy="145" rx="30" ry="4" fill="#000" opacity="0.12" />}
+      {/* detrás del cuerpo */}
+      {kind === 'zorro' && (<g><path d="M84 122 C114 122 118 92 104 78 C104 98 96 108 82 108 Z" fill={c.main} /><path d="M104 78 C113 86 113 98 109 104 C104 96 101 88 104 78 Z" fill={c.belly} /></g>)}
+      {kind === 'gato' && <path d="M84 124 C104 124 110 104 99 94" stroke={c.main} strokeWidth="7" fill="none" strokeLinecap="round" />}
+      {kind === 'perro' && <path d="M86 120 C100 114 104 104 100 94" stroke={c.limb} strokeWidth="6" fill="none" strokeLinecap="round" />}
+      {kind === 'tortuga' && (<g><ellipse cx="60" cy="103" rx="37" ry="35" fill="#059669" />{[[27, 92], [93, 92], [31, 120], [89, 120], [60, 70]].map(([x, y], i) => <circle key={i} cx={x} cy={y} r="5" fill="#10b981" />)}</g>)}
+      {/* piernas */}
+      <ellipse cx="47" cy="131" rx="9" ry="11" fill={c.limb} />
+      <ellipse cx="73" cy="131" rx="9" ry="11" fill={c.limb} />
+      <ellipse cx="45" cy="140" rx="11" ry="5" fill={kind === 'panda' ? c.dark : c.limb} />
+      <ellipse cx="75" cy="140" rx="11" ry="5" fill={kind === 'panda' ? c.dark : c.limb} />
+      {/* cuerpo */}
+      <ellipse cx="60" cy="104" rx="29" ry="30" fill={c.main} {...st} />
+      {kind === 'gato'
+        ? (<g><rect x="43" y="92" width="34" height="34" rx="7" fill="#ffffff" /><path d="M60 114 C52 108 54 101 60 105 C66 101 68 108 60 114 Z" fill="#ef4444" /></g>)
+        : <ellipse cx="60" cy="110" rx="18" ry="20" fill={c.belly} />}
+      {kind === 'buho' && [[52, 102], [60, 110], [68, 102], [52, 118], [68, 118]].map(([x, y], i) => <path key={i} d={`M${x - 4} ${y} l4 4 l4 -4`} stroke="#d97706" strokeWidth="1.8" fill="none" strokeLinecap="round" />)}
+      {kind === 'perro' && (<g><path d="M38 80 Q60 93 82 80" stroke="#ef4444" strokeWidth="6" fill="none" strokeLinecap="round" /><circle cx="60" cy="90" r="4" fill="#facc15" /></g>)}
+      {/* brazo izquierdo con objeto */}
+      <ellipse cx="33" cy="106" rx="8" ry="14" transform="rotate(18 33 106)" fill={c.limb} />
+      {kind === 'zorro' && (<g transform="rotate(-25 28 118)"><path d="M24 110 L32 110 L28 131 Z" fill="#fb923c" stroke="#c2410c" strokeWidth="1" /><path d="M28 110 L24 102 M28 110 L28 101 M28 110 L32 102" stroke="#16a34a" strokeWidth="2.5" strokeLinecap="round" /></g>)}
+      {kind === 'panda' && (<g><circle cx="27" cy="120" r="8.5" fill="#ef4444" /><path d="M27 112 L28 107" stroke="#78350f" strokeWidth="2" strokeLinecap="round" /><ellipse cx="32" cy="109" rx="4" ry="2" transform="rotate(-30 32 109)" fill="#22c55e" /></g>)}
+      {kind === 'tortuga' && <polygon points="28,113 29.8,117.6 34.7,117.8 30.9,120.9 32.1,125.7 28,123 23.9,125.7 25.2,120.9 21.3,117.8 26.2,117.6" fill="#fb923c" />}
+      {kind === 'buho' && (<g><rect x="17" y="110" width="17" height="21" rx="2" fill="#ffffff" stroke="#78350f" strokeWidth="1.5" /><rect x="22" y="107" width="7" height="4" rx="1" fill="#9ca3af" /><path d="M20 117 h11 M20 121 h11 M20 125 h7" stroke="#10b981" strokeWidth="1.5" /></g>)}
+      {kind === 'gato' && (<g><path d="M27 104 L31 131" stroke="#a16207" strokeWidth="3" strokeLinecap="round" /><ellipse cx="26" cy="100" rx="4.5" ry="6.5" fill="#ca8a04" /></g>)}
+      {kind === 'perro' && (<g><path d="M21 111 L34 111 L32 129 L23 129 Z" fill="#bae6fd" stroke="#0ea5e9" strokeWidth="1.5" /><path d="M22 117 L33 117" stroke="#0ea5e9" strokeWidth="1" /></g>)}
+      {/* brazo derecho saludando */}
+      <g className={wave ? 'mascot-wave' : ''} style={{ transformOrigin: '86px 94px' }}>
+        <ellipse cx="94" cy="80" rx="8" ry="15" transform="rotate(-32 94 80)" fill={c.limb} />
+        <circle cx="100" cy="68" r="7" fill={c.limb} />
+      </g>
+      {/* orejas traseras */}
+      {kind === 'zorro' && (<g><path d="M35 36 L38 8 L57 24 Z" fill={c.main} /><path d="M85 36 L82 8 L63 24 Z" fill={c.main} /><path d="M39 30 L40 15 L51 24 Z" fill={c.belly} /><path d="M81 30 L80 15 L69 24 Z" fill={c.belly} /></g>)}
+      {kind === 'gato' && (<g><path d="M35 36 L37 12 L55 25 Z" fill={c.main} /><path d="M85 36 L83 12 L65 25 Z" fill={c.main} /><path d="M39 31 L40 18 L50 25 Z" fill="#fda4af" /><path d="M81 31 L80 18 L70 25 Z" fill="#fda4af" /></g>)}
+      {kind === 'panda' && (<g><circle cx="37" cy="26" r="9.5" fill={c.dark} /><circle cx="83" cy="26" r="9.5" fill={c.dark} /></g>)}
+      {kind === 'buho' && (<g><path d="M34 32 L35 11 L49 24 Z" fill={c.limb} /><path d="M86 32 L85 11 L71 24 Z" fill={c.limb} /></g>)}
+      {/* cabeza */}
+      <circle cx="60" cy="50" r="30" fill={c.main} {...st} />
+      {kind === 'zorro' && <path d="M33 54 Q60 88 87 54 Q74 63 60 61 Q46 63 33 54 Z" fill={c.belly} />}
+      {kind === 'perro' && (<g><ellipse cx="72" cy="47" rx="8.5" ry="7.5" fill={c.limb} /><ellipse cx="60" cy="61" rx="13" ry="9" fill={c.belly} /></g>)}
+      {kind === 'panda' && (<g><ellipse cx="48" cy="50" rx="7" ry="9" transform="rotate(-25 48 50)" fill={c.dark} /><ellipse cx="72" cy="50" rx="7" ry="9" transform="rotate(25 72 50)" fill={c.dark} /></g>)}
+      {kind === 'buho' && (<g><circle cx="48" cy="49" r="11" fill="#fef3c7" /><circle cx="72" cy="49" r="11" fill="#fef3c7" /></g>)}
+      {/* ojos */}
+      {kind === 'panda'
+        ? [48, 72].map((x) => (<g key={x}><circle cx={x} cy="50" r="3.6" fill="#fff" /><circle cx={x} cy="50" r="2.2" fill={c.dark} /></g>))
+        : [48, 72].map((x) => (<g key={x}><circle cx={x} cy={kind === 'buho' ? 49 : 49} r={kind === 'buho' ? 5 : 4.2} fill={c.dark} /><circle cx={x + 1.5} cy="47.3" r="1.5" fill="#fff" /></g>))}
+      {kind === 'buho' && (<g fill="none" stroke="#1f2937" strokeWidth="2.4"><circle cx="48" cy="49" r="11.5" /><circle cx="72" cy="49" r="11.5" /><path d="M57.5 46 Q60 43.5 62.5 46" /></g>)}
+      {/* nariz / pico */}
+      {kind === 'buho'
+        ? <path d="M56 58 L64 58 L60 66 Z" fill="#f59e0b" />
+        : kind !== 'tortuga' && <ellipse cx="60" cy={kind === 'perro' ? 57 : 56.5} rx={kind === 'perro' ? 5 : 3.4} ry={kind === 'perro' ? 3.6 : 2.5} fill={c.dark} />}
+      {/* boca */}
+      {kind !== 'buho' && (kind === 'panda' || kind === 'tortuga'
+        ? <path d="M54 60 Q60 66 66 60" stroke={c.dark} strokeWidth="2" fill="none" strokeLinecap="round" />
+        : <path d="M54 61 Q57 65 60 61 Q63 65 66 61" stroke={c.dark} strokeWidth="2" fill="none" strokeLinecap="round" />)}
+      {kind === 'perro' && <ellipse cx="62" cy="67" rx="3.4" ry="4.4" fill="#fb7185" />}
+      {/* mejillas */}
+      <ellipse cx="41" cy="59" rx="5" ry="3" fill={c.cheek} opacity="0.7" />
+      <ellipse cx="79" cy="59" rx="5" ry="3" fill={c.cheek} opacity="0.7" />
+      {/* extras delanteros */}
+      {kind === 'gato' && (<g stroke={c.dark} strokeWidth="1.2" strokeLinecap="round" opacity="0.7"><path d="M40 57 L27 54 M40 60 L27 61" /><path d="M80 57 L93 54 M80 60 L93 61" /></g>)}
+      {kind === 'gato' && (<g fill="#ffffff" stroke="#e2e8f0" strokeWidth="1.2"><circle cx="47" cy="15" r="9" /><circle cx="73" cy="15" r="9" /><circle cx="60" cy="10" r="11" /><rect x="41" y="17" width="38" height="10" rx="3" /></g>)}
+      {kind === 'perro' && (<g><ellipse cx="33" cy="52" rx="8.5" ry="17" transform="rotate(16 33 52)" fill="#92400e" /><ellipse cx="87" cy="52" rx="8.5" ry="17" transform="rotate(-16 87 52)" fill="#92400e" /></g>)}
+      {kind === 'tortuga' && <path d="M38 34 Q60 22 82 34" stroke="#059669" strokeWidth="3" fill="none" strokeLinecap="round" opacity="0.5" />}
+    </svg>
+  );
+}
+function AvatarFace({ settings, size = 56 }) {
+  if (settings.avatar === 'foto' && settings.photo) return <img src={settings.photo} alt="Avatar" width={size} height={size} className="w-full h-full object-cover rounded-full" />;
+  return <Mascot kind={settings.avatar} size={size} head wave={false} />;
+}
+function AvatarFull({ settings, size = 90 }) {
+  if (settings.avatar === 'foto' && settings.photo) {
+    return (<div className="relative" style={{ width: size, height: size }}>
+      <img src={settings.photo} alt="Avatar" className="w-full h-full object-cover rounded-full ring-4 ring-white/70" />
+      <span className="absolute -right-1 -top-1 text-2xl mascot-wave" style={{ transformOrigin: '70% 80%' }}>👋</span>
+    </div>);
+  }
+  return <Mascot kind={settings.avatar} size={size} />;
+}
+function resizeImage(file, fit, S = 160) {
+  return new Promise((res, rej) => {
+    const url = URL.createObjectURL(file);
+    const img = new Image();
+    img.onload = () => {
+      const c = document.createElement('canvas'); c.width = S; c.height = S;
+      const x = c.getContext('2d');
+      x.fillStyle = '#ecfdf5'; x.fillRect(0, 0, S, S);
+      const r = fit === 'contain' ? Math.min(S / img.width, S / img.height) : Math.max(S / img.width, S / img.height);
+      const w = img.width * r, h = img.height * r;
+      x.imageSmoothingQuality = 'high';
+      x.drawImage(img, (S - w) / 2, (S - h) / 2, w, h);
+      URL.revokeObjectURL(url);
+      res(c.toDataURL('image/jpeg', 0.86));
+    };
+    img.onerror = () => { URL.revokeObjectURL(url); rej(new Error('imagen')); };
+    img.src = url;
+  });
+}
+function AvatarPicker({ ctx }) {
+  const { state, mutate, toast } = ctx;
+  const s = state.settings;
+  const fileRef = useRef(null);
+  const onFile = async (e) => {
+    const f = e.target.files && e.target.files[0]; e.target.value = '';
+    if (!f) return;
+    try { const url = await resizeImage(f, s.photoFit); mutate((n) => { n.settings.photo = url; n.settings.avatar = 'foto'; }); toast('¡Foto lista! ✓'); }
+    catch (err) { toast('No se pudo leer la imagen'); }
+  };
+  return (
+    <div>
+      <div className="grid grid-cols-3 gap-2">
+        {AVATARS.map((a) => (
+          <button key={a.k} onClick={() => mutate((n) => { n.settings.avatar = a.k; })} aria-pressed={s.avatar === a.k}
+            className={cls('rounded-2xl p-2 border-2 flex flex-col items-center btn-press', s.avatar === a.k ? 'border-emerald-600 bg-emerald-50' : 'border-transparent bg-gray-50')}>
+            <Mascot kind={a.k} size={64} wave={s.avatar === a.k} />
+            <span className="text-[11px] font-semibold text-center leading-tight mt-1">{a.n}</span>
+          </button>
+        ))}
+      </div>
+      <div className="mt-3 rounded-2xl bg-gray-50 p-3">
+        <div className="text-sm font-bold mb-2 flex items-center gap-1.5"><Icon name="Camera" size={16} /> Foto propia desde tu galería</div>
+        <Segmented value={s.photoFit || 'cover'} onChange={(v) => mutate((n) => { n.settings.photoFit = v; })} options={[{ v: 'cover', t: 'Recortar (cubrir)' }, { v: 'contain', t: 'Completa (ajustar)' }]} />
+        <div className="flex items-center gap-3 mt-2">
+          {s.photo && (
+            <button onClick={() => mutate((n) => { n.settings.avatar = 'foto'; })} className={cls('w-16 h-16 rounded-full overflow-hidden shrink-0 border-4', s.avatar === 'foto' ? 'border-emerald-600' : 'border-transparent')} aria-label="Usar mi foto">
+              <img src={s.photo} alt="" className="w-full h-full object-cover" />
+            </button>
+          )}
+          <button onClick={() => fileRef.current && fileRef.current.click()} className="flex-1 min-h-[48px] rounded-xl bg-emerald-600 text-white font-bold btn-press flex items-center justify-center gap-2"><Icon name="ImagePlus" size={18} /> {s.photo ? 'Cambiar foto' : 'Subir foto'}</button>
+        </div>
+        {s.photo && <button onClick={() => mutate((n) => { n.settings.photo = null; if (n.settings.avatar === 'foto') n.settings.avatar = 'zorro'; })} className="mt-2 text-xs font-semibold text-red-500 min-h-[36px]">Quitar foto</button>}
+        <p className="text-[11px] text-gray-500 mt-1">Se ajusta a 160×160 px y se guarda solo en tu teléfono (y en tu respaldo .json).</p>
+        <input ref={fileRef} type="file" accept="image/*" className="hidden" onChange={onFile} />
+      </div>
+    </div>
+  );
+}
+
+/* =====================================================================
+   COMPONENTES COMPARTIDOS: chips de equivalentes, etiquetas, alertas
+   ===================================================================== */
+function EqChips({ eq, small }) {
+  const ks = KEYS.filter((k) => (eq || {})[k] > 0);
+  if (!ks.length) return <span className="text-xs text-gray-500">Libre (sin equivalentes)</span>;
+  return (
+    <div className="flex flex-wrap gap-1">
+      {ks.map((k) => (<span key={k} className={cls('font-bold rounded-md px-1.5 py-0.5 text-white', small ? 'text-[10px]' : 'text-[11px]')} style={{ background: G[k].color }}>{fmtEq(eq[k])} {G[k].short}</span>))}
+    </div>
+  );
+}
+function FlagBadges({ fl }) {
+  if (!fl || (!fl.alerg.length && !fl.disg.length)) return null;
+  return (
+    <div className="flex flex-wrap gap-1 mt-1.5">
+      {fl.alerg.length > 0 && <span className="text-[11px] font-bold rounded-full px-2 py-0.5 bg-red-100 text-red-700 dark:bg-red-500/20 dark:text-red-300">⚠️ Contiene ingrediente alérgico: {fl.alerg.join(', ')}</span>}
+      {fl.disg.length > 0 && <span className="text-[11px] font-semibold rounded-full px-2 py-0.5 bg-amber-100 text-amber-800 dark:bg-amber-500/20 dark:text-amber-300">👎 No te agrada: {fl.disg.join(', ')}</span>}
+    </div>
+  );
+}
+function TagInput({ tags, onChange, tone, placeholder, suggestions }) {
+  const [v, setV] = useState('');
+  const norm = (x) => rawTokens(x).join(' ');
+  const add = (txt) => {
+    const parts = String(txt).split(/[,;]/).map((x) => x.trim()).filter(Boolean);
+    let next = [...tags];
+    parts.forEach((p) => { if (!next.some((y) => norm(y) === norm(p))) next.push(p); });
+    onChange(next); setV('');
+  };
+  const red = tone === 'red';
+  return (
+    <div>
+      <div className="flex gap-2">
+        <input value={v} onChange={(e) => setV(e.target.value)} onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); add(v); } }} placeholder={placeholder} className={inputCls} enterKeyHint="done" />
+        <button onClick={() => add(v)} className={cls('min-w-[52px] rounded-xl text-white font-bold btn-press', red ? 'bg-red-500' : 'bg-amber-500')} aria-label="Agregar"><Icon name="Plus" /></button>
+      </div>
+      <div className="flex flex-wrap gap-1.5 mt-2">
+        {tags.map((t) => (
+          <span key={t} className={cls('inline-flex items-center gap-1 rounded-full pl-3 pr-1 py-1 text-sm font-semibold', red ? 'bg-red-100 text-red-700 dark:bg-red-500/20 dark:text-red-300' : 'bg-amber-100 text-amber-800 dark:bg-amber-500/20 dark:text-amber-300')}>
+            {red ? '⚠️' : '👎'} {t}
+            <button onClick={() => onChange(tags.filter((x) => x !== t))} className="w-7 h-7 rounded-full flex items-center justify-center" aria-label={`Quitar ${t}`}><Icon name="X" size={14} /></button>
+          </span>
+        ))}
+        {!tags.length && <span className="text-xs text-gray-400">Sin elementos.</span>}
+      </div>
+      <div className="flex flex-wrap gap-1.5 mt-2">
+        {(suggestions || []).filter((sug) => !tags.some((x) => norm(x) === norm(sug))).map((sug) => (
+          <button key={sug} onClick={() => add(sug)} className="text-xs font-semibold rounded-full px-2.5 py-1.5 bg-gray-100 text-gray-600 btn-press">+ {sug}</button>
+        ))}
+      </div>
+    </div>
+  );
+}
+function MealChips({ value, onChange }) {
+  return (
+    <div className="flex gap-1 overflow-x-auto pb-1">
+      {MEALS.map((m) => (<button key={m.k} onClick={() => onChange(m.k)} className={cls('shrink-0 min-h-[36px] px-3 rounded-full text-xs font-bold', value === m.k ? 'bg-emerald-600 text-white' : 'bg-emerald-50 text-emerald-800')}>{m.n}</button>))}
+    </div>
+  );
+}
+function EqEditor({ eq, onChange }) {
+  const set = (k, d) => { const n = { ...eq }; n[k] = Math.max(0, Math.round(((n[k] || 0) + d) * 2) / 2); if (!n[k]) delete n[k]; onChange(n); };
+  return (
+    <div className="divide-y divide-gray-100">
+      {GROUPS.map((g) => (
+        <div key={g.k} className="flex items-center gap-2 py-1.5">
+          <span className="w-2 h-7 rounded-full shrink-0" style={{ background: g.color }} />
+          <span className="flex-1 text-xs font-semibold leading-tight">{g.name}</span>
+          <Stepper value={eq[g.k] || 0} color={g.color} small onDec={() => set(g.k, -0.5)} onInc={() => set(g.k, 0.5)} />
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/* ---------- Enseñar alimento nuevo ---------- */
+function parseMedida(m) {
+  const toks = numberize(rawTokens(m));
+  const q = toks.find(isNum); const unit = toks.map((t) => UNITS[t]).find(Boolean);
+  const qty = q ? +q : 1; const out = {};
+  if (unit && ['taza', 'cda', 'cdita', 'lata', 'rebanada'].includes(unit)) out.u = { [unit]: 1 / qty };
+  else if (unit === 'g') out.g = qty;
+  else if (qty !== 1) out.pz = qty;
+  return out;
+}
+function TeachForm({ initial, onSave, onCancel }) {
+  const [f, setF] = useState(() => ({ n: '', a: '', m: '1 porción', g: '', eq: {}, ...(initial || {}) }));
+  const save = () => {
+    if (!f.n.trim()) { alert('Escribe el nombre del alimento'); return; }
+    if (!Object.keys(f.eq).length && !window.confirm('No asignaste equivalentes (se contará como alimento libre). ¿Guardar así?')) return;
+    const base = parseMedida(f.m || '1 porción');
+    if (num(f.g) > 0) base.g = num(f.g);
+    onSave({ id: f.id || 'c-' + uid(), n: f.n.trim(), a: f.a.split(',').map((x) => x.trim()).filter(Boolean), m: f.m.trim() || '1 porción', gtxt: f.g, eq: f.eq, ...base, custom: true });
+  };
+  return (
+    <div className="space-y-2.5">
+      <Field label="Nombre del alimento o platillo"><input value={f.n} onChange={(e) => setF({ ...f, n: e.target.value })} className={inputCls} placeholder="Ej. Horchata de arroz" /></Field>
+      <Field label="Otros nombres (opcional, separados por coma)"><input value={f.a} onChange={(e) => setF({ ...f, a: e.target.value })} className={inputCls} placeholder="Ej. agua de horchata" /></Field>
+      <div className="grid grid-cols-2 gap-2">
+        <Field label="Medida casera (1 porción)"><input value={f.m} onChange={(e) => setF({ ...f, m: e.target.value })} className={inputCls} placeholder="1 vaso, ½ taza, 1 pieza" /></Field>
+        <Field label="Gramos (opcional)"><input inputMode="decimal" value={f.g} onChange={(e) => setF({ ...f, g: e.target.value })} className={inputCls} placeholder="g" /></Field>
+      </div>
+      <div>
+        <span className="block text-sm font-semibold text-gray-600 mb-1">Equivalentes que aporta esa porción</span>
+        <EqEditor eq={f.eq} onChange={(eq) => setF({ ...f, eq })} />
+        <p className="text-xs text-gray-500 mt-1">≈ {eqKcal(f.eq)} kcal por porción.</p>
+      </div>
+      <div className="grid grid-cols-2 gap-2">
+        {onCancel ? <button onClick={onCancel} className="min-h-[48px] rounded-xl bg-gray-100 text-gray-700 font-bold btn-press">Cancelar</button> : <span />}
+        <button onClick={save} className="min-h-[48px] rounded-xl bg-emerald-600 text-white font-bold btn-press flex items-center justify-center gap-1.5"><Icon name="Save" size={18} /> Guardar</button>
+      </div>
+    </div>
+  );
+}
+
+/* ---------- Crear / editar receta propia ---------- */
+function RecipeForm({ initial, onSave, onCancel, lex }) {
+  const [f, setF] = useState(() => initial && initial.id
+    ? { ...initial, ingT: (initial.ing || []).join('\n'), pasosT: (initial.pasos || []).join('\n') }
+    : { n: '', cats: ['Comida'], t: '', ingT: '', pasosT: '', eq: {} });
+  const toggleCat = (c) => setF({ ...f, cats: f.cats.includes(c) ? f.cats.filter((x) => x !== c) : [...f.cats, c] });
+  const auto = () => {
+    const p = parseMeal(f.ingT.split('\n').join(', '), lex);
+    if (!p.items.length) { alert('No reconocí ingredientes. Escribe uno por línea con su medida, ej. "2 tortillas de maíz".'); return; }
+    setF({ ...f, eq: p.eq });
+  };
+  const save = () => {
+    if (!f.n.trim()) { alert('Escribe el título de la receta'); return; }
+    const lines = (s) => s.split('\n').map((x) => x.trim()).filter(Boolean);
+    onSave({ id: f.id || 'c-' + uid(), n: f.n.trim(), cats: f.cats.length ? f.cats : ['Comida'], t: f.t.trim() || '—', ing: lines(f.ingT), pasos: lines(f.pasosT), eq: f.eq, custom: true });
+  };
+  return (
+    <div className="space-y-3">
+      <Field label="Título"><input value={f.n} onChange={(e) => setF({ ...f, n: e.target.value })} className={inputCls} placeholder="Ej. Tacos de chaya con huevo" /></Field>
+      <div>
+        <span className="block text-sm font-semibold text-gray-600 mb-1">Tiempo de comida</span>
+        <div className="flex flex-wrap gap-1.5">
+          {['Desayuno', 'Comida', 'Cena', 'Snack'].map((c) => (<button key={c} onClick={() => toggleCat(c)} className={cls('min-h-[40px] px-3.5 rounded-full text-sm font-semibold btn-press', f.cats.includes(c) ? 'bg-emerald-600 text-white' : 'bg-emerald-50 text-emerald-800')}>{c}</button>))}
+        </div>
+      </div>
+      <Field label="Tiempo de preparación (opcional)"><input value={f.t} onChange={(e) => setF({ ...f, t: e.target.value })} className={inputCls} placeholder="Ej. 20 min" /></Field>
+      <Field label="Ingredientes (uno por línea, con medida casera)"><textarea rows={4} value={f.ingT} onChange={(e) => setF({ ...f, ingT: e.target.value })} className={cls(inputCls, 'py-2')} placeholder={'2 tortillas de maíz\n1 taza de chaya cocida\n1 huevo'} /></Field>
+      <Field label="Pasos (uno por línea)"><textarea rows={3} value={f.pasosT} onChange={(e) => setF({ ...f, pasosT: e.target.value })} className={cls(inputCls, 'py-2')} placeholder={'Cuece la chaya...\nRevuelve con el huevo...'} /></Field>
+      <div>
+        <div className="flex items-center justify-between mb-1">
+          <span className="text-sm font-semibold text-gray-600">Equivalentes que aporta</span>
+          <button onClick={auto} className="text-xs font-bold text-emerald-700 bg-emerald-50 rounded-full px-3 min-h-[36px] flex items-center gap-1 btn-press"><Icon name="Wand2" size={14} /> Calcular con NutriBot</button>
+        </div>
+        <EqEditor eq={f.eq} onChange={(eq) => setF({ ...f, eq })} />
+        <p className="text-xs text-gray-500 mt-1">≈ {eqKcal(f.eq)} kcal.</p>
+      </div>
+      <div className="grid grid-cols-2 gap-2">
+        <button onClick={onCancel} className="min-h-[52px] rounded-xl bg-gray-100 text-gray-700 font-bold btn-press">Cancelar</button>
+        <button onClick={save} className="min-h-[52px] rounded-xl bg-emerald-600 text-white font-bold btn-press flex items-center justify-center gap-1.5"><Icon name="Save" size={18} /> Guardar receta</button>
+      </div>
+    </div>
+  );
+}
+
+/* ---------- Tarjeta de receta (pestaña Recetas y NutriBot) ---------- */
+function RecipeCard({ r, fl, open, onToggle, onAdd, onEdit, onDelete, extra }) {
+  const kcal = Math.round(sumKey(r.eq, 'kcal'));
+  return (
+    <div className={cls('bg-white rounded-2xl border shadow-sm overflow-hidden', fl && fl.alerg.length ? 'border-red-300 dark:border-red-500/50' : 'border-emerald-100')}>
+      <button onClick={onToggle} className="w-full p-3.5 text-left min-h-[64px]">
+        <div className="flex items-start gap-2">
+          <div className="flex-1">
+            <div className="font-bold leading-tight">{r.n}</div>
+            <div className="flex flex-wrap gap-1 mt-1.5">
+              {r.custom && <span className="text-[10px] font-bold uppercase bg-violet-100 text-violet-700 dark:bg-violet-500/20 dark:text-violet-300 rounded-full px-2 py-0.5">Mía</span>}
+              {r.gen && <span className="text-[10px] font-bold uppercase bg-violet-100 text-violet-700 dark:bg-violet-500/20 dark:text-violet-300 rounded-full px-2 py-0.5">✨ Sugerida</span>}
+              {(r.cats || []).map((c) => (<span key={c} className="text-[10px] font-bold uppercase bg-emerald-100 text-emerald-700 rounded-full px-2 py-0.5">{c}</span>))}
+              <span className="text-[10px] font-semibold bg-gray-100 text-gray-600 rounded-full px-2 py-0.5 flex items-center gap-1"><Icon name="Clock" size={10} /> {r.t}</span>
+              <span className="text-[10px] font-semibold bg-orange-100 text-orange-700 rounded-full px-2 py-0.5">≈ {kcal} kcal</span>
+            </div>
+            {extra}
+            <div className="mt-2"><EqChips eq={r.eq} /></div>
+            <FlagBadges fl={fl} />
+          </div>
+          <Icon name="ChevronDown" className={cls('text-gray-400 mt-1 transition-transform', open && 'rotate-180')} />
+        </div>
+      </button>
+      {open && (
+        <div className="px-4 pb-4 text-sm space-y-3">
+          <div><h4 className="font-bold text-emerald-800 mb-1">Ingredientes</h4><ul className="list-disc pl-5 space-y-0.5">{(r.ing || []).map((i, x) => <li key={x}>{i}</li>)}</ul></div>
+          {(r.pasos || []).length > 0 && <div><h4 className="font-bold text-emerald-800 mb-1">Preparación</h4><ol className="list-decimal pl-5 space-y-0.5">{r.pasos.map((p, x) => <li key={x}>{p}</li>)}</ol></div>}
+          {onAdd && <button onClick={onAdd} className="w-full min-h-[48px] rounded-xl bg-emerald-600 text-white font-bold btn-press flex items-center justify-center gap-2"><Icon name="Plus" size={18} /> Registrar en mi día</button>}
+          {r.custom && (onEdit || onDelete) && (
+            <div className="grid grid-cols-2 gap-2">
+              <button onClick={onEdit} className="min-h-[44px] rounded-xl bg-gray-100 text-gray-700 font-semibold btn-press flex items-center justify-center gap-1.5"><Icon name="Pencil" size={16} /> Editar</button>
+              <button onClick={onDelete} className="min-h-[44px] rounded-xl bg-red-50 text-red-600 dark:bg-red-500/10 dark:text-red-300 font-semibold btn-press flex items-center justify-center gap-1.5"><Icon name="Trash2" size={16} /> Eliminar</button>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* =====================================================================
+   NUTRIBOT · PANEL DE CHAT
+   ===================================================================== */
+function useViewport() {
+  const get = () => { const v = window.visualViewport; return v ? { top: v.offsetTop, height: v.height } : { top: 0, height: window.innerHeight }; };
+  const [vp, setVp] = useState(get);
+  useEffect(() => {
+    const v = window.visualViewport; const upd = () => setVp(get());
+    if (v) { v.addEventListener('resize', upd); v.addEventListener('scroll', upd); }
+    window.addEventListener('resize', upd);
+    return () => { if (v) { v.removeEventListener('resize', upd); v.removeEventListener('scroll', upd); } window.removeEventListener('resize', upd); };
+  }, []);
+  return vp;
+}
+const BOT_CHIPS = ['¿Qué me falta comer hoy?', '¿Qué puedo cenar con lo que me queda?', 'Tengo ingredientes en el refri...', '+ Enseñar alimento nuevo'];
+function BotText({ text }) {
+  return (
+    <div className="whitespace-pre-line leading-snug">
+      {String(text).split('\n').map((line, i) => (
+        <div key={i} className={line === '' ? 'h-2' : ''}>{line.split(/(\*\*[^*]+\*\*|\*[^*]+\*)/).map((p, j) => p.startsWith('**') ? <b key={j}>{p.slice(2, -2)}</b> : p.startsWith('*') && p.length > 2 ? <i key={j}>{p.slice(1, -1)}</i> : <span key={j}>{p}</span>)}</div>
+      ))}
+    </div>
+  );
+}
+function MealCardMsg({ m, api }) {
+  const d = m.data;
+  const [meal, setMeal] = useState(d.meal || defaultMeal());
+  const [ask, setAsk] = useState(false);
+  const profile = api.state.profile;
+  const kcal = eqKcal(d.eq);
+  const warn = { alerg: [], disg: [] };
+  d.items.forEach((it) => { const f = api.lex.foods.find((x) => x.id === it.fid); if (!f) return; const fl = flagsFor(foodText(f), profile, api.lex); fl.alerg.forEach((a) => { if (!warn.alerg.includes(a)) warn.alerg.push(a); }); fl.disg.forEach((a) => { if (!warn.disg.includes(a)) warn.disg.push(a); }); });
+  return (
+    <div className="space-y-2">
+      <div className="font-bold text-emerald-800 flex items-center gap-1.5"><Icon name="Utensils" size={16} /> Esto entendí:</div>
+      <ul className="space-y-1">
+        {d.items.map((it, i) => { const f = api.lex.foods.find((x) => x.id === it.fid) || { n: it.n, m: '', eq: {} }; return (
+          <li key={i} className="text-sm flex gap-2"><span className="text-emerald-600">●</span><span><b>{f.n}</b>{f.water ? ` · ${fmtEq(it.m)} vaso(s)` : ` · ${fmtEq(it.m)} porción${it.m === 1 ? '' : 'es'}`}<span className="text-gray-500"> ({f.m}{f.dish ? '' : ' c/u'})</span></span></li>
+        ); })}
+      </ul>
+      <EqChips eq={d.eq} />
+      <div className="text-xs text-gray-500">≈ {kcal} kcal{d.water ? ` · 💧 +${d.water} vaso(s) de agua` : ''}</div>
+      <FlagBadges fl={warn} />
+      {d.unknown && d.unknown.length > 0 && (
+        <div className="text-xs bg-amber-50 text-amber-800 rounded-lg p-2">No reconocí: <b>{d.unknown.join(', ')}</b>.{' '}
+          <button className="underline font-bold" onClick={() => api.push([{ type: 'teach', data: { name: d.unknown[0] } }])}>Enséñamelo</button>
+        </div>
+      )}
+      {d.done ? (
+        <div className="text-sm font-bold text-emerald-700 flex items-center gap-1"><Icon name="Check" size={16} /> Registrado en {MEALS.find((x) => x.k === d.done).n}</div>
+      ) : !ask ? (
+        <button onClick={() => setAsk(true)} className="w-full min-h-[48px] rounded-xl bg-emerald-600 text-white font-bold btn-press">➕ Descontar estas porciones de hoy</button>
+      ) : (
+        <div className="space-y-2">
+          <div className="text-xs font-semibold text-gray-600">¿En qué tiempo de comida?</div>
+          <MealChips value={meal} onChange={setMeal} />
+          <button onClick={() => { api.register(d.eq, meal, d.water); api.update(m.id, { done: meal }); api.push([{ type: 'text', text: `✅ Listo, descontado de tu **${MEALS.find((x) => x.k === meal).n}**. Pregúntame *¿qué me falta comer hoy?* para ver tu saldo.` }]); }}
+            className="w-full min-h-[48px] rounded-xl bg-emerald-600 text-white font-bold btn-press">Confirmar en {MEALS.find((x) => x.k === meal).n}</button>
+        </div>
+      )}
+    </div>
+  );
+}
+function LookupMsg({ m, api }) {
+  const f = api.lex.foods.find((x) => x.id === m.data.fid);
+  if (!f) return <span>Alimento no disponible.</span>;
+  const fl = flagsFor(foodText(f), api.state.profile, api.lex);
+  const mac = eqMacros(f.eq);
+  return (
+    <div className="space-y-1.5">
+      <div className="font-bold text-emerald-800 flex items-center gap-1.5 flex-wrap"><Icon name="Search" size={16} /> {f.n}
+        {f.reg && <span className="text-[10px] font-bold uppercase bg-amber-100 text-amber-800 rounded-full px-2 py-0.5">Regional</span>}
+        {f.custom && <span className="text-[10px] font-bold uppercase bg-violet-100 text-violet-700 rounded-full px-2 py-0.5">Mío</span>}
+      </div>
+      <div className="text-sm"><b>1 porción</b> = {f.m}{f.g && !f.dish ? ` (${f.g} g)` : ''}</div>
+      <EqChips eq={f.eq} />
+      <div className="text-xs text-gray-500">{eqKcal(f.eq)} kcal · P {mac.p} g · HC {mac.c} g · L {mac.l} g{f.dish ? ' · valores aproximados' : ''}</div>
+      <FlagBadges fl={fl} />
+      <button onClick={() => api.push([{ type: 'meal', data: { items: [{ fid: f.id, n: f.n, m: 1 }], eq: { ...f.eq }, water: f.water ? 1 : 0, unknown: [], meal: defaultMeal() } }])} className="mt-1 min-h-[40px] px-3 rounded-xl bg-emerald-50 text-emerald-800 text-sm font-bold btn-press">➕ Registrar 1 porción</button>
+    </div>
+  );
+}
+function RecipesMsg({ m, api }) {
+  const d = m.data;
+  const all = allRecipes(api.state);
+  const list = d.ids.map((id) => all.find((r) => r.id === id)).filter(Boolean);
+  const [open, setOpen] = useState(false);
+  const [meal, setMeal] = useState(d.meal || defaultMeal());
+  if (!list.length) return <span>Sin recetas disponibles.</span>;
+  const r = list[(d.idx || 0) % list.length];
+  const keys = d.have ? recipeKeys(r, api.lex) : [];
+  const missing = keys.filter((k) => !d.have.includes(k));
+  return (
+    <div className="space-y-2">
+      <div className="text-[11px] font-bold text-gray-500 uppercase">Opción {((d.idx || 0) % list.length) + 1} de {list.length}</div>
+      <RecipeCard r={r} fl={flagsFor(recipeText(r), api.state.profile, api.lex)} open={open} onToggle={() => setOpen(!open)}
+        extra={d.have ? <div className={cls('text-xs font-semibold mt-1.5', missing.length ? 'text-amber-700' : 'text-emerald-700')}>{missing.length ? `Te falta: ${missing.map((k) => ING_BY[k].n).join(', ')}` : '✅ Tienes todo lo principal'}</div> : null} />
+      <MealChips value={meal} onChange={setMeal} />
+      <div className="grid grid-cols-2 gap-2">
+        <button onClick={() => { api.update(m.id, { idx: (d.idx || 0) + 1 }); setOpen(false); }} className="min-h-[46px] rounded-xl border-2 border-emerald-600 text-emerald-700 font-bold text-sm btn-press">🔄 Dame otra opción</button>
+        <button onClick={() => { api.register(r.eq, meal, 0); api.push([{ type: 'text', text: `✅ Registré **${r.n}** en tu ${MEALS.find((x) => x.k === meal).n}.` }]); }} className="min-h-[46px] rounded-xl bg-emerald-600 text-white font-bold text-sm btn-press">➕ Registrar</button>
+      </div>
+    </div>
+  );
+}
+function GenMsg({ m, api }) {
+  const g = m.data;
+  const [meal, setMeal] = useState(defaultMeal());
+  return (
+    <div className="space-y-2">
+      <div className="text-sm font-bold text-violet-700 dark:text-violet-300">✨ Platillo sugerido con lo que tienes</div>
+      <RecipeCard r={g} open={true} onToggle={() => {}} />
+      <MealChips value={meal} onChange={setMeal} />
+      <button onClick={() => { api.register(g.eq, meal, 0); api.push([{ type: 'text', text: `✅ Registré **${g.n}** en tu ${MEALS.find((x) => x.k === meal).n}.` }]); }} className="w-full min-h-[46px] rounded-xl bg-emerald-600 text-white font-bold btn-press">➕ Registrar en mi día</button>
+    </div>
+  );
+}
+function TeachMsg({ m, api }) {
+  if (m.data.saved) return <div className="text-sm font-bold text-emerald-700 flex items-center gap-1"><Icon name="Check" size={16} /> Guardado: {m.data.saved}</div>;
+  return (
+    <div>
+      <div className="font-bold text-emerald-800 mb-2 flex items-center gap-1.5"><Icon name="BookOpen" size={16} /> Enseñar alimento nuevo</div>
+      <TeachForm initial={{ n: m.data.name || '' }} onSave={(food) => {
+        api.mutate((n) => { n.custom.foods.unshift(food); });
+        api.update(m.id, { saved: food.n });
+        api.push([{ type: 'text', text: `🎉 ¡Aprendí **${food.n}**! Ya puedes escribir, por ejemplo, *comí 1 ${food.n.toLowerCase()}*.` }]);
+      }} />
+    </div>
+  );
+}
+function NutriBot({ ctx, chat, setChat, onClose, onAvatar }) {
+  const { state, mutate, targets, waterGoal, toast } = ctx;
+  const vp = useViewport();
+  const [input, setInput] = useState('');
+  const listRef = useRef(null);
+  const lex = getLex(state.custom.foods);
+  useEffect(() => { const prev = document.body.style.overflow; document.body.style.overflow = 'hidden'; return () => { document.body.style.overflow = prev; }; }, []);
+  useEffect(() => { if (!chat.msgs.length) setChat((c) => ({ ...c, msgs: [{ id: uid(), from: 'bot', ...welcomeMsg(state) }] })); }, []);
+  useEffect(() => { const el = listRef.current; if (el) setTimeout(() => { el.scrollTop = el.scrollHeight; }, 30); }, [chat.msgs.length, vp.height]);
+  const push = (arr) => setChat((c) => ({ ...c, msgs: [...c.msgs, ...arr.map((x) => ({ id: uid(), from: 'bot', ...x }))] }));
+  const update = (id, patch) => setChat((c) => ({ ...c, msgs: c.msgs.map((x) => (x.id === id ? { ...x, data: { ...x.data, ...patch } } : x)) }));
+  const send = (txt) => {
+    const tx = String(txt == null ? input : txt).trim(); if (!tx) return;
+    setInput('');
+    const r = botReply(tx, { state, targets, waterGoal, lex, pending: chat.pending });
+    setChat((c) => ({ pending: r.pending, msgs: [...c.msgs, { id: uid(), from: 'me', type: 'text', text: tx }, ...r.msgs.map((x) => ({ id: uid(), from: 'bot', ...x }))] }));
+  };
+  const register = (eq, mealK, water) => mutate((n) => {
+    const dk = dateKey();
+    const d = n.logs[dk] || (n.logs[dk] = { portions: {}, water: 0, recall: [] });
+    const mm = d.portions[mealK] || (d.portions[mealK] = {});
+    Object.entries(eq || {}).forEach(([k, v]) => { mm[k] = Math.round(((mm[k] || 0) + v) * 2) / 2; });
+    d.water = (d.water || 0) + (water || 0);
+  });
+  const api = { state, lex, push, update, send, register, mutate, toast };
+  const compact = vp.height < 560;
+  const s = state.settings;
+  const nombre = state.profile.nombre && state.profile.nombre !== 'Ejemplo' ? state.profile.nombre : '';
+  const renderMsg = (x) => {
+    if (x.type === 'meal') return <MealCardMsg m={x} api={api} />;
+    if (x.type === 'lookup') return <LookupMsg m={x} api={api} />;
+    if (x.type === 'recipes') return <RecipesMsg m={x} api={api} />;
+    if (x.type === 'gen') return <GenMsg m={x} api={api} />;
+    if (x.type === 'teach') return <TeachMsg m={x} api={api} />;
+    return <BotText text={x.text} />;
+  };
+  return (
+    <div className="fixed inset-x-0 z-50 flex justify-center bg-black/40" style={{ top: vp.top, height: vp.height }} role="dialog" aria-label="NutriBot">
+      <div className="w-full max-w-md h-full flex flex-col app-bg shadow-2xl sheet">
+        <header className="app-header safe-top bg-gradient-to-br from-emerald-600 to-emerald-500 text-white px-4 pt-3 pb-3 rounded-b-3xl shadow flex items-end gap-3 shrink-0">
+          <button onClick={onAvatar} aria-label="Cambiar avatar" className={cls('shrink-0 btn-press', compact && 'w-12 h-12 rounded-full overflow-hidden bg-emerald-100')}>
+            {compact ? <AvatarFace settings={s} size={48} /> : <AvatarFull settings={s} size={compact ? 48 : 78} />}
+          </button>
+          <div className="flex-1 pb-1">
+            <div className="font-extrabold text-xl leading-tight">NutriBot</div>
+            {!compact && <div className="inline-block mt-1 bg-white text-emerald-800 text-xs font-semibold rounded-2xl rounded-bl-sm px-3 py-1.5 shadow">¡Hola{nombre ? ' ' + nombre : ''}! 👋 ¿Qué comiste hoy?</div>}
+            <div className="text-[11px] text-emerald-100 mt-1 flex items-center gap-1"><Icon name="ShieldCheck" size={12} /> 100 % offline · toca mi figura para cambiarla</div>
+          </div>
+          <button onClick={onClose} className="w-11 h-11 rounded-full bg-white/20 flex items-center justify-center btn-press self-start" aria-label="Cerrar NutriBot"><Icon name="X" /></button>
+        </header>
+        <div ref={listRef} className="flex-1 overflow-y-auto px-3 py-3 space-y-2.5" style={{ overscrollBehavior: 'contain' }}>
+          {chat.msgs.map((x) => (
+            <div key={x.id} className={cls('flex', x.from === 'me' ? 'justify-end' : 'justify-start')}>
+              <div className={cls('max-w-[88%] rounded-2xl px-3.5 py-2.5 text-sm shadow-sm', x.from === 'me' ? 'bg-emerald-600 text-white rounded-br-sm' : cls('bg-white border border-emerald-100 rounded-bl-sm', x.type !== 'text' && 'w-full max-w-full'))}>
+                {x.from === 'me' ? x.text : renderMsg(x)}
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="shrink-0 bg-white border-t border-emerald-100 safe-bottom">
+          <div className="flex gap-1.5 overflow-x-auto px-3 pt-2 pb-1">
+            {BOT_CHIPS.map((c) => (<button key={c} onClick={() => send(c)} className="shrink-0 min-h-[36px] px-3 rounded-full bg-emerald-50 text-emerald-800 text-xs font-bold btn-press">{c}</button>))}
+          </div>
+          <form onSubmit={(e) => { e.preventDefault(); send(); }} className="flex gap-2 px-3 pb-3 pt-1">
+            <input value={input} onChange={(e) => setInput(e.target.value)} placeholder="Ej. 2 panuchos y 1 taza de papaya" className={cls(inputCls, 'rounded-full px-4')} enterKeyHint="send" autoComplete="off"
+              onFocus={() => setTimeout(() => { const el = listRef.current; if (el) el.scrollTop = el.scrollHeight; }, 300)} aria-label="Mensaje para NutriBot" />
+            <button type="submit" className="w-12 h-12 shrink-0 rounded-full bg-emerald-600 text-white flex items-center justify-center btn-press" aria-label="Enviar"><Icon name="Send" size={20} /></button>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* =====================================================================
+   TARJETAS NUEVAS DE PERFIL
+   ===================================================================== */
+const THEMES = [{ v: 'light', t: 'Claro (Original)', icon: 'Sun' }, { v: 'dark', t: 'Oscuro', icon: 'Moon' }, { v: 'system', t: 'Sistema', icon: 'Monitor' }];
+function applyTheme(mode) {
+  const dark = mode === 'dark' || (mode === 'system' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  document.documentElement.classList.toggle('dark', !!dark);
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if (meta) meta.setAttribute('content', dark ? '#064e3b' : '#059669');
+  try { localStorage.setItem('minutriapp_theme', mode); } catch (e) { /* privado */ }
+}
+function ThemeCard({ ctx }) {
+  const { state, mutate } = ctx;
+  return (
+    <Card>
+      <h2 className="font-bold text-emerald-900 mb-1 flex items-center gap-2"><Icon name="Palette" size={18} /> Tema visual</h2>
+      <p className="text-xs text-gray-500 mb-2">“Sistema” sigue el modo claro/oscuro de tu teléfono.</p>
+      <div className="grid grid-cols-3 gap-1.5">
+        {THEMES.map((th) => (
+          <button key={th.v} onClick={() => mutate((n) => { n.settings.theme = th.v; })} className={cls('min-h-[64px] rounded-xl flex flex-col items-center justify-center gap-1 text-xs font-bold btn-press border-2', state.settings.theme === th.v ? 'border-emerald-600 bg-emerald-50 text-emerald-800' : 'border-transparent bg-gray-50 text-gray-600')}>
+            <Icon name={th.icon} size={20} /> {th.t}
+          </button>
+        ))}
+      </div>
+    </Card>
+  );
+}
+function AllergyCard({ ctx }) {
+  const { state, mutate } = ctx;
+  const p = state.profile;
+  return (
+    <Card>
+      <h2 className="font-bold text-emerald-900 mb-1 flex items-center gap-2"><Icon name="ShieldAlert" size={18} /> Alergias y gustos</h2>
+      <p className="text-xs text-gray-500 mb-3">Las recetas y el NutriBot te avisan o evitan estos alimentos automáticamente.</p>
+      <div className="rounded-xl border border-red-200 dark:border-red-500/30 p-3 mb-3">
+        <div className="text-sm font-bold text-red-700 dark:text-red-300 mb-2">⚠️ Alergias / intolerancias</div>
+        <TagInput tone="red" tags={p.alergias} onChange={(v) => mutate((n) => { n.profile.alergias = v; })} placeholder="Ej. camarón, lácteos" suggestions={ALLERGY_SUGGEST} />
+      </div>
+      <div className="rounded-xl border border-amber-200 p-3">
+        <div className="text-sm font-bold text-amber-700 mb-2">👎 Alimentos que no me agradan</div>
+        <TagInput tone="amber" tags={p.disgustos} onChange={(v) => mutate((n) => { n.profile.disgustos = v; })} placeholder="Ej. hígado, brócoli" suggestions={DISLIKE_SUGGEST} />
+      </div>
+      <p className="text-[11px] text-gray-400 mt-2">Grupos reconocidos: mariscos, lácteos, gluten, huevo, pescado, frutos secos, cacahuate, cerdo, picante.</p>
+    </Card>
+  );
+}
+function AvatarCard({ ctx }) {
+  const s = ctx.state.settings;
+  const cur = s.avatar === 'foto' ? 'Mi foto' : (AVATARS.find((a) => a.k === s.avatar) || AVATARS[0]).n;
+  return (
+    <Card>
+      <div className="flex items-center gap-3 mb-3">
+        <div className="shrink-0"><AvatarFull settings={s} size={64} /></div>
+        <div className="flex-1">
+          <h2 className="font-bold text-emerald-900 flex items-center gap-2"><Icon name="Bot" size={18} /> Mi NutriBot</h2>
+          <p className="text-xs text-gray-500">Figura actual: <b>{cur}</b>. Elige una mascota o sube tu foto.</p>
+          <button onClick={ctx.openBot} className="mt-1.5 min-h-[40px] px-3 rounded-xl bg-emerald-600 text-white text-sm font-bold btn-press flex items-center gap-1.5"><Icon name="MessageSquare" size={16} /> Abrir chat</button>
+        </div>
+      </div>
+      <AvatarPicker ctx={ctx} />
+    </Card>
+  );
+}
+function CustomFoodsCard({ ctx }) {
+  const { state, mutate, toast } = ctx;
+  const [open, setOpen] = useState(false);
+  const foods = state.custom.foods;
+  return (
+    <Card>
+      <h2 className="font-bold text-emerald-900 mb-1 flex items-center gap-2"><Icon name="BookOpen" size={18} /> Mis alimentos personalizados</h2>
+      <p className="text-xs text-gray-500 mb-2">Lo que le enseñas al NutriBot. Se guarda en el teléfono y en tu respaldo .json.</p>
+      {foods.length === 0 && <p className="text-sm text-gray-400 mb-2">Todavía no hay alimentos personalizados.</p>}
+      <ul className="divide-y divide-gray-100">
+        {foods.map((f) => (
+          <li key={f.id} className="py-2 flex items-start gap-2">
+            <div className="flex-1">
+              <div className="text-sm font-bold">{f.n} <span className="font-normal text-gray-500">· {f.m}</span></div>
+              <div className="mt-1"><EqChips eq={f.eq} small /></div>
+            </div>
+            <button onClick={() => { if (window.confirm(`¿Olvidar "${f.n}"?`)) { mutate((n) => { n.custom.foods = n.custom.foods.filter((x) => x.id !== f.id); }); toast('Alimento eliminado'); } }} className="w-10 h-10 rounded-full flex items-center justify-center text-red-400" aria-label={`Eliminar ${f.n}`}><Icon name="Trash2" size={18} /></button>
+          </li>
+        ))}
+      </ul>
+      <button onClick={() => setOpen(true)} className="mt-2 w-full min-h-[48px] rounded-xl border-2 border-emerald-600 text-emerald-700 font-bold btn-press flex items-center justify-center gap-2"><Icon name="Plus" size={18} /> Enseñar alimento nuevo</button>
+      {open && (
+        <Modal title="Enseñar alimento nuevo" onClose={() => setOpen(false)}>
+          <TeachForm onCancel={() => setOpen(false)} onSave={(food) => { mutate((n) => { n.custom.foods.unshift(food); }); setOpen(false); toast(`NutriBot aprendió: ${food.n} ✓`); }} />
+        </Modal>
+      )}
+    </Card>
+  );
+}
+
 /* ---------------------------------------------------------------------
    Guía de bolsillo
    --------------------------------------------------------------------- */
@@ -644,7 +1961,7 @@ function GuideModal({ focus, onClose }) {
       <div className="space-y-2">
         {GROUPS.map((g) => (
           <div key={g.k} ref={(el) => (refs.current[g.k] = el)} className="rounded-2xl border border-gray-100 overflow-hidden">
-            <button onClick={() => setOpen(open === g.k ? null : g.k)} className="w-full flex items-center gap-3 p-3 min-h-[56px] text-left" style={{ background: open === g.k ? g.color + '14' : '#fff' }}>
+            <button onClick={() => setOpen(open === g.k ? null : g.k)} className="w-full flex items-center gap-3 p-3 min-h-[56px] text-left" style={{ background: open === g.k ? g.color + '1f' : 'transparent' }}>
               <span className="w-9 h-9 rounded-xl flex items-center justify-center text-white shrink-0" style={{ background: g.color }}><Icon name={g.icon} size={18} /></span>
               <span className="flex-1">
                 <span className="block font-bold text-sm">{g.name}</span>
@@ -949,101 +2266,179 @@ function RecallScreen({ ctx }) {
    --------------------------------------------------------------------- */
 function RecipesScreen({ ctx }) {
   const { state, mutate, targets, date, toast } = ctx;
+  const [mode, setMode] = useState('eq');
   const [sel, setSel] = useState(Object.fromEntries(ARM.map((a) => [a.k, 0])));
   const [cat, setCat] = useState('Todas');
   const [openId, setOpenId] = useState(null);
   const [adding, setAdding] = useState(null);
+  const [form, setForm] = useState(null);
+  const [have, setHave] = useState([]);
+  const [ingText, setIngText] = useState('');
+  const [rot, setRot] = useState(0);
+  const lex = getLex(state.custom.foods);
+  const profile = state.profile;
+  const hide = !!state.settings.hideUnwanted;
   const day = state.logs[date] || { portions: {} };
   const totals = useMemo(() => dayTotals(day), [day]);
+  const rem = useMemo(() => { const r = {}; KEYS.forEach((k) => { r[k] = (targets[k] || 0) - (totals[k] || 0); }); return r; }, [targets, totals]);
+  const remArm = useMemo(() => remArmOf(rem), [rem]);
+  const all = allRecipes(state).map((r) => ({ r, fl: flagsFor(recipeText(r), profile, lex) }));
+  const clean = (x) => !x.fl.alerg.length && !x.fl.disg.length;
+  const visible = all.filter((x) => (cat === 'Todas' || (x.r.cats || []).includes(cat)) && (!hide || clean(x)));
+  const hasTags = (profile.alergias || []).length + (profile.disgustos || []).length > 0;
   const setS = (k, d) => setSel((s) => ({ ...s, [k]: Math.max(0, s[k] + d) }));
-  const useRemaining = () => {
-    const out = {};
-    ARM.forEach((a) => { out[a.k] = Math.max(0, Math.round(a.map.reduce((s, m) => s + (targets[m] || 0) - totals[m], 0))); });
-    setSel(out);
-  };
   const any = ARM.some((a) => sel[a.k] > 0);
-  const list = RECIPES.filter((r) => cat === 'Todas' || r.cats.includes(cat)).map((r) => {
-    const a = armEq(r.eq);
-    const over = ARM.reduce((s, x) => s + Math.max(0, a[x.k] - sel[x.k]), 0);
-    return { r, a, over };
+  const scored = visible.map((x) => {
+    const a = armEq(x.r.eq);
+    return { ...x, over: ARM.reduce((s, y) => s + Math.max(0, a[y.k] - sel[y.k]), 0) };
   });
-  const fits = any ? list.filter((x) => x.over === 0) : list;
-  const near = any ? list.filter((x) => x.over > 0 && x.over <= 1) : [];
+  const fits = any ? scored.filter((x) => x.over === 0) : scored;
+  const near = any ? scored.filter((x) => x.over > 0 && x.over <= 1) : [];
   const addToDay = (recipe, mealKey) => {
     mutate((n) => {
       const d = n.logs[date] || (n.logs[date] = { portions: {}, water: 0, recall: [] });
       const m = d.portions[mealKey] || (d.portions[mealKey] = {});
-      Object.entries(recipe.eq).forEach(([k, v]) => { m[k] = (m[k] || 0) + v; });
+      Object.entries(recipe.eq).forEach(([k, v]) => { m[k] = Math.round(((m[k] || 0) + v) * 2) / 2; });
     });
     setAdding(null); toast('Porciones registradas ✓');
   };
-  const RecipeCard = ({ r, a, over }) => {
-    const isOpen = openId === r.id;
-    const kcal = Math.round(sumKey(r.eq, 'kcal'));
-    return (
-      <div className="bg-white rounded-2xl border border-emerald-100 shadow-sm overflow-hidden">
-        <button onClick={() => setOpenId(isOpen ? null : r.id)} className="w-full p-3.5 text-left min-h-[64px]">
-          <div className="flex items-start gap-2">
-            <div className="flex-1">
-              <div className="font-bold leading-tight">{r.n}</div>
-              <div className="flex flex-wrap gap-1 mt-1.5">
-                {r.cats.map((c) => (<span key={c} className="text-[10px] font-bold uppercase bg-emerald-100 text-emerald-700 rounded-full px-2 py-0.5">{c}</span>))}
-                <span className="text-[10px] font-semibold bg-gray-100 text-gray-600 rounded-full px-2 py-0.5 flex items-center gap-1"><Icon name="Clock" size={10} /> {r.t}</span>
-                <span className="text-[10px] font-semibold bg-orange-100 text-orange-700 rounded-full px-2 py-0.5">≈ {kcal} kcal</span>
-                {over > 0 && <span className="text-[10px] font-semibold bg-amber-100 text-amber-700 rounded-full px-2 py-0.5">Casi cabe (+{over})</span>}
-              </div>
-              <div className="flex flex-wrap gap-1 mt-2">
-                {Object.entries(r.eq).map(([k, v]) => (<span key={k} className="text-[11px] font-bold rounded-md px-1.5 py-0.5 text-white" style={{ background: G[k].color }}>{fmtEq(v)} {G[k].short}</span>))}
-              </div>
-            </div>
-            <Icon name="ChevronDown" className={cls('text-gray-400 mt-1 transition-transform', isOpen && 'rotate-180')} />
-          </div>
-        </button>
-        {isOpen && (
-          <div className="px-4 pb-4 text-sm space-y-3">
-            <div><h4 className="font-bold text-emerald-800 mb-1">Ingredientes</h4><ul className="list-disc pl-5 space-y-0.5">{r.ing.map((i, x) => <li key={x}>{i}</li>)}</ul></div>
-            <div><h4 className="font-bold text-emerald-800 mb-1">Preparación</h4><ol className="list-decimal pl-5 space-y-0.5">{r.pasos.map((p, x) => <li key={x}>{p}</li>)}</ol></div>
-            <button onClick={() => setAdding(r)} className="w-full min-h-[48px] rounded-xl bg-emerald-600 text-white font-bold btn-press flex items-center justify-center gap-2"><Icon name="Plus" size={18} /> Registrar en mi día</button>
-          </div>
-        )}
-      </div>
-    );
+  const saveRecipe = (r) => {
+    mutate((n) => { const i = n.custom.recipes.findIndex((x) => x.id === r.id); if (i >= 0) n.custom.recipes[i] = r; else n.custom.recipes.unshift(r); });
+    setForm(null); setOpenId(r.id); toast('Receta guardada ✓');
   };
+  const delRecipe = (r) => { if (window.confirm(`¿Eliminar la receta "${r.n}"?`)) { mutate((n) => { n.custom.recipes = n.custom.recipes.filter((x) => x.id !== r.id); }); toast('Receta eliminada'); } };
+  const card = (x, extra) => (
+    <RecipeCard key={x.r.id} r={x.r} fl={x.fl} extra={extra} open={openId === x.r.id} onToggle={() => setOpenId(openId === x.r.id ? null : x.r.id)}
+      onAdd={() => setAdding(x.r)} onEdit={() => setForm(x.r)} onDelete={() => delRecipe(x.r)} />
+  );
+  /* ---- Modo refri ---- */
+  const toggleIng = (k) => { setHave((h) => (h.includes(k) ? h.filter((x) => x !== k) : [...h, k])); setRot(0); };
+  const addTyped = () => {
+    const keys = ingKeysIn(ingText, lex);
+    if (!keys.length) { toast('No reconocí ingredientes; prueba "pollo, tortillas"'); return; }
+    setHave((h) => [...h, ...keys.filter((k) => !h.includes(k))]); setIngText(''); setRot(0);
+  };
+  const ingFlag = (k) => flagsFor(ING_BY[k].n + ', ' + ING_BY[k].a.join(', '), profile, lex);
+  const haveOk = have.filter((k) => !ingFlag(k).alerg.length);
+  const ranked = useMemo(() => rankByIngredients(haveOk, all.filter(clean).map((x) => x.r), remArm, lex), [haveOk.join(), state.custom.recipes, remArm, profile.alergias, profile.disgustos]);
+  const rankedAll = rankByIngredients(haveOk, visible.map((x) => x.r), remArm, lex);
+  const pool = ranked.filter((x) => x.fits).length ? ranked.filter((x) => x.fits) : ranked;
+  const featured = pool.length ? pool[rot % pool.length] : null;
+  const exact = ranked.some((x) => x.missing.length === 0);
+  const gen = useMemo(() => (haveOk.length && !exact ? genPlate(haveOk, remArm, lex) : null), [haveOk.join(), exact, remArm]);
+  const missingLine = (x) => (
+    <div className={cls('text-xs font-semibold mt-1.5', x.missing.length ? 'text-amber-700' : 'text-emerald-700')}>
+      {x.missing.length ? `Te falta: ${x.missing.map((k) => ING_BY[k].n).join(', ')}` : '✅ Tienes todo lo principal'}{x.fits ? ' · cabe en tus equivalentes de hoy' : ''}
+    </div>
+  );
+  const flOf = (r) => flagsFor(recipeText(r), profile, lex);
   return (
     <div>
-      <ScreenHeader title="Armador de recetas" subtitle="Elige tus equivalentes y mira qué puedes cocinar" />
+      <ScreenHeader title="Recetas" subtitle="Por equivalentes o con lo que tienes en casa" />
       <div className="px-4 py-4 space-y-4">
-        <Card>
-          <div className="flex items-center justify-between mb-2">
-            <h2 className="font-bold text-emerald-900">Equivalentes disponibles</h2>
-            <button onClick={() => setSel(Object.fromEntries(ARM.map((a) => [a.k, 0])))} className="text-xs font-semibold text-gray-500 min-h-[44px] px-2">Limpiar</button>
-          </div>
-          <div className="grid grid-cols-2 gap-x-3 gap-y-2.5">
-            {ARM.map((a) => {
-              const col = G[a.map[0]].color;
-              return (
-                <div key={a.k} className="rounded-xl bg-gray-50 p-2">
-                  <div className="text-xs font-bold mb-1" style={{ color: col }}>{a.name}</div>
-                  <Stepper value={sel[a.k]} color={col} small onDec={() => setS(a.k, -1)} onInc={() => setS(a.k, 1)} />
-                </div>
-              );
-            })}
-          </div>
-          <button onClick={useRemaining} className="mt-3 w-full min-h-[48px] rounded-xl border-2 border-emerald-600 text-emerald-700 font-bold btn-press flex items-center justify-center gap-2"><Icon name="Sparkles" size={18} /> Usar lo que me queda hoy</button>
-        </Card>
+        <button onClick={() => setForm({})} className="w-full min-h-[52px] rounded-2xl bg-white border-2 border-dashed border-emerald-300 text-emerald-700 font-bold btn-press flex items-center justify-center gap-2"><Icon name="Plus" size={18} /> Crear mi propia receta</button>
+        <Segmented value={mode} onChange={setMode} options={[{ v: 'eq', t: 'Por equivalentes' }, { v: 'refri', t: '🧊 Mi refri / alacena' }]} />
+
+        {mode === 'eq' && (
+          <Card>
+            <div className="flex items-center justify-between mb-2">
+              <h2 className="font-bold text-emerald-900">Equivalentes disponibles</h2>
+              <button onClick={() => setSel(Object.fromEntries(ARM.map((a) => [a.k, 0])))} className="text-xs font-semibold text-gray-500 min-h-[44px] px-2">Limpiar</button>
+            </div>
+            <div className="grid grid-cols-2 gap-x-3 gap-y-2.5">
+              {ARM.map((a) => {
+                const col = G[a.map[0]].color;
+                return (
+                  <div key={a.k} className="rounded-xl bg-gray-50 p-2">
+                    <div className="text-xs font-bold mb-1" style={{ color: col }}>{a.name}</div>
+                    <Stepper value={sel[a.k]} color={col} small onDec={() => setS(a.k, -1)} onInc={() => setS(a.k, 1)} />
+                  </div>
+                );
+              })}
+            </div>
+            <button onClick={() => setSel(Object.fromEntries(ARM.map((a) => [a.k, Math.floor(remArm[a.k])])))} className="mt-3 w-full min-h-[48px] rounded-xl border-2 border-emerald-600 text-emerald-700 font-bold btn-press flex items-center justify-center gap-2"><Icon name="Sparkles" size={18} /> Usar lo que me queda hoy</button>
+          </Card>
+        )}
+
+        {mode === 'refri' && (
+          <Card>
+            <h2 className="font-bold text-emerald-900 mb-1 flex items-center gap-2"><Icon name="Refrigerator" size={18} /> ¿Qué tengo en mi refri / alacena?</h2>
+            <p className="text-xs text-gray-500 mb-2">Escribe o marca lo que tienes. Sal, limón, cebolla, chile y aceite se dan por hecho.</p>
+            <div className="flex gap-2">
+              <input value={ingText} onChange={(e) => setIngText(e.target.value)} onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); addTyped(); } }} placeholder="Ej. pollo, tortillas, calabacita" className={inputCls} enterKeyHint="done" />
+              <button onClick={addTyped} className="min-w-[52px] rounded-xl bg-emerald-600 text-white btn-press flex items-center justify-center" aria-label="Agregar ingredientes"><Icon name="Plus" /></button>
+            </div>
+            <div className="flex flex-wrap gap-1.5 mt-3">
+              {[...have.filter((k) => !COMMON_INGS.includes(k)), ...COMMON_INGS].map((k) => {
+                const on = have.includes(k); const bad = ingFlag(k).alerg.length > 0;
+                return (
+                  <button key={k} onClick={() => toggleIng(k)} aria-pressed={on}
+                    className={cls('min-h-[38px] px-3 rounded-full text-sm font-semibold btn-press border', on ? (bad ? 'bg-red-500 text-white border-red-500' : 'bg-emerald-600 text-white border-emerald-600') : 'bg-white text-gray-700 border-emerald-200')}>
+                    {on ? '✓ ' : ''}{bad ? '⚠️ ' : ''}{ING_BY[k].n}
+                  </button>
+                );
+              })}
+            </div>
+            {have.length > 0 && <button onClick={() => { setHave([]); setRot(0); }} className="mt-2 text-xs font-semibold text-gray-500 min-h-[36px]">Limpiar ingredientes</button>}
+            {have.some((k) => ingFlag(k).alerg.length) && <p className="text-xs text-red-600 dark:text-red-300 mt-1">⚠️ Marcaste un ingrediente de tus alergias; no se usará en las sugerencias.</p>}
+          </Card>
+        )}
+
+        {hasTags && (
+          <label className="flex items-center gap-3 bg-white rounded-2xl border border-emerald-100 px-4 py-3 min-h-[56px]">
+            <input type="checkbox" checked={hide} onChange={(e) => mutate((n) => { n.settings.hideUnwanted = e.target.checked; })} className="w-5 h-5 accent-emerald-600" />
+            <span className="text-sm font-semibold flex-1">Ocultar recetas con alergias o alimentos que no me gustan</span>
+            <Icon name={hide ? 'EyeOff' : 'Eye'} size={18} className="text-gray-400" />
+          </label>
+        )}
+
         <div className="flex gap-1.5 overflow-x-auto pb-1">
           {['Todas', 'Desayuno', 'Comida', 'Cena', 'Snack'].map((c) => (
             <button key={c} onClick={() => setCat(c)} className={cls('shrink-0 min-h-[44px] px-4 rounded-full text-sm font-semibold btn-press', cat === c ? 'bg-emerald-600 text-white' : 'bg-white border border-emerald-200 text-emerald-800')}>{c}</button>
           ))}
         </div>
-        <p className="text-sm text-gray-500 px-1">{any ? `${fits.length} receta${fits.length === 1 ? '' : 's'} caben en tus equivalentes` : 'Elige equivalentes arriba para filtrar. Mostrando todas las recetas.'}</p>
-        <div className="space-y-2.5">{fits.map((x) => <RecipeCard key={x.r.id} {...x} />)}</div>
-        {any && fits.length === 0 && <p className="text-center text-sm text-gray-400 py-3">Ninguna receta cabe exactamente. Sube un equivalente o revisa las que “casi caben”.</p>}
-        {near.length > 0 && (
-          <div>
-            <h3 className="font-bold text-amber-700 text-sm px-1 mb-2">Casi caben (te falta 1 equivalente)</h3>
-            <div className="space-y-2.5">{near.map((x) => <RecipeCard key={x.r.id} {...x} />)}</div>
-          </div>
+
+        {mode === 'eq' && (
+          <>
+            <p className="text-sm text-gray-500 px-1">{any ? `${fits.length} receta${fits.length === 1 ? '' : 's'} caben en tus equivalentes` : 'Elige equivalentes arriba para filtrar. Mostrando todas las recetas.'}</p>
+            <div className="space-y-2.5">{fits.map((x) => card(x))}</div>
+            {any && fits.length === 0 && <p className="text-center text-sm text-gray-400 py-3">Ninguna receta cabe exactamente. Sube un equivalente o revisa las que “casi caben”.</p>}
+            {near.length > 0 && (
+              <div>
+                <h3 className="font-bold text-amber-700 text-sm px-1 mb-2">Casi caben (te falta 1 equivalente)</h3>
+                <div className="space-y-2.5">{near.map((x) => card(x, <span className="text-[10px] font-semibold bg-amber-100 text-amber-700 rounded-full px-2 py-0.5 inline-block mt-1.5">Casi cabe (+{x.over})</span>))}</div>
+              </div>
+            )}
+          </>
+        )}
+
+        {mode === 'refri' && (
+          <>
+            {!have.length && <p className="text-center text-sm text-gray-400 py-2">Marca al menos un ingrediente para ver qué puedes cocinar.</p>}
+            {featured && (
+              <div className="rounded-2xl bg-emerald-50 border border-emerald-200 p-3 space-y-2">
+                <div className="flex items-center justify-between">
+                  <h3 className="font-bold text-emerald-900 text-sm">⭐ Sugerencia para ti <span className="font-normal text-gray-500">({(rot % pool.length) + 1}/{pool.length})</span></h3>
+                </div>
+                <RecipeCard r={featured.r} fl={flOf(featured.r)} extra={missingLine(featured)} open={openId === 'f-' + featured.r.id} onToggle={() => setOpenId(openId === 'f-' + featured.r.id ? null : 'f-' + featured.r.id)} onAdd={() => setAdding(featured.r)} />
+                <button onClick={() => { setRot(rot + 1); setOpenId(null); }} className="w-full min-h-[48px] rounded-xl bg-emerald-600 text-white font-bold btn-press">🔄 Dame otra opción</button>
+              </div>
+            )}
+            {gen && (
+              <div className="rounded-2xl bg-violet-50 dark:bg-violet-500/10 border border-violet-200 dark:border-violet-500/30 p-3 space-y-2">
+                <h3 className="font-bold text-violet-800 dark:text-violet-300 text-sm">✨ Ninguna receta coincide exacto: te armo un platillo con lo que tienes</h3>
+                <p className="text-xs text-gray-600">Calculado con las porciones que te quedan hoy.</p>
+                <RecipeCard r={gen} fl={flOf(gen)} open={true} onToggle={() => {}} onAdd={() => setAdding(gen)} />
+              </div>
+            )}
+            {rankedAll.length > 0 && (
+              <div>
+                <h3 className="font-bold text-emerald-900 text-sm px-1 mb-2">Recetas con tus ingredientes</h3>
+                <div className="space-y-2.5">{rankedAll.map((x) => card({ r: x.r, fl: flOf(x.r) }, missingLine(x)))}</div>
+              </div>
+            )}
+            {have.length > 0 && !rankedAll.length && !gen && <p className="text-center text-sm text-gray-400 py-3">No encontré recetas con esos ingredientes. Agrega una proteína o un cereal.</p>}
+          </>
         )}
       </div>
       {adding && (
@@ -1054,6 +2449,11 @@ function RecipesScreen({ ctx }) {
               <button key={m.k} onClick={() => addToDay(adding, m.k)} className="w-full min-h-[52px] rounded-xl bg-emerald-50 text-emerald-900 font-bold flex items-center gap-3 px-4 btn-press"><Icon name={m.icon} /> {m.n}</button>
             ))}
           </div>
+        </Modal>
+      )}
+      {form && (
+        <Modal title={form.id ? 'Editar mi receta' : 'Crear mi propia receta'} onClose={() => setForm(null)}>
+          <RecipeForm initial={form} lex={lex} onCancel={() => setForm(null)} onSave={saveRecipe} />
         </Modal>
       )}
     </div>
@@ -1080,7 +2480,7 @@ function LineChart({ points, unit, color }) {
     <svg viewBox={`0 0 ${W} ${H}`} className="w-full" role="img" aria-label="Gráfica de evolución">
       {ticks.map((v, i) => (
         <g key={i}>
-          <line x1={pl} x2={W - pr} y1={Y(v)} y2={Y(v)} stroke="#e5e7eb" strokeDasharray="3 3" />
+          <line x1={pl} x2={W - pr} y1={Y(v)} y2={Y(v)} stroke="#94a3b8" strokeOpacity="0.35" strokeDasharray="3 3" />
           <text x={pl - 5} y={Y(v) + 3} fontSize="9" textAnchor="end" fill="#9ca3af">{v.toFixed(1)}</text>
         </g>
       ))}
@@ -1286,6 +2686,14 @@ function ProfileScreen({ ctx }) {
           {p.manualEq && <button onClick={() => set('manualEq', null)} className="mt-3 w-full min-h-[48px] rounded-xl border-2 border-emerald-600 text-emerald-700 font-bold btn-press flex items-center justify-center gap-2"><Icon name="RefreshCw" size={18} /> Volver al cálculo automático</button>}
         </Card>
 
+        <AllergyCard ctx={ctx} />
+
+        <AvatarCard ctx={ctx} />
+
+        <CustomFoodsCard ctx={ctx} />
+
+        <ThemeCard ctx={ctx} />
+
         <ManualCard />
 
         <Card>
@@ -1337,7 +2745,20 @@ function App() {
   const [tab, setTab] = useState('porciones');
   const [date, setDate] = useState(dateKey());
   const [tour, setTour] = useState(false);
-  const helpApi = useMemo(() => ({ open: () => setTour(true) }), []);
+  const [botOpen, setBotOpen] = useState(false);
+  const [avatarOpen, setAvatarOpen] = useState(false);
+  const [chat, setChat] = useState({ msgs: [], pending: null });
+  const theme = state.settings.theme;
+  const cycleTheme = useCallback(() => setState((s) => { const n = clone(s); const order = ['light', 'dark', 'system']; n.settings.theme = order[(order.indexOf(n.settings.theme) + 1) % 3]; return n; }), []);
+  const helpApi = useMemo(() => ({ open: () => setTour(true), theme, cycleTheme }), [theme]);
+  useEffect(() => {
+    applyTheme(theme);
+    if (theme !== 'system' || !window.matchMedia) return;
+    const mq = window.matchMedia('(prefers-color-scheme: dark)');
+    const h = () => applyTheme('system');
+    mq.addEventListener ? mq.addEventListener('change', h) : mq.addListener(h);
+    return () => { mq.removeEventListener ? mq.removeEventListener('change', h) : mq.removeListener(h); };
+  }, [theme]);
   const [guide, setGuide] = useState(undefined); // undefined = cerrada, null = todas, 'key' = enfocada
   const [msg, setMsg] = useState('');
   const [copies, setCopies] = useState([]);
@@ -1352,6 +2773,13 @@ function App() {
     const t = setTimeout(() => { try { localStorage.setItem(LS_KEY, JSON.stringify(state)); } catch (e) { /* cuota/privado */ } }, 250);
     return () => clearTimeout(t);
   }, [state]);
+  const stateRef = useRef(state); stateRef.current = state;
+  useEffect(() => {
+    const flush = () => { try { localStorage.setItem(LS_KEY, JSON.stringify(stateRef.current)); } catch (e) { /* cuota/privado */ } };
+    const vis = () => { if (document.visibilityState === 'hidden') flush(); };
+    window.addEventListener('pagehide', flush); document.addEventListener('visibilitychange', vis);
+    return () => { window.removeEventListener('pagehide', flush); document.removeEventListener('visibilitychange', vis); };
+  }, []);
   const refreshCopies = useCallback(() => { idb.all().then((r) => setCopies(r.sort((a, b) => b.date.localeCompare(a.date)))).catch(() => {}); }, []);
   useEffect(() => { refreshCopies(); }, []);
   useEffect(() => {
@@ -1380,25 +2808,36 @@ function App() {
   };
   const startOwn = () => {
     if (!window.confirm('Se borrarán los datos de ejemplo (o los actuales) para empezar con tus propios datos. ¿Continuar?')) return;
-    setState(makeEmpty()); setTab('perfil'); toast('Listo. Captura tu perfil');
+    setState((s) => Object.assign(makeEmpty(), { settings: s.settings, custom: s.custom })); setTab('perfil'); toast('Listo. Captura tu perfil');
   };
-  const loadSample = () => { if (window.confirm('Se reemplazarán tus datos actuales por datos de ejemplo. ¿Continuar?')) { setState(makeSample()); toast('Datos de ejemplo cargados'); } };
+  const loadSample = () => { if (window.confirm('Se reemplazarán tus datos actuales por datos de ejemplo. ¿Continuar?')) { setState((s) => Object.assign(makeSample(), { settings: s.settings, custom: s.custom })); toast('Datos de ejemplo cargados'); } };
 
   const ctx = {
     state, mutate, setState, date, setDate, targets, plan, metrics, provisional: !metrics, waterGoal, backupDue, doBackup, startOwn, loadSample,
-    copies, toast, go: setTab, openGuide: (k) => setGuide(k)
+    copies, toast, go: setTab, openGuide: (k) => setGuide(k), openBot: () => setBotOpen(true)
   };
   return (
     <HelpCtx.Provider value={helpApi}>
-    <div className="max-w-md mx-auto min-h-screen bg-[#eef5f1] relative pb-28">
+    <div className="max-w-md mx-auto min-h-screen app-bg relative pb-44">
       {tab === 'porciones' && <PortionsScreen ctx={ctx} />}
       {tab === 'recordatorio' && <RecallScreen ctx={ctx} />}
       {tab === 'recetas' && <RecipesScreen ctx={ctx} />}
       {tab === 'progreso' && <ProgressScreen ctx={ctx} />}
       {tab === 'perfil' && <ProfileScreen ctx={ctx} />}
-      {tour && <TourModal onClose={() => setTour(false)} onGo={(t) => { setTab(t); setTour(false); }} />}
+      {tour && <TourModal onClose={() => setTour(false)} onGo={(t) => { setTour(false); if (t === 'bot') setBotOpen(true); else setTab(t); }} />}
       {guide !== undefined && <GuideModal focus={guide} onClose={() => setGuide(undefined)} />}
-      {msg && <div className="fixed left-1/2 -translate-x-1/2 bottom-28 z-[60] bg-gray-900 text-white text-sm font-semibold rounded-full px-5 py-3 shadow-lg max-w-[90%] text-center">{msg}</div>}
+      {!botOpen && (
+        <div className="fixed inset-x-0 z-30 pointer-events-none" style={{ bottom: 'calc(env(safe-area-inset-bottom) + 76px)' }}>
+          <div className="max-w-md mx-auto flex justify-end px-4">
+            <button onClick={() => setBotOpen(true)} aria-label="Abrir NutriBot" className="pointer-events-auto relative w-14 h-14 rounded-full bg-emerald-100 shadow-lg ring-4 ring-white overflow-hidden btn-press flex items-center justify-center">
+              <AvatarFace settings={state.settings} size={56} />
+            </button>
+          </div>
+        </div>
+      )}
+      {botOpen && <NutriBot ctx={ctx} chat={chat} setChat={setChat} onClose={() => setBotOpen(false)} onAvatar={() => setAvatarOpen(true)} />}
+      {avatarOpen && <Modal title="Elige a tu NutriBot" onClose={() => setAvatarOpen(false)}><AvatarPicker ctx={ctx} /></Modal>}
+      {msg && <div className="fixed left-1/2 -translate-x-1/2 bottom-40 z-[60] bg-gray-900 text-white text-sm font-semibold rounded-full px-5 py-3 shadow-lg max-w-[90%] text-center">{msg}</div>}
       <nav className="fixed bottom-0 inset-x-0 z-40 bg-white border-t border-emerald-100 shadow-[0_-4px_16px_rgba(5,150,105,.08)] safe-bottom">
         <div className="max-w-md mx-auto grid grid-cols-5">
           {TABS.map((t) => (
